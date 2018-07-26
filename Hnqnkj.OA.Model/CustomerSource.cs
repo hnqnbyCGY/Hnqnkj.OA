@@ -11,5 +11,10 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class CustomerSource:EntityBase
     {
+        public string   Sourece { get; set; }
+
+        public int DefaultSort { get; set; }
+
+        public bool Status { get; set; }
     }
 }

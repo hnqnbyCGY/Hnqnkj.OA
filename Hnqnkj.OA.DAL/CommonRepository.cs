@@ -100,6 +100,8 @@ namespace Hnqnkj.OA.DAL
         /// <param name="sort"></param>
         /// <param name="order"></param>
         /// <returns></returns>
+        /// 
+        
         public IEnumerable<TEntity> GetPageEntitys(Expression<Func<TEntity, bool>> where = null, int limit = 10, int offset = 0, string sort = "Id", OrderMode order = OrderMode.Asc)
         {
             IEnumerable<TEntity> query = null;

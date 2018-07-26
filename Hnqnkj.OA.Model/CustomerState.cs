@@ -11,5 +11,10 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class CustomerState:EntityBase
     {
+        public string  StatusStr { get; set; }
+
+        public int DefaultSort { get; set; }
+
+        public string Status { get; set; }
     }
 }

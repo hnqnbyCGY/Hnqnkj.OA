@@ -30,7 +30,6 @@ namespace Hnqnkj.OA.DAL
         }
 
         private CommonRepository<Shcool> _shcool;
-
         public CommonRepository<Shcool> Shcool
         {
             get

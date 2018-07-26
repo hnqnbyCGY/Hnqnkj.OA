@@ -10,7 +10,7 @@ namespace Hnqnkj.OA.Model
     {
 
         public string Name { get; set; }
-
+ 
         /// <summary>
         /// 校长
         /// </summary>
