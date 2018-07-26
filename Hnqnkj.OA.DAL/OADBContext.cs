@@ -29,15 +29,7 @@ namespace Hnqnkj.OA.DAL
         /// 学生
         /// </summary>
         public DbSet<Student> Students { get; set; }
-
-        /// <summary>
-        /// 学校，校区
-        /// </summary>
-        public DbSet<Shcool> Shcools { get; set; }
-        /// <summary>
-        /// 学生，客户
-        /// </summary>
-        public DbSet<Student> Students { get; set; }
+   
         /// <summary>
         /// 专业
         /// </summary>
