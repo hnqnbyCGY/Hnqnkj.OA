@@ -11,5 +11,9 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class Team:EntityBase
     {
+        public string TName { get; set; }
+
+        public int Specialty_Id { get; set; }
+        public virtual Specialty Specialty { get; set; }
     }
 }

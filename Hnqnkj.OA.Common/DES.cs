@@ -25,10 +25,12 @@ namespace Hnqnkj.OA.Common
             {
                 byte[] buffer1 = Encoding.UTF8.GetBytes(key);
                 byte[] buffer2 = Encoding.UTF8.GetBytes(IV);
-                DESCryptoServiceProvider provider1 = new DESCryptoServiceProvider();
-                provider1.Mode = CipherMode.ECB;
-                provider1.Key = buffer1;
-                provider1.IV = buffer2;
+                DESCryptoServiceProvider provider1 = new DESCryptoServiceProvider
+                {
+                    Mode = CipherMode.ECB,               
+                    Key = buffer1,
+                    IV = buffer2
+                };
                 ICryptoTransform transform1 = provider1.CreateDecryptor(provider1.Key, provider1.IV);
                 byte[] buffer3 = Convert.FromBase64String(val);
                 MemoryStream stream1 = new MemoryStream();
@@ -59,10 +61,12 @@ namespace Hnqnkj.OA.Common
                 byte[] buffer1 = Encoding.UTF8.GetBytes(key);
                 byte[] buffer2 = Encoding.UTF8.GetBytes(IV);
 
-                DESCryptoServiceProvider provider1 = new DESCryptoServiceProvider();
-                provider1.Mode = CipherMode.ECB;
-                provider1.Key = buffer1;
-                provider1.IV = buffer2;
+                DESCryptoServiceProvider provider1 = new DESCryptoServiceProvider
+                {
+                    Mode = CipherMode.ECB,
+                    Key = buffer1,
+                    IV = buffer2
+                };
                 ICryptoTransform transform1 = provider1.CreateEncryptor(provider1.Key, provider1.IV);
                 byte[] buffer3 = Encoding.UTF8.GetBytes(val);
                 MemoryStream stream1 = new MemoryStream();

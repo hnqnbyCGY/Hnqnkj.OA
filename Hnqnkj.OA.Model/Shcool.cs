@@ -12,7 +12,7 @@ namespace Hnqnkj.OA.Model
         public string Name { get; set; }
  
         /// <summary>
-        /// 校长
+        /// 校长或负责人
         /// </summary>
         public string Principal { get; set; }
         /// <summary>
