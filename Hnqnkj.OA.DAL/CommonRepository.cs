@@ -22,7 +22,7 @@ namespace Hnqnkj.OA.DAL
     public class CommonRepository<TEntity> : ICommonRepository<TEntity>
          where TEntity : EntityBase
     {        
-        internal O context;
+        internal OADBContext context;
         internal DbSet<TEntity> dbSet;
         public CommonRepository(OADBContext context)
         {
