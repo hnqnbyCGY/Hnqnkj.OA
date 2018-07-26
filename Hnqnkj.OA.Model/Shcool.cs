@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hnqnkj.OA.Model
 {
-    public class Shcool
+    public class Shcool:EntityBase
     {
 
         public string Name { get; set; }

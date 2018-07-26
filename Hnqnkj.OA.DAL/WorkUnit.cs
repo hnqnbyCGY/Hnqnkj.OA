@@ -28,5 +28,20 @@ namespace Hnqnkj.OA.DAL
                 return _admin;
             }
         }
+
+        private CommonRepository<Shcool> _shcool;
+
+        public CommonRepository<Shcool> Shcool
+        {
+            get
+            {
+                if (_shcool == null)
+                {
+                    _shcool = new CommonRepository<Shcool>(DB);
+                }
+                return _shcool;
+            }
+        }
+
     }
 }
