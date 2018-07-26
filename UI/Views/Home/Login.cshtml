@@ -1,15 +1,31 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
+    <style>
+        body{
+            margin:0 auto;
+            padding:0;
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <img  />
+    </header>
     <div> 
-        <form action="home/login" method="post">
-            <input type="text" name="name" value="" />
-            <input type="password" name="pwd" value="" />
+        <form action="/home/login" method="post" class="box">
+            <label>登陆名：</label>
+            <input type="text" name="LoginName" value="" />
+            <label>密码：</label>
+            <input type="password" name="LoginPwd" value="" />
+            <img src="/home/ShowCode?id=0.12215841616" />
             <input type="submit" />
         </form>
     </div>
