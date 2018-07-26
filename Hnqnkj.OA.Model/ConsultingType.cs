@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Hnqnkj.OA.Model
 {
     /// <summary>
-    /// 咨询类型model
+    /// 咨询类型model 沟通类型
     /// </summary>
     public class ConsultingType:EntityBase
     {

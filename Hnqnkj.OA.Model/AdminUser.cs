@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hnqnkj.OA.Model
 {
@@ -39,5 +40,9 @@ namespace Hnqnkj.OA.Model
         /// 最后登录时间
         /// </summary>
         public DateTime? LastLogingTime { get; set; }
+        [InverseProperty("OperatorAdminUser")]
+        public virtual ICollection<Student> OperatorAdminUsers { get; set; }
+        [InverseProperty("LastOperatorAdminUser")]
+        public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
     }
 }
