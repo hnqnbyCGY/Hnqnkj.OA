@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hnqnkj.OA.Model
 {
-   public class AdminUser
+   public class AdminUser:EntityBase
     {
         public int Id { get; set; }
         public string Name { get; set; }

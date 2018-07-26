@@ -29,6 +29,11 @@ namespace Hnqnkj.OA.DAL
             this.context = context;
             this.dbSet = context.Set<TEntity>();
         }
+        /// <summary>
+        /// return rows
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public int GetCount(Expression<Func<TEntity, bool>> where = null)
         {
             if (where == null)
@@ -36,12 +41,19 @@ namespace Hnqnkj.OA.DAL
             else
                 return dbSet.Count(where);
         }
-
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(object id)
         {
             TEntity entity = dbSet.Find(id);
             Delete(entity);
         }
+        /// <summary>
+        /// 根据实体删除
+        /// </summary>
+        /// <param name="entity"></param>
         public virtual void Delete(TEntity entity)
         {
             if(context.Entry(entity).State == EntityState.Detached)
@@ -50,7 +62,13 @@ namespace Hnqnkj.OA.DAL
             }
             dbSet.Remove(entity);
         }
-
+        /// <summary>
+        /// 获取所有实体
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="orderBy"></param>
+        /// <param name="includeProperties"></param>
+        /// <returns></returns>
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> where = null, Func<IQueryable<TEntity>,
             IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
@@ -73,7 +91,15 @@ namespace Hnqnkj.OA.DAL
                 return query.ToList();
             }          
         }
-        
+        /// <summary>
+        /// 分页
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="limit"></param>
+        /// <param name="offset"></param>
+        /// <param name="sort"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public IEnumerable<TEntity> GetPageEntitys(Expression<Func<TEntity, bool>> where = null, int limit = 10, int offset = 0, string sort = "Id", OrderMode order = OrderMode.Asc)
         {
             IEnumerable<TEntity> query = null;
@@ -96,12 +122,19 @@ namespace Hnqnkj.OA.DAL
             query = query.OrderBy(sort);
             return query.Skip(offset).Take(limit).ToList();
         }
-
+        /// <summary>
+        /// 根据ID查实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public TEntity GetEntityById(object id)
         {
             return dbSet.Find(id);//根据主键查找实体
         }
-
+        /// <summary>
+        /// 插入
+        /// </summary>
+        /// <param name="entity"></param>
         public void Insert(TEntity entity)
         {
             dbSet.Add(entity);
@@ -116,7 +149,11 @@ namespace Hnqnkj.OA.DAL
                 context.Entry(entity).Property(item).IsModified = false;
             }            
         }
-
+        /// <summary>
+        /// 根据条件查询
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public IEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> where)
         {
             IEnumerable<TEntity> query = null;

@@ -16,5 +16,17 @@ namespace Hnqnkj.OA.DAL
         {
             this.db = new OADBContext();
         }
+        private CommonRepository<AdminUser> _admin;
+        public CommonRepository<AdminUser> Admin
+        {
+            get
+            {
+                if (_admin == null)
+                {
+                    _admin = new CommonRepository<AdminUser>(DB);
+                }
+                return _admin;
+            }
+        }
     }
 }
