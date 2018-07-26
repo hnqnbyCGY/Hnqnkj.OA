@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminUser.cs" />
+    <Compile Include="CommunicationRecord.cs" />
     <Compile Include="ConsultingType.cs" />
     <Compile Include="ConsultingWay.cs" />
     <Compile Include="ConsultMajor.cs" />
