@@ -59,7 +59,6 @@
     <Compile Include="Shcool.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="Student.cs" />
-    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

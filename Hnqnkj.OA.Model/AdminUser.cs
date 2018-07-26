@@ -44,5 +44,7 @@ namespace Hnqnkj.OA.Model
         public virtual ICollection<Student> OperatorAdminUsers { get; set; }
         [InverseProperty("LastOperatorAdminUser")]
         public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
+
+        public bool Status { get; set; }
     }
 }
