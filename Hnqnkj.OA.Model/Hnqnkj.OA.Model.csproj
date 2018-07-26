@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminUser.cs" />
+    <Compile Include="CommunicationRecord.cs" />
     <Compile Include="ConsultingType.cs" />
     <Compile Include="ConsultingWay.cs" />
     <Compile Include="ConsultMajor.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Shcool.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

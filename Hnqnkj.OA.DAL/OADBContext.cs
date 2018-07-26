@@ -63,7 +63,12 @@ namespace Hnqnkj.OA.DAL
         /// 意向程度
         /// </summary>
         public DbSet<IntentionDegree> IntentionDegrees { get; set; }
-       
+        /// <summary>
+        /// 沟通记录
+        /// </summary>
+        public DbSet<CommunicationRecord> CommunicationRecords { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Student>().HasRequired(m => m.OperatorAdminUser).WithMany(n => n.OperatorAdminUsers).WillCascadeOnDelete(false);
