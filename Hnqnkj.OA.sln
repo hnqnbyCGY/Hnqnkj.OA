@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hnqnkj.OA.DAL", "Hnqnkj.OA.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hnqnkj.OA.BLL", "Hnqnkj.OA.BLL\Hnqnkj.OA.BLL.csproj", "{687A235B-8DB4-48F1-BF99-9EA8704D208F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hnqnkj.OA.Common", "Hnqnkj.OA.Common\Hnqnkj.OA.Common.csproj", "{AA56E3C4-FD1F-453B-B65F-69952D395D08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{687A235B-8DB4-48F1-BF99-9EA8704D208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{687A235B-8DB4-48F1-BF99-9EA8704D208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{687A235B-8DB4-48F1-BF99-9EA8704D208F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA56E3C4-FD1F-453B-B65F-69952D395D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA56E3C4-FD1F-453B-B65F-69952D395D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA56E3C4-FD1F-453B-B65F-69952D395D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA56E3C4-FD1F-453B-B65F-69952D395D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
