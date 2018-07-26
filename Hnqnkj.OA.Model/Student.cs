@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hnqnkj.OA.Model
 {
@@ -47,18 +48,45 @@ namespace Hnqnkj.OA.Model
         /// <summary>
         /// 客户状态Id
         /// </summary>
-        public int CutomerState_Id { get; set; }
+        public int CutomerStateId { get; set; }
         public virtual CustomerState CustomerState { get; set; }
         /// <summary>
         /// 客户来源
         /// </summary>
-        public int CustomerSource_Id { get; set; }
+        public int CustomerSourceId { get; set; }
         public virtual CustomerSource CustomerSource { get; set; }
         /// <summary>
         /// 沟通内容
         /// </summary>
         public string CommunicationContent { get; set; }
-        
+        /// <summary>
+        ///所属校区
+        /// </summary>
+        public int ShcoolId { get; set; }
+        public virtual Shcool Shcool { get; set; }
+        /// <summary>
+        /// 经办人
+        /// </summary>
+        [InverseProperty("OperatorAdminUsers")]
+        public virtual AdminUser OperatorAdminUser { get; set; }
+        /// <summary>
+        /// 咨询日期
+        /// </summary>
+        public  DateTime ConsultationDate { get; set; }
+        /// <summary>
+        /// 所属班级
+        /// </summary>
+        public  int? TeamId { get; set; }
+        public virtual Team Team { get; set; }
+        /// <summary>
+        /// 最后操作人
+        /// </summary>
+        [InverseProperty("ListOperatorAdminUsers")]
+        public virtual AdminUser ListOperatorAdminUser { get; set; }
+        /// <summary>
+        /// 最后操作日期
+        /// </summary>
+        public DateTime ListOperatorDateTime { get; set; }
 
     }
 }

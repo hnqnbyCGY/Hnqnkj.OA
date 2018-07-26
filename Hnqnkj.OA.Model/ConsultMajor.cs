@@ -14,12 +14,12 @@ namespace Hnqnkj.OA.Model
         /// <summary>
         /// 学生Id
         /// </summary>
-        public int Student_Id { get; set; }
+        public int StudentId { get; set; }
         public virtual Student Student { get; set; }
         /// <summary>
         /// 专业Id
         /// </summary>
-        public int Specialty_Id { get; set; }
+        public int SpecialtyId { get; set; }
         public  virtual Specialty Specialty { get; set; }
     }
 }
