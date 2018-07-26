@@ -13,7 +13,6 @@ namespace UI.Controllers
   
         public ActionResult Index()
         {
-            context.AdminUsers.Add(new Hnqnkj.OA.Model.AdminUser());
             return View();
         }
 
