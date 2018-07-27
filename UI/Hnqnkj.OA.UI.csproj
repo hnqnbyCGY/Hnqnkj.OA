@@ -149,11 +149,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\TestController.cs" />
-=======
     <Compile Include="Controllers\StudentListController.cs" />
->>>>>>> d3cda63068eeb76096294238986ac134ce6b6b4e
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -302,11 +299,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Test\Index.cshtml" />
-=======
     <Content Include="Views\StudentList\Index.cshtml" />
->>>>>>> d3cda63068eeb76096294238986ac134ce6b6b4e
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
