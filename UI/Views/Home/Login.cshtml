@@ -108,6 +108,9 @@
                 <img id="imgCode" src="/home/ShowCode?id=0.12215841616"  style="cursor:pointer;width:77px;height:32px;"/>
             </div>
             <div>
+                <input type="checkbox" id="IsRemember" />
+            </div>
+            <div>
                 <input id="btn" class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
             </div>
         </form>
@@ -127,6 +130,7 @@
                 var pwd = $("#LoginPwd").val().trim()
                 var name = $("#LoginName").val().trim()
                 var code = $("#Code").val().trim()
+                var IsRemember = $("#IsRemember").attr('checked') == 'checked' ? true : false;
                 if (pwd == '' || name == '') {
                     layer.msg('用户名密码不能为空！');
                     return;
@@ -135,12 +139,13 @@
                     url: 'login',
                     type: 'post',
                     dataType: "json",
-                    data: { LoginPwd: pwd, LoginName: name,Code:code },
+                    data: { LoginPwd: pwd, LoginName: name, Code: code, IsRemember: IsRemember },
                     success:(data)=> {
                         if (data.success) {
                             location.href = '/home';
                         } else {
-                            layer.msg(data.message,{icon:2,time:2000})
+                            layer.msg(data.message, { icon: 2, time: 2000 });
+                            $('#imgCode').attr('src', '/home/ShowCode?id=' + Math.random())
                         }
                     }
                 })
