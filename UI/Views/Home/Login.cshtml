@@ -105,7 +105,7 @@
             </div>
             <div class="form-control">
                 <input type="text" placeholder="请输入验证码" id="Code" name="Code" maxlength="4" />
-                <img src="/home/ShowCode?id=0.12215841616" />
+                <img  style="height:45px;width:65px" src="/home/ShowCode?id=0.12215841616" />
             </div>
             <div>
                 <input id="btn" class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
@@ -135,7 +135,7 @@
                         if (data.success) {
                             location.href = '/home';
                         } else {
-                            layer.msg(data.msg,{icon:4,time:2})
+                            layer.msg(data.message,{icon:2,time:2000})
                         }
                     }
                 })
