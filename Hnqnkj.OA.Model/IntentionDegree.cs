@@ -11,5 +11,13 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class IntentionDegree:EntityBase
     {
+        /// <summary>
+        /// 程度级别
+        /// </summary>
+        public string Leavl { get; set; }
+
+        public int DefaultSort { get; set; }
+
+        public bool Status { get; set; }
     }
 }

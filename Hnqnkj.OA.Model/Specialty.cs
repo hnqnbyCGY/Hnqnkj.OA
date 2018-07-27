@@ -11,5 +11,11 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class Specialty:EntityBase
     {
+
+        public string  Name { get; set; }
+
+        public string  Remark { get; set; }
+
+     //   public virtual ICollection<Team> Team { get; set; }
     }
 }

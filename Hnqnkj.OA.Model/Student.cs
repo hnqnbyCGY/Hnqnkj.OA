@@ -56,6 +56,10 @@ namespace Hnqnkj.OA.Model
         public int CustomerSourceId { get; set; }
         public virtual CustomerSource CustomerSource { get; set; }
         /// <summary>
+        /// 已交金额
+        /// </summary>
+        public double AmountPaid { get; set; }
+        /// <summary>
         /// 沟通内容
         /// </summary>
         public string CommunicationContent { get; set; }
