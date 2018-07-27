@@ -34,7 +34,7 @@ namespace UI.Controllers
         }
         public ActionResult AutoLogin(string loginName, string loginPwd)
         {
-            AdminUser user = Work.Admin.Where(u => u.AccountName == loginName && u.AccountPwd == loginPwd && (!u.Status)).FirstOrDefault();
+            AdminUser user = Work.Admin.Where(u => u.AccountName == loginName && u.AccountPwd == loginPwd && (u.Status)).FirstOrDefault();
             if (user != null)
             {
                 string userdata = JsonConvert.SerializeObject(user);

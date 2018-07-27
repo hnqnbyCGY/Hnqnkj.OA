@@ -130,7 +130,9 @@
                 var pwd = $("#LoginPwd").val().trim()
                 var name = $("#LoginName").val().trim()
                 var code = $("#Code").val().trim()
-                var IsRemember = $("#IsRemember").attr('checked') == 'checked' ? true : false;
+                var IsRemember = $("#IsRemember").is(":checked")
+
+               
                 if (pwd == '' || name == '') {
                     layer.msg('用户名密码不能为空！');
                     return;
