@@ -20,6 +20,10 @@ namespace UI.Controllers
         {
             return View();
         }
+        public ActionResult welcome()
+        {
+            return View();
+        }
         [HttpGet]
         public ActionResult Login()
         {
