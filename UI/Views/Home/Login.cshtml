@@ -5,29 +5,117 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" />
+    <title>后台登陆</title>
     <style>
-
         body {
             margin: 0 auto;
             padding: 0;
             text-align: center;
         }
+
+        .box {
+            margin: 10% auto;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            width: 300px
+        }
+
+        form * {
+            padding: 0;
+            margin: 0;
+            border: none
+        }
+
+        form {
+            width: 300px
+        }
+
+        .form {
+            width: 300px;
+            padding: 5px
+        }
+
+        input {
+            border: none;
+            margin-left: 5px;
+        }
+
+        .form-control {
+            width: 85%;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            margin: 10px auto;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        .form-top {
+            width: 300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+            .form-top span {
+                background: rgba(0,0,0,0.5);
+                height: 45px;
+                display: inline-block;
+                width: 100%;
+                color: white;
+                font-family: 'Microsoft YaHei';
+                background: black;
+                border-radius: 10px 10px 0 0;
+                line-height: 45px;
+                font-size: 18px;
+                font-weight: bolder
+            }
+
+        header {
+            background: #2F4056;
+        }
     </style>
 </head>
 <body>
-    <header style="width:100%;height:100px">
-        <img width="80" height="80" src="~/青鸟logo.png" />
-    </header>
-    <div>
-        <form action="/home/login" method="post" class="box">
-            <label>登陆名：</label>
-            <input type="text" name="LoginName" value="" />
-            <label>密码：</label>
-            <input type="password" name="LoginPwd" value="" />
-            <img src="/home/ShowCode?id=0.12215841616" />
-            <input type="submit" />
+   <div>
+        <header style="width:100%;height:100px;text-align:left;display:flex;align-items:center">
+            <div style="background-color:white;border-radius:50%;width:80px">
+                <img width="80" height="80" src="~/青鸟logo.png" />
+            </div>
+        </header>
+    </div>
+    <div class="box">
+        <div class="form-top">
+            <span>用户登录</span>
+        </div>
+        <form action="/home/login" method="post" class="">
+            <div>
+                <div class="form-control">
+                    <i class="layui-icon" style="color:chartreuse;font-size:20px">&#xe66f;</i>
+                    <input type="text" name="LoginName" value="" placeholder="请输入用户名" />
+                </div>
+            </div>
+            <div>
+                <div class="form-control">
+                    <i class="layui-icon" style="color:orangered;font-size:20px">&#xe673;</i>
+                    <input type="password" name="LoginPwd" value="" placeholder="请输入密码" />
+                </div>
+            </div>
+            <div class="form-control">
+                <input type="text" placeholder="请输入验证码" name="Code" maxlength="4" />
+                <img src="/home/ShowCode?id=0.12215841616" />
+            </div>
+            <div>
+                <input class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
+            </div>
         </form>
     </div>
+    <footer style="width:100%;height:100px"></footer>
+    <script src="~/layui/layui.all.js"></script>
+    <script>
+
+    </script>
 </body>
 </html>
