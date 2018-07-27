@@ -23,7 +23,6 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            Work.Admin.Insert(new AdminUser());
             HttpCookie coName = Request.Cookies["Key"];
             HttpCookie coPwd = Request.Cookies["Value"];
             if (coName != null && coPwd != null)
@@ -103,6 +102,31 @@ namespace UI.Controllers
             Session["code"] = strcode;
             byte[] imgBytes = valideataCode.CreateValidateGraphic(strcode);
             return File(imgBytes, @"img/jpeg");
+        }
+        public ActionResult LogOff()
+        {
+            // FormsAuthentication.SignOut();
+            Session.Abandon();
+            HttpCookie coAuto = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (coAuto != null)
+            {
+                coAuto.Expires = DateTime.Now.AddYears(-1);
+
+            }
+            Response.Cookies.Add(coAuto);
+            HttpCookie coLoginName = Request.Cookies["Key"];
+            if (coLoginName != null)
+            {
+                coLoginName.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(coLoginName);
+            }
+            HttpCookie coLoginPwd = Request.Cookies["Value"];
+            if (coLoginPwd != null)
+            {
+                coLoginPwd.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(coLoginPwd);
+            }
+            return RedirectToAction("Login");
         }
     }
 }
