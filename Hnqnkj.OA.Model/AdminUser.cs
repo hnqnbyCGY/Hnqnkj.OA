@@ -42,7 +42,7 @@ namespace Hnqnkj.OA.Model
         public DateTime? LastLogingTime { get; set; }
         [InverseProperty("OperatorAdminUser")]
         public virtual ICollection<Student> OperatorAdminUsers { get; set; }
-        [InverseProperty("LastOperatorAdminUser")]
+        [InverseProperty("ListOperatorAdminUser")]
         public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
 
         public bool Status { get; set; }

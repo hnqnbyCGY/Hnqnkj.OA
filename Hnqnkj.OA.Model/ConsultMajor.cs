@@ -9,7 +9,7 @@ namespace Hnqnkj.OA.Model
     /// <summary>
     /// 咨询专业
     /// </summary>
-    public  class ConsultMajor
+    public  class ConsultMajor:EntityBase
     {
         /// <summary>
         /// 学生Id

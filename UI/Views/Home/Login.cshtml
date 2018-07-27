@@ -90,32 +90,57 @@
         <div class="form-top">
             <span>用户登录</span>
         </div>
-        <form action="/home/login" method="post" class="">
+        <form id="form">
             <div>
                 <div class="form-control">
                     <i class="layui-icon" style="color:chartreuse;font-size:20px">&#xe66f;</i>
-                    <input type="text" name="LoginName" value="" placeholder="请输入用户名" />
+                    <input type="text" id="LoginName" name="LoginName" value="" placeholder="请输入用户名" />
                 </div>
             </div>
             <div>
                 <div class="form-control">
                     <i class="layui-icon" style="color:orangered;font-size:20px">&#xe673;</i>
-                    <input type="password" name="LoginPwd" value="" placeholder="请输入密码" />
+                    <input type="password" id="LoginPwd" name="LoginPwd" value="" placeholder="请输入密码" />
                 </div>
             </div>
             <div class="form-control">
-                <input type="text" placeholder="请输入验证码" name="Code" maxlength="4" />
+                <input type="text" placeholder="请输入验证码" id="Code" name="Code" maxlength="4" />
                 <img src="/home/ShowCode?id=0.12215841616" />
             </div>
             <div>
-                <input class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
+                <input id="btn" class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
             </div>
         </form>
     </div>
     <footer style="width:100%;height:100px"></footer>
     <script src="~/layui/layui.all.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script>
-
+        $(function () {
+            $('#btn').click(e => {
+                e.preventDefault();
+                var pwd = $("#LoginPwd").val().trim()
+                var name = $("#LoginName").val().trim()
+                var code = $("#Code").val().trim()
+                if (pwd == '' || name == '') {
+                    layer.msg('用户名密码不能为空！');
+                    return;
+                }
+                $.ajax({
+                    url: 'login',
+                    type: 'post',
+                    dataType: "json",
+                    data: { LoginPwd: pwd, LoginName: name,Code:code },
+                    success:(data)=> {
+                        if (data.success) {
+                            location.href = '/home';
+                        } else {
+                            layer.msg(data.msg,{icon:4,time:2})
+                        }
+                    }
+                })
+            })
+        })
     </script>
 </body>
 </html>

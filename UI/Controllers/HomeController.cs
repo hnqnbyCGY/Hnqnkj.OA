@@ -23,6 +23,7 @@ namespace UI.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            Work.Admin.Insert(new AdminUser());
             HttpCookie coName = Request.Cookies["Key"];
             HttpCookie coPwd = Request.Cookies["Value"];
             if (coName != null && coPwd != null)
@@ -63,6 +64,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
+            
             if (Session["code"] == null)
             {
                 return Json(new { success = false, message = "验证码过期" });

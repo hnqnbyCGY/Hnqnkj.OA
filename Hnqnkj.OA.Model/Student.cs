@@ -85,7 +85,7 @@ namespace Hnqnkj.OA.Model
         /// <summary>
         /// 最后操作人
         /// </summary>
-        [InverseProperty("ListOperatorAdminUsers")]
+        [InverseProperty("LastOperatorAdminUsers")]
         public virtual AdminUser ListOperatorAdminUser { get; set; }
         /// <summary>
         /// 最后操作日期
