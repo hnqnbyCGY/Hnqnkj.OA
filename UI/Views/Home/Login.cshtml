@@ -109,6 +109,7 @@
             </div>
             <div>
                 <input type="checkbox" id="IsRemember" />
+                <label>记住密码</label>
             </div>
             <div>
                 <input id="btn" class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
@@ -130,9 +131,7 @@
                 var pwd = $("#LoginPwd").val().trim()
                 var name = $("#LoginName").val().trim()
                 var code = $("#Code").val().trim()
-                var IsRemember = $("#IsRemember").is(":checked")
-
-               
+                var IsRemember = document.getElementById('IsRemember').checked
                 if (pwd == '' || name == '') {
                     layer.msg('用户名密码不能为空！');
                     return;
