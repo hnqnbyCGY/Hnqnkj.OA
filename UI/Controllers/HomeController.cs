@@ -24,11 +24,12 @@ namespace UI.Controllers
         public ActionResult Login()
         {
             Work.Admin.Insert(new AdminUser());
-            string coName = DES.Decrypt(Request.Cookies["Key"].Value,"12345678","87654321");
-            string coPwd = Request.Cookies["Value"].Value;
+            HttpCookie coName = Request.Cookies["Key"];
+            HttpCookie coPwd = Request.Cookies["Value"];
             if (coName != null && coPwd != null)
             {
-                AdminUser user = Work.Admin.Where(u => u.AccountName == coName && u.AccountPwd == coPwd && (u.Status)).FirstOrDefault();
+                string name = DES.Decrypt(coName.Value,"12345678","87654321");
+                AdminUser user = Work.Admin.Where(u => u.AccountName == name && u.AccountPwd == coPwd.Value && (u.Status)).FirstOrDefault();
                 if (user != null)
                 {
                     string userdata = JsonConvert.SerializeObject(user);
