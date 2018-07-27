@@ -58,9 +58,11 @@
     <Compile Include="IntentionDegree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shcool.cs" />
+    <Compile Include="SignUp.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="Tuition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

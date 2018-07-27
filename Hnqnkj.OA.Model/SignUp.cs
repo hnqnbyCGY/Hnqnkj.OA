@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hnqnkj.OA.Model
 {
-    class SignUp
+    /// <summary>
+    /// 报名表
+    /// </summary>
+    public class SignUp:EntityBase
     {
     }
 }

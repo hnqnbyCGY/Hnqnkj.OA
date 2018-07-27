@@ -30,17 +30,7 @@ namespace Hnqnkj.OA.DAL
         }
 
         private CommonRepository<Shcool> _shcool;
-        public CommonRepository<Shcool> Shcool
-        {
-            get
-            {
-                if (_shcool == null)
-                {
-                    _shcool = new CommonRepository<Shcool>(DB);
-                }
-                return _shcool;
-            }
-        }
+        public CommonRepository<Shcool> Shcool { get => _shcool ?? new CommonRepository<Shcool>(DB); }
 
         private CommonRepository<Specialty> _specialty;
         public CommonRepository<Specialty> Specialty
