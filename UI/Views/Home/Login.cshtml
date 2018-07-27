@@ -105,7 +105,7 @@
             </div>
             <div class="form-control">
                 <input type="text" placeholder="请输入验证码" id="Code" name="Code" maxlength="4" />
-                <img  style="height:45px;width:65px" src="/home/ShowCode?id=0.12215841616" />
+                <img id="imgCode" src="/home/ShowCode?id=0.12215841616"  style="cursor:pointer;width:77px;height:32px;"/>
             </div>
             <div>
                 <input id="btn" class="layui-btn layui-btn-lg  layui-btn-normal" type="submit" value="登陆" />
@@ -117,6 +117,11 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script>
         $(function () {
+
+            $('#imgCode').click(function () {
+                $('#imgCode').attr('src', '/home/ShowCode?id=' + Math.random())
+            })
+
             $('#btn').click(e => {
                 e.preventDefault();
                 var pwd = $("#LoginPwd").val().trim()

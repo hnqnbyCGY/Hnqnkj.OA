@@ -14,7 +14,7 @@ namespace Hnqnkj.OA.Common {
     {
         public byte[] CreateValidateGraphic(string validateCode)
         {
-            Bitmap image = new Bitmap((int)Math.Ceiling(validateCode.Length * 12.0), 22);
+            Bitmap image = new Bitmap((int)Math.Ceiling(validateCode.Length * 13.0), 22);
             Graphics g = Graphics.FromImage(image);
 
             try
