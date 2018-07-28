@@ -7,25 +7,23 @@
     <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
     <script src="~/layui/layui.js"></script>
     <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <style>
+        .layui-tab-item{
+            height:100%;
+        }
+    </style>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="overflow:hidden">
     <div id="app">
         <div class="layui-layout layui-layout-admin">
             <div class="layui-header">
                 <div class="layui-logo">layui 后台布局</div>
                 <!-- 头部区域（可配合layui已有的水平导航） -->
                 <ul class="layui-nav layui-layout-left">
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">控制台</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">商品管理</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">用户</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">其它系统</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="">邮件管理</a></dd>
-                            <dd><a href="">消息管理</a></dd>
-                            <dd><a href="">授权管理</a></dd>
-                        </dl>
-                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">前端业务</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">教务教学</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">系统管理</a></li>
+                    
                 </ul>
                 <ul class="layui-nav layui-layout-right">
                     <li class="layui-nav-item">
@@ -56,9 +54,13 @@
                 </div>
             </div>
             <div class="layui-body">
-                <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
-                    <ul class="layui-tab-title"></ul>
-                    <div class="layui-tab-content"></div>
+                <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowClose="true" style="margin:0 0">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">网站设置</li>
+                    </ul>
+                    <div class="layui-tab-content" style="height:563px;padding:0 0; overflow:hidden">
+                        <div class="layui-tab-item layui-show">内容1</div>
+                    </div>
                 </div>
             </div>
             <div class="layui-footer">
@@ -83,7 +85,7 @@
                     navs: [//左侧导航列表
                         {
                             lis: [
-                                { nav: "前台业务", items: [{ name: "列表一", src: "/StudentList", id: '123' }, { name: "聊天记录", src: "/ChatList", id: '223' }, { name: "列表3", src: "", id: '143' }] },//li
+                                { nav: "学生管理", items: [{ name: "学生列表", src: "/StudentList", id: '123' }, { name: "沟通记录", src: "", id: '223' }] },//li
                                 { nav: "解决方案", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
                             ], IsShow: true
                         }
@@ -132,9 +134,10 @@
                     this.ChangeLogic(item);
                 },
                 AddLogic: function (item) {
+                  
                     layui.element.tabAdd('demo', {
                         title: item.name,
-                        content: '<iframe data-frameid="' + item.id + '" scrolling="auto" frameborder="0" src="' + item.src + '" style="width:100%;height:99%;"></iframe>',
+                        content: '<iframe class="ifr" data-frameid="' + item.id + '" scrolling="auto" frameborder="0" src="' + item.src + ' " style="width:100%;height:100%;"></iframe>',
                         id: item.id
                     })
                 },
@@ -143,6 +146,11 @@
                 },
             }
         });
+
+
+  
+      
+     
     </script>
 </body>
 </html>

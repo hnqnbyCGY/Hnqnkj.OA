@@ -16,8 +16,10 @@ namespace UI.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                var list = work.CommunicationRecord.GetPageEntitys(m=>1==1,limit,offset,sort,order).ToList();
-                return Json(new { code=0,count=list.Count,data=list},JsonRequestBehavior.AllowGet);
+                var query = work.CommunicationRecord.GetPageEntitys(m=>1==1,limit,offset,sort,order);
+                var list = from s in query
+                           select new { s.ChatWay, s.CommunicationContent, s.IntentionDegree.Leavl };
+                return Json(new { code=0,count=query.Count(),data=list},JsonRequestBehavior.AllowGet);
             }
             return View();
         }
