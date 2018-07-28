@@ -9,21 +9,38 @@
     <link href="~/layui/css/layui.css" rel="stylesheet" />
 </head>
 <body class="layui-layout-body">
+    <div id="app">
+        <div class="layui-layout layui-layout-admin">
+            <div class="layui-header">
+                <div class="layui-logo">layui 后台布局</div>
+                <!-- 头部区域（可配合layui已有的水平导航） -->
+                <ul class="layui-nav layui-layout-left">
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">控制台</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">商品管理</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">用户</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">其它系统</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">邮件管理</a></dd>
+                            <dd><a href="">消息管理</a></dd>
+                            <dd><a href="">授权管理</a></dd>
 
-
-
-
-
-<<<<<<< HEAD
-   
-=======
-
-            <div class="layui-body">
-                <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
-                    <ul class="layui-tab-title"></ul>
-                    <div class="layui-tab-content" style="height:100%">
-                    </div>
-                </div>
+                        </dl>
+                    </li>
+                </ul>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                            @HttpContext.Current.User.Identity.Name
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="">基本资料</a></dd>
+                            <dd><a href="">安全设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="/Home/logoff">退出</a></li>
+                </ul>
             </div>
 
             <div class="layui-side layui-bg-black">
@@ -42,30 +59,22 @@
             <div class="layui-body">
                 <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
                     <ul class="layui-tab-title">
-                        <li v-for="item in items" v-bind:lay-id="item.id">
-                            {{item.name}}
-                            <i class="layui-icon layui-unselect layui-tab-close" v-on:click="delet(item)" >ဆ</i>
-                        </li>
+                    
                     </ul>
                     <div class="layui-tab-content">
-                        <div class="layui-tab-item" v-for="item in items">
-                            <iframe  v-bind:data-frameid="item.id" scrolling="auto" frameborder="0" v-bind:src="item.src" style="width:100%;height:99%;"></iframe>
-                        </div>
+                    
                     </div>
                 </div>
-
             </div>
-
             <div class="layui-footer">
                 <!-- 底部固定区域 -->
-                © layui.com - 底部固定区域
+                ? layui.com - 底部固定区域
             </div>
         </div>
     </div>
 
-
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src= "/layui/layui.js" ></script>
+    <script src="/layui/layui.js"></script>
     <script>
         layui.use('element', function () {
             var element = layui.element;
@@ -74,7 +83,7 @@
         new Vue({
             el: "#app",
             data: {
-                items:[],
+                items: [],
                 sidebar: {
                     navs: [//左侧导航列表
                         {
@@ -110,29 +119,37 @@
                     }
                 },
                 tabAdd: function (item) {
-                    var isno=true;
-                    for(var i=0;i<this.items.length ;i++){
-                        if(this.items[i].id==item.id){
-                            isno=false;
+                    if ($(".layui-tab-title li[lay-id]").length <= 0) {
+                        this.AddLogic(item);
+                    } else {
+                        var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
+                        $.each($(".layui-tab-title li[lay-id]"), function () {
+                            //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
+                            if ($(this).attr("lay-id") == item.id) {
+                                isData = true;
+                            }
+                        })
+                        if (isData == false) {
+                            //标志为false 新增一个tab项
+                            this.AddLogic(item);
                         }
                     }
-                    if(isno){
-                        this.items.push(item);
-                    }
-                    layui.element.tabChange('demo', item.id);
+                    this.ChangeLogic(item);
                 },
-                delet(item){
-                    var index=this.items.indexOf(item);
-                    this.items.splice(index, 1);
-                    if(this.items.length!=0){
-                        layui.element.tabChange('demo',this.items[this.items.length-1].id);
-                    }
-                }
+                AddLogic: function (item) {
+                    layui.element.tabAdd('demo', {
+                        title: item.name,
+                        content: '<iframe data-frameid="' + item.id + '" scrolling="auto" frameborder="0" src="' + item.src + '" style="width:100%;height:99%;"></iframe>',
+                        id: item.id
+                    })
+                },
+                ChangeLogic: function (item) {
+                    layui.element.tabChange('demo', item.id)
+                },
             }
         });
 
 
     </script>
->>>>>>> 96b9e3d16d8adcfcf73dd0ee489f7cc1517989eb
 </body>
 </html>
