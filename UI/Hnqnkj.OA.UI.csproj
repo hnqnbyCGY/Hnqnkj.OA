@@ -149,7 +149,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StusFollowUpController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +164,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="layui\css\admin.css" />
     <Content Include="layui\css\layui.css" />
     <Content Include="layui\css\layui.mobile.css" />
     <Content Include="layui\css\modules\code.css" />
@@ -246,6 +248,7 @@
     <Content Include="layui\images\face\71.gif" />
     <Content Include="layui\images\face\8.gif" />
     <Content Include="layui\images\face\9.gif" />
+    <Content Include="layui\index.js" />
     <Content Include="layui\layui.all.js" />
     <Content Include="layui\layui.js" />
     <Content Include="layui\lay\modules\carousel.js" />
@@ -298,6 +301,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\StusFollowUp\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\StudentList\Index.cshtml" />
+    <Content Include="Views\Home\welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
