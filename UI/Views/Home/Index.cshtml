@@ -14,6 +14,125 @@
 
 
 
+<<<<<<< HEAD
    
+=======
+
+            <div class="layui-body">
+                <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
+                    <ul class="layui-tab-title"></ul>
+                    <div class="layui-tab-content" style="height:100%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-side layui-bg-black">
+                <div class="layui-side-scroll">
+                    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                    <ul class="layui-nav layui-nav-tree" lay-filter="test" v-for="ul in sidebar.navs" v-show="ul.IsShow">
+                        <li class="layui-nav-item layui-nav-itemed" v-for="item in ul.lis">
+                            <a class="" href="javascript:;">{{item.nav}}</a>
+                            <dl class="layui-nav-child">
+                                <dd v-for="l in item.items" v-on:click="tabAdd(l)"><a href="javascript:;">{{l.name}}</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-body">
+                <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
+                    <ul class="layui-tab-title">
+                        <li v-for="item in items" v-bind:lay-id="item.id">
+                            {{item.name}}
+                            <i class="layui-icon layui-unselect layui-tab-close" v-on:click="delet(item)" >ဆ</i>
+                        </li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item" v-for="item in items">
+                            <iframe  v-bind:data-frameid="item.id" scrolling="auto" frameborder="0" v-bind:src="item.src" style="width:100%;height:99%;"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-footer">
+                <!-- 底部固定区域 -->
+                © layui.com - 底部固定区域
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src= "/layui/layui.js" ></script>
+    <script>
+        layui.use('element', function () {
+            var element = layui.element;
+            var $ = layui.$;
+        });
+        new Vue({
+            el: "#app",
+            data: {
+                items:[],
+                sidebar: {
+                    navs: [//左侧导航列表
+                        {
+                            lis: [
+                                { nav: "所有商品", items: [{ name: "列表一", src: "/StudentList", id: '123' }, { name: "列表2", src: "", id: '223' }, { name: "列表3", src: "", id: '143' }] },//li
+                                { nav: "解决方案", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                            ], IsShow: true
+                        }
+                        ,
+                        {
+                            lis: [
+                                { nav: "所有商品1", items: [{ name: "列表一" }, { name: "列表2" }, { name: "列表3" }] },//li
+                                { nav: "解决方案1", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                            ], IsShow: false
+                        },
+                        {
+                            lis: [
+                                { nav: "所有商品2", items: [{ name: "列表一" }, { name: "列表2" }, { name: "列表3" }] },//li
+                                { nav: "解决方案2", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                            ], IsShow: false
+                        }
+                    ]
+                }
+            },
+            methods: {
+                changingOver(index) {
+                    for (var i = 0; i < this.sidebar.navs.length; i++) {
+                        if (index == i) {
+                            this.sidebar.navs[i].IsShow = true;
+                        } else {
+                            this.sidebar.navs[i].IsShow = false;
+                        }
+                    }
+                },
+                tabAdd: function (item) {
+                    var isno=true;
+                    for(var i=0;i<this.items.length ;i++){
+                        if(this.items[i].id==item.id){
+                            isno=false;
+                        }
+                    }
+                    if(isno){
+                        this.items.push(item);
+                    }
+                    layui.element.tabChange('demo', item.id);
+                },
+                delet(item){
+                    var index=this.items.indexOf(item);
+                    this.items.splice(index, 1);
+                    if(this.items.length!=0){
+                        layui.element.tabChange('demo',this.items[this.items.length-1].id);
+                    }
+                }
+            }
+        });
+
+
+    </script>
+>>>>>>> 96b9e3d16d8adcfcf73dd0ee489f7cc1517989eb
 </body>
 </html>
