@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="layui-form-item">
+
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">单行输入框</label>
+    <div class="layui-input-block">
+        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+    </div>
+</div>
+<table class="layui-hide" id="test"></table>
+
+@section script{
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            table.render({
+                elem: '#test'
+                , url: '/Chatlist'
+                , cellMinWidth: 100//全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [[
+                    { field: 'Id',width:100 ,title: 'ID', sort: true }
+                    , { field: 'ChatWay', width: 100, title: '联系方式' }
+                    , { field: 'ConType', width: 100, title: '联系类型' }
+                    , { field: 'IntentionDegree.Leavl', width: 100, title: '意向程度'}
+                   
+                ]]
+            });
+        });
+    </script>
+}
