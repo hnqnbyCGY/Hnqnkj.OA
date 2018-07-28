@@ -70,8 +70,8 @@
             </div>
             <div class="layui-body">
                 <div class="layui-tab" lay-filter="demo" lay-allowClose="true">
-                    <ul class="layui-tab-title">
-                        <li v-for="item in items" v-bind:lay-id="item.id">
+                    <ul class="layui-tab-title ">
+                        <li v-for="item in items" v-bind:lay-id="item.id"  v-bind:class="item.IsShowClass">
                             {{item.name}}
                             <i class="layui-icon layui-unselect layui-tab-close" v-on:click="delet(item)" >ဆ</i>
                         </li>
@@ -108,8 +108,8 @@
                     navs: [//左侧导航列表
                         {
                             lis: [
-                                { nav: "所有商品", items: [{ name: "列表一", src: "/StudentList", id: '123' }, { name: "列表2", src: "", id: '223' }, { name: "列表3", src: "", id: '143' }] },//li
-                                { nav: "解决方案", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                                { nav: "所有商品", items: [{ name: "列表一", src: "/StudentList", id: '123',IsShowClass:"layui-this"}, { name: "列表2", src: "", id: '223', IsShowClass:"" }, { name: "列表3", src: "", id: '143',IsShowClass:"" }] },//li
+                                { nav: "解决方案", items: [{ name: "列表一",IsShowClass:"" }, { name: "列表一",IsShowClass:"" }, { name: "列表一", IsShowClass:"" }] }//li
                             ], IsShow: true
                         }
                         ,
@@ -148,7 +148,6 @@
                     if(isno){
                         this.items.push(item);
                     }
-                    layui.element.tabChange('demo', item.id);
                 },
                 delet(item){
                     var index=this.items.indexOf(item);
