@@ -98,7 +98,7 @@
                             </a>
                             <dl class="layui-nav-child">
                                 <dd data-name="console" class="layui-this">
-                                    <a lay-href="test">控制台</a>
+                                    <a lay-href="welcome">控制台</a>
                                 </dd>
                                 <dd data-name="console">
                                     <a lay-href="home/homepage1.html">主页一</a>
@@ -425,7 +425,7 @@
             <!-- 主体内容 -->
             <div class="layui-body" id="LAY_app_body">
                 <div class="layadmin-tabsbody-item layui-show">
-                    <iframe src="home/console.html" frameborder="0" class="layadmin-iframe"></iframe>
+                    <iframe src="home/welcome" frameborder="0" class="layadmin-iframe"></iframe>
                 </div>
             </div>
 
@@ -440,7 +440,7 @@
         layui.config({
            //静态资源所在路径
         }).extend({
-            index: '/home/welcome' //主入口模块
+            index: '/layui/index' //主入口模块
         }).use('index');
     </script>
 </body>

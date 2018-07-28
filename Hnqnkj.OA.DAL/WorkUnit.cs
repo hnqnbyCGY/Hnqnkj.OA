@@ -66,6 +66,10 @@ namespace Hnqnkj.OA.DAL
                 return _student;
             }
         }
+        public void Save()
+        {
+            DB.SaveChanges();
+        }
         
     }
 }
