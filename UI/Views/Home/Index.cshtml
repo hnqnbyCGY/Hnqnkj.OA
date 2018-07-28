@@ -15,17 +15,10 @@
                 <div class="layui-logo">layui 后台布局</div>
                 <!-- 头部区域（可配合layui已有的水平导航） -->
                 <ul class="layui-nav layui-layout-left">
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">控制台</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">商品管理</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">用户</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">其它系统</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="">邮件管理</a></dd>
-                            <dd><a href="">消息管理</a></dd>
-                            <dd><a href="">授权管理</a></dd>
-                        </dl>
-                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">前端业务</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">教务教学</a></li>
+                    <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">系统管理</a></li>
+                    
                 </ul>
                 <ul class="layui-nav layui-layout-right">
                     <li class="layui-nav-item">
@@ -83,7 +76,7 @@
                     navs: [//左侧导航列表
                         {
                             lis: [
-                                { nav: "所有商品", items: [{ name: "列表一", src: "/StudentList", id: '123' }, { name: "列表2", src: "", id: '223' }, { name: "列表3", src: "", id: '143' }] },//li
+                                { nav: "学生管理", items: [{ name: "学生列表", src: "/StudentList", id: '123' }, { name: "沟通记录", src: "", id: '223' }] },//li
                                 { nav: "解决方案", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
                             ], IsShow: true
                         }
