@@ -304,10 +304,11 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\StudentList\Index.cshtml" />
     <Content Include="Views\Home\welcome.cshtml" />
+    <Content Include="Views\StudentList\Add.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
