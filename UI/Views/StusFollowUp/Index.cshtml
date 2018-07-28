@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/layui/css/layui.css" type="text/css" rel="stylesheet" media="all">
+    @*<link href="/oa/tpl/pc/css/style.css" type="text/css" rel="stylesheet">*@
+    <script type="text/javascript">var web_root = "/";</script>
+    <script type="text/javascript" src="/layui/layui.js"></script>
+    <script type="text/javascript" src="/js/jQuery.v1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/ffhd.js"></script>
+    <title>QNKJ</title>
+    <link id="layuicss-layer" rel="stylesheet" href="/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all">
+    <link id="layuicss-laydate" rel="stylesheet" href="/layui/css/modules/laydate/default/laydate.css?v=5.0.9" media="all">
+</head>
+<body>
+    <div id="ny_content">
+        <div class="top_form">
+            <form class="layui-form" action="#">
+                <div class="layui-form-item">
+                    <div class="layui-form-mid">来源</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <select name="come_from">
+                            <option value="0">显示所有</option>
+                            <option value="1">传单</option>
+                            <option value="2">微信</option>
+                            <option value="3">微博</option>
+                            <option value="4">报纸</option>
+                            <option value="5">其他</option>
+                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="请选择" value="显示所有" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="0" class="layui-this">显示所有</dd><dd lay-value="1" class="">传单</dd><dd lay-value="2" class="">微信</dd><dd lay-value="3" class="">微博</dd><dd lay-value="4" class="">报纸</dd><dd lay-value="5" class="">其他</dd></dl></div>
+                    </div>
+                    <div class="layui-form-mid">状态</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <select name="custom_status">
+                            <option value="0">显示所有</option>
+                            <option value="1" selected="">待跟进</option>
+                            <option value="2">跟进中</option>
+                            <option value="3">已到访</option>
+                            <option value="4">已成交</option>
+                            <option value="5">已失效</option>
+                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="请选择" value="待跟进" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="0" class="">显示所有</dd><dd lay-value="1" class="layui-this">待跟进</dd><dd lay-value="2" class="">跟进中</dd><dd lay-value="3" class="">已到访</dd><dd lay-value="4" class="">已成交</dd><dd lay-value="5" class="">已失效</dd></dl></div>
+                    </div>
+                    <div class="layui-form-mid">意向</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <select name="will_type">
+                            <option value="0">显示所有</option>
+                            <option value="1">高</option>
+                            <option value="2">中</option>
+                            <option value="3">低</option>
+                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="请选择" value="显示所有" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="0" class="layui-this">显示所有</dd><dd lay-value="1" class="">高</dd><dd lay-value="2" class="">中</dd><dd lay-value="3" class="">低</dd></dl></div>
+                    </div>
+                    <div class="layui-form-mid">咨询日期</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <input name="begin_time" class="layui-input date_sel" id="begin_time" placeholder="yyyy-mm-dd" value="" lay-key="1" type="text">
+                    </div>
+                    <div class="layui-form-mid">-</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <input name="end_time" class="layui-input date_sel" id="end_time" placeholder="yyyy-mm-dd" value="" lay-key="1" type="text">
+                    </div>
+                    <div class="layui-form-mid">关键词</div>
+                    <div class="layui-input-inline" style="width:100px;">
+                        <input name="keywords" class="layui-input" value="" placeholder="电话/姓名" type="text">
+                    </div>
+                    <button class="layui-btn" lay-submit="" lay-filter="submitbtn">查询</button>
+                    <div class="layui-btn-group"> <a href="javascript:void(0);" onclick="open_window('添加学生','?file=custom&amp;act=add');" class="layui-btn"><i class="layui-icon"></i>添加</a> <a href="javascript:void(0);" onclick="open_window('导入数据','?file=custom&amp;act=import');" class="layui-btn"><i class="layui-icon"></i>导入</a> <a href="javascript:void(0);" onclick="open_window('导出数据','?file=custom&amp;act=export');" class="layui-btn"><i class="layui-icon"></i>导出</a> </div>
+                </div>
+            </form>
+        </div>
+        <div id="list_ct">
+            <input value="0" id="total" type="hidden">
+            <input value="20" id="pagesize" type="hidden">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="60">
+                    <col width="100">
+                    <col width="60">
+                    <col width="120">
+                    <col width="80">
+                    <col width="*">
+                    <col width="100">
+                    <col width="80">
+                    <col width="140">
+                    <col width="100">
+                    <col width="130">
+                    <col width="180">
+                    <col width="140">
+                    <col width="110">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        <td>电话</td>
+                        <td>意向</td>
+                        <td>课程</td>
+                        <td>来源</td>
+                        <td>销售员</td>
+                        <td>沟通记录</td>
+                        <td>跟进状态</td>
+                        <td>报名</td>
+                        <td>录入者</td>
+                        <td>咨询时间</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="page_show">
+            <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1">
+                <span class="layui-laypage-count">共 0 条</span>
+                <a href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">上一页</a>
+                <a href="javascript:;" class="layui-laypage-next layui-disabled" data-page="2">下一页</a>
+                <span class="layui-laypage-skip">
+                    到第<input min="1" value="1" class="layui-input" type="text">页
+                    <button type="button" class="layui-laypage-btn">确定</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var cur_url = "/oa/?file=custom&show=page";
+        var cur_page = 1;
+        var cur_cs = "";
+        var laypage;
+        layui.use(['laypage', 'layer', 'form', 'laydate'], function () {
+            var layer = layui.layer, form = layui.form, laydate = layui.laydate;
+            laypage = layui.laypage;
+            laydate.render({ elem: '.date_sel' });
+            show_page();
+            form.on('submit(submitbtn)', function (data) {
+                cur_cs = "&" + url_cs(JSON.stringify(data.field));
+                cur_page = 1;
+                reload_url();
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
