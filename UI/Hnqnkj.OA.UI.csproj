@@ -300,6 +300,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\StusFollowUp\Index.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\StudentList\Index.cshtml" />
     <Content Include="Views\Home\welcome.cshtml" />
