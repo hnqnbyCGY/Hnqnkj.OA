@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hnqnkj.OA.Model
 {
@@ -16,11 +18,27 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int ConsultingTypeId { get; set; }
         public virtual ConsultingType ConsultingType { get; set; }
+        [NotMapped]
+        public string ConType
+        {
+            get
+            {
+                return ConsultingType.TypeName;
+            }
+        }
         /// <summary>
         /// 沟通方式
         /// </summary>
         public int ConsultingWayId { get; set; }
         public virtual ConsultingWay ConsultingWay { get; set; }
+        [NotMapped]
+        public string ChatWay
+        {
+            get
+            {
+                return ConsultingWay.WayName;
+            }
+        }
         /// <summary>
         /// 意向程度
         /// </summary>

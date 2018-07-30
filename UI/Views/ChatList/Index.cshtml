@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="layui-form-item">
+
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label">单行输入框</label>
+    <div class="layui-input-block">
+        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+    </div>
+</div>
+<table class="layui-hide" id="table"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+@section script{
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            table.render({
+                elem: '#table'
+                , url: '/Chatlist'
+                , cellMinWidth: 100
+                , cols: [[
+                    { field: 'Id', width: 50, title: 'ID', sort: true }
+                    , { field: 'ChatWay', width: 100, title: '联系方式' }
+                    , { field: 'ConType', width: 100, title: '联系类型' }
+                    , { field: 'Leavl', width: 100, title: '意向程度' }
+                    , { field: 'Name', width: 100, title: '校区' }
+                    , { field: 'Id', width:200, toolbar: '#barDemo' }
+
+                ]]
+            });
+        });
+        table.
+    </script>
+}

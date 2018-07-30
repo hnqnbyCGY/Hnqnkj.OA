@@ -48,7 +48,7 @@ namespace Hnqnkj.OA.DAL
         {
             get
             {
-                if(_team == null)
+                if (_team == null)
                 {
                     _team = new CommonRepository<Model.Team>(DB);
                 }
@@ -62,14 +62,27 @@ namespace Hnqnkj.OA.DAL
             get
             {
                 if (_student == null)
-                    _student = new CommonRepository<Model.Student>(DB);
+                    _student = new CommonRepository<Student>(DB);
                 return _student;
             }
         }
+        private CommonRepository<CommunicationRecord> _CommunicationRecord;
+        public CommonRepository<CommunicationRecord> CommunicationRecord
+        {
+            get
+            {
+                if (_CommunicationRecord==null)
+                {
+                    _CommunicationRecord = new CommonRepository<CommunicationRecord>(DB);
+                }
+                return _CommunicationRecord;
+            }
+        }
+
         public void Save()
         {
             DB.SaveChanges();
         }
-        
+
     }
 }

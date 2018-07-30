@@ -148,7 +148,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChatListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Global.asax.cs">
@@ -306,6 +308,7 @@
     <Content Include="Views\Home\welcome.cshtml" />
     <Content Include="Views\StudentList\Add.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ChatList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
