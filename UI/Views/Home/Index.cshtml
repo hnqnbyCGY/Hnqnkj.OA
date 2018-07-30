@@ -9,17 +9,21 @@
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <style>
         .layui-tab-item{
+
             height:100%;
         }
+        .layui-layout-left .layui-nav-item {
+            width:110.5px;
+        }      
     </style>
 </head>
 <body class="layui-layout-body" style="overflow:hidden">
     <div id="app">
         <div class="layui-layout layui-layout-admin">
-            <div class="layui-header">
-                <div class="layui-logo">layui 后台布局</div>
+            <div class="layui-header" style="">
+                <div class="layui-logo" style="cursor:pointer">湖南青鸟科教集团</div>
                 <!-- 头部区域（可配合layui已有的水平导航） -->
-                <ul class="layui-nav layui-layout-left">
+                <ul class="layui-nav layui-layout-left" style="padding: 0 0;">
                     <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(0)">前端业务</a></li>
                     <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(1)">教务教学</a></li>
                     <li class="layui-nav-item"><a href="javascript:;" v-on:click="changingOver(2)">系统管理</a></li>
@@ -39,7 +43,6 @@
                     <li class="layui-nav-item"><a href="/Home/logoff">退出</a></li>
                 </ul>
             </div>
-
             <div class="layui-side layui-bg-black">
                 <div class="layui-side-scroll">
                     <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
@@ -53,23 +56,24 @@
                     </ul>
                 </div>
             </div>
-            <div class="layui-body">
-                <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowClose="true" style="margin:0 0">
+            <div class="layui-body" style="overflow:hidden;min-height:150px;">
+                <div class="layui-tab layui-tab-card" lay-filter="demo" lay-allowClose="true" style="height:100%; margin:0 0">
                     <ul class="layui-tab-title">
                         <li class="layui-this">网站设置</li>
                     </ul>
-                    <div class="layui-tab-content" style="height:563px;padding:0 0; overflow:hidden">
+                    <div class="layui-tab-content" style="height:100%; padding:0 0;">
                         <div class="layui-tab-item layui-show">内容1</div>
                     </div>
                 </div>
             </div>
             <div class="layui-footer">
                 <!-- 底部固定区域 -->
-                ? layui.com - 底部固定区域
+                <div style="width:300px;margin:0 auto">
+                    湖南青鸟科教版权所有
+                </div>             
             </div>
         </div>
     </div>
-
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="/layui/layui.js"></script>
     <script>
@@ -86,7 +90,7 @@
                         {
                             lis: [
                                 { nav: "学生管理", items: [{ name: "学生列表", src: "/StudentList", id: '123' }, { name: "沟通记录", src: "", id: '223' }] },//li
-                                { nav: "解决方案", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                                { nav: "沟通管理", items: [{ name: "咨询方式" }, { name: "客户来源" }, { name: "意向程度" }] }//li
                             ], IsShow: true
                         }
                         ,
@@ -145,12 +149,7 @@
                     layui.element.tabChange('demo', item.id)
                 },
             }
-        });
-
-
-  
-      
-     
+        });     
     </script>
 </body>
 </html>
