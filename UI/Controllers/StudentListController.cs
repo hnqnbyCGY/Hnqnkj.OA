@@ -16,6 +16,11 @@ namespace UI.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Index(int i)
+        {
+            return Json(new{ });
+        }
         [HttpGet]
         public ActionResult Add()
         {
