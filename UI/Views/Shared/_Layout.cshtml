@@ -2,9 +2,12 @@
 <html>
 <head>
     <title>@Page.Title</title>
-    @RenderSection("head", required: false)
+    <link rel="stylesheet"  href="~/layui/css/layui.css"/>
+    @RenderSection("style", required: false)
 </head>
 <body>
     @RenderBody()
+    <script src="~/layui/layui.all.js"></script>
+    @RenderSection("script",false)
 </body>
 </html>
