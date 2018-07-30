@@ -18,7 +18,7 @@ namespace UI.Controllers
             {
                 var query = work.CommunicationRecord.GetPageEntitys(m=>1==1,limit,offset,sort,order);
                 var list = from s in query
-                           select new { s.ChatWay, s.CommunicationContent, s.IntentionDegree.Leavl };
+                           select new { s.ChatWay, s.CommunicationContent, s.IntentionDegree.Leavl,s.ConType,s.Shcool.Name,s.Id };
                 return Json(new { code=0,count=query.Count(),data=list},JsonRequestBehavior.AllowGet);
             }
             return View();
