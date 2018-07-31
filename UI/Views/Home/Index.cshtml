@@ -83,8 +83,7 @@
         });
         new Vue({
             el: "#app",
-            data: {
-                items: [],
+            data: {             
                 sidebar: {
                     navs: [//左侧导航列表
                         {
@@ -102,8 +101,8 @@
                         },
                         {
                             lis: [
-                                { nav: "所有商品2", items: [{ name: "列表一" }, { name: "列表2" }, { name: "列表3" }] },//li
-                                { nav: "解决方案2", items: [{ name: "列表一" }, { name: "列表一" }, { name: "列表一" }] }//li
+                                { nav: "用户管理", items: [{ name: "添加用户",src:'/UserInfo',id:301 }, { name: "用户管理",src:'/UserInfo/AccountList',id:302 }] },//li
+                                { nav: "校区设置", items: [{ name: "校区管理",id:303 }] }//li
                             ], IsShow: false
                         }
                     ]
