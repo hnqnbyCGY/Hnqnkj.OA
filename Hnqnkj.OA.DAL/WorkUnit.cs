@@ -28,7 +28,27 @@ namespace Hnqnkj.OA.DAL
                 return _admin;
             }
         }
-
+        private CommonRepository<IntentionDegree> _intentionDegree;
+        public CommonRepository<IntentionDegree> IntentionDegree
+        {
+            get
+            {
+                if (_intentionDegree == null)
+                    _intentionDegree = new CommonRepository<Model.IntentionDegree>(DB);
+                return _intentionDegree;
+            }
+        }
+        private CommonRepository<CustomerSource> _customerSource;
+        public CommonRepository<CustomerSource> CustomerSource
+        {
+            get
+            {
+                if (_customerSource == null)
+                    _customerSource = new CommonRepository<Model.CustomerSource>(DB);
+                return _customerSource;
+            }
+        }
+       
         private CommonRepository<Shcool> _shcool;
         public CommonRepository<Shcool> Shcool { get => _shcool ?? new CommonRepository<Shcool>(DB); }
 
@@ -42,7 +62,19 @@ namespace Hnqnkj.OA.DAL
                 return _specialty;
             }
         }
-
+        private CommonRepository<CustomerState> _customerState = null;
+        public CommonRepository<CustomerState> CustomerState
+        {
+            get
+            {
+                if (_customerState==null)
+                {
+                    _customerState = new CommonRepository<Model.CustomerState>(DB);
+        
+                }
+                return _customerState;
+            }
+        }
         private CommonRepository<Team> _team;
         public CommonRepository<Team> Team
         {

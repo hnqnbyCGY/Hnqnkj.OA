@@ -154,6 +154,7 @@
     <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +280,7 @@
     <Content Include="layui\font\iconfont.eot" />
     <Content Include="layui\font\iconfont.ttf" />
     <Content Include="layui\font\iconfont.woff" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="青鸟logo.png" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -310,6 +312,8 @@
     <Content Include="Views\StudentList\Add.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ChatList\Index.cshtml" />
+    <Content Include="Views\UserInfo\Index.cshtml" />
+    <Content Include="Views\UserInfo\AccountList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

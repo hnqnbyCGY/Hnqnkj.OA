@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+</head>
+<body>
+
+    <table id="demo" lay-filter="test"></table>
+
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                
+                , url: '/UserInfo/AccountList' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'Id', title: '排序', width: 60, fixed: 'left' }
+                    , { field: 'AccountName', title: '用户名', width: 100 }
+                    , { field: 'RealName', title: '姓名', width: 100 }
+                    , { field: 'Sex', title: '性别', width: 100, templet: '#titleTpl' }
+                    , { field: 'MPhone', title: '电话号码', width: 177 }
+                    , { field: 'LoginCount', title: '登录次数', width: 100 }
+                    , { field: 'LastLogingTime', title: '最后登录', width: 170, templet:'#titleTpl3' }
+                    , { field: 'Status', title: '属性', width: 100, templet: '#titleTpl2' }
+                ]]
+            });
+
+        });
+        function fmtDate(obj) {
+            var dateVal = obj + "";
+            if (obj != null) {
+                var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        }
+    </script>
+    <script type="text/html" id="titleTpl">
+        {{#  if(d.Sex){ }}
+        <div>男</div>
+        {{#  } else { }}
+        <div>女</div>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="titleTpl2">
+        {{#  if(d.Status){ }}
+        <div>正常</div>
+        {{#  } else { }}
+        <div>锁定</div>
+        {{#  } }}
+    </script>
+    <script type="text/html" id="titleTpl3">
+        {{fmtDate(d.LastLogingTime)}}
+    </script>
+</body>
+</html>
