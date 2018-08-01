@@ -10,32 +10,226 @@
     <meta name="viewport" content="width=device-width" />
     <title>Add</title>
     <link rel="stylesheet" href="~/layui/css/layui.css" />
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .edit_block_c{
+            margin-top:10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="layui-tab" lay-filter="demo">
-        <ul class="layui-tab-title">
-            <li class="layui-this">网站设置</li>
-            <li>用户管理</li>
-            <li>权限分配</li>
-            <li>商品管理</li>
-            <li>订单管理</li>
-        </ul>
-        <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">内容1</div>
-            <div class="layui-tab-item">内容2</div>
-            <div class="layui-tab-item">内容3</div>
-            <div class="layui-tab-item">内容4</div>
-            <div class="layui-tab-item">内容5</div>
-        </div>
+    <div class="ny_content">
+        <form class="layui-form">
+            <div class="edit_block_c">
+                <!--第一行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">学员姓名</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="Name"  lay-verify="required" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">学员生日</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="Birthday" class="layui-input date_sel" value="2001-01-01" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">学员性别</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="Sex" lay-filter="Sex" value="1" title="男" checked />
+                            <input type="radio" name="Sex" lay-filter="Sex" value="0" title="女" />
+                        </div>
+                    </div>
+                </div>
+                <!--第二行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">家长电话</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text"   lay-verify="phone"  name="ParentsPhone" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">其他电话</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="OtherPhone" class="layui-input"  />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label" >微信号</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                             <input type="text" name="WechatNumber" class="layui-input"/>
+                        </div>
+                    </div>
+                </div>
+                <!--第三行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">公立学校</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="CouncilSchool" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">班级年级</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="ClassGrade" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">居住区域</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="ResidentialZone" class="layui-input" />
+                        </div>
+                    </div>
+                </div>
+                <!--第四行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">咨询专业</label>
+                        <div class="layui-input-inline" style="width:202px;">
+                            <select name="sps1" lay-verify="">
+                                <option value="">请选择</option>
+                                  @foreach (var item in ViewBag.sps)
+                                   {
+                                        <option value=@item.Id>@item.Name</option>
+                                   }
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:202px;">
+                            <select name="sps2" lay-verify="">
+                                <option value="">请选择</option>
+                                @foreach (var item in ViewBag.sps)
+                                {
+                                    <option value=@item.Id>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:202px;">
+                            <select name="sps3" lay-verify="">
+                                <option value="">请选择</option>
+                                @foreach (var item in ViewBag.sps)
+                                {
+                                    <option value=@item.Id>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--第五行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">客户状态</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <select name="CustomerStateId" lay-verify="">
+                                @foreach (var item in ViewBag.CustomerStates)
+                                {
+                                    <option value=@item.Id>@item.StatusStr</option>
+                                }ViewBag.IntentionDegree
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">意向程度</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <select name="IntentionDegreeId" lay-verify="">
+                                @foreach (var item in ViewBag.IntentionDegree)
+                                {
+                                    <option value=@item.Id>@item.Leavl</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">客户来源</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <select name="CustomerSourceId" lay-verify="">
+                                @foreach (var item in ViewBag.CustomerSource)
+                                {
+                                    <option value=@item.Id>@item.Sourece</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--第六行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">沟通内容</label>
+                        <div class="layui-input-inline" style="width:620px;">
+                            <textarea name="CommunicationContent"  lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--第七行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">所属校区</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <select name="ShcoolId" lay-verify="">
+                                @foreach (var item in ViewBag.Shcool)
+                                {
+                                    <option value=@item.Id>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">咨询日期</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" name="ConsultationDate" class="layui-input date_sel" value="2001-01-01" />
+                        </div>
+                    </div>
+                </div>
+                <!--最后一行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline "  style="margin-left:300px">
+                        <div class="layui-input-inline">
+                            <button lay-submit lay-filter="w" class="layui-btn">立即提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/layui/layui.all.js"></script>
     <script>
-        element = layui.element;
-        element.tabAdd('demo', {
-            title: '新选项' + (Math.random() * 1000 | 0) /* 用于演示 */
-            , content: '内容' + (Math.random() * 1000 | 0)
-            , id: new Date().getTime() /* 实际使用一般是规定好的id，这里以时间戳模拟下 */
-        })
+        layui.use(['laydate','form'], function () {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '.date_sel' //指定元素
+            });
+            var form = layui.form;
+            form.on('submit(w)', function (data) {
+                alert('a');
+                $.ajax({
+                    type: 'post',
+                    url: "/StudentList/Add",
+                    data: {
+                        Name: $('name="Name"').val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert('b')
+                        if (data.success) {
+                            layer.msg('添加成功!', { icon: 1, time: 1000 });
+                            setTimeout('refreshParent()', 1000);
+                        }
+                        else {
+                            layer.msg('添加失败!' + data.message, { icon: 2, time: 1000 });
+                        }
+                    },
+                    error: function (XmlHttpRequest, textStatus, errorThrown) {
+                        layer.msg('error!', { icon: 2, time: 1000 });
+                    }
+                });
+                return false;
+            })
+        });
     </script>
 </body>
 </html>
