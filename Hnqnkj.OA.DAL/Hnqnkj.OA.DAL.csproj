@@ -54,6 +54,7 @@
     <Compile Include="ICommonRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OADBContext.cs" />
+    <Compile Include="PredicateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkUnit.cs" />
   </ItemGroup>

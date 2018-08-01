@@ -3,41 +3,149 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section style{
+    <style>
+        .layui-table-cell {
+            height: 32px;
+            line-height: 32px;
+        }
 
-<div class="layui-form-item">
+        .layui-btn-mini {
+            height: 28px;
+            line-height: 28px
+        }
 
-</div>
-<div class="layui-form-item">
-    <label class="layui-form-label">单行输入框</label>
-    <div class="layui-input-block">
-        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        .my-container {
+            padding: 0 10px
+        }
+
+        .top-form {
+            border-left: 5px solid #4cff00;
+            margin: 10px auto;
+            background: #eee;
+            height: 45px;
+            line-height: 45px
+        }
+
+            .top-form * {
+                display: inline-block;
+                margin: 0 10px;
+            }
+
+        select, input {
+            margin: 0 !important;
+            padding: 0
+        }
+    </style>
+
+}
+<div class="my-container">
+    <div class="top-form">
+        <label class="">校区：</label>
+        <select id="school" class="layui-input layui-select" style="width:150px">
+            <option value="0">请选择</option>
+            @foreach (var item in ViewBag.Shcool)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        <label class="">沟通类型：</label>
+        <select id="type" class="layui-input layui-uselect" style="width:150px">
+            <option>请选择</option>
+            @foreach (var item in ViewBag.Type)
+            {
+                <option value="@item.Id">@item.TypeName</option>
+            }
+        </select>
+        <label class="">沟通方式：</label>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择框</label>
+            <div class="layui-input-block">
+                <select name="city" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0">北京</option>
+                    <option value="1">上海</option>
+                    <option value="2">广州</option>
+                    <option value="3">深圳</option>
+                    <option value="4">杭州</option>
+                </select>
+            </div>
+        </div>
+        <label class="">关键字：</label>
+        <input id="description" style="width:150px" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        <button id="btnSearch" class="layui-btn layui-btn-primary layui-btn-mini">搜索</button>
+    </div>
+
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-lg12">
+            <table class="layui-hide" id="table" lay-filter="list"></table>
+        </div>
     </div>
 </div>
-<table class="layui-hide" id="table"></table>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+
+    <div>
+        <button class="layui-btn layui-btn-primary  layui-btn-mini" lay-event="detail">查看</button>
+        <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
+        <button class="layui-btn layui-btn-danger  layui-btn-mini" lay-event="del">删除</button>
+    </div>
 </script>
 @section script{
     <script>
-        layui.use('table', function () {
+        layui.use(['table', 'form'], function () {
             var table = layui.table;
-            table.render({
+            var form = layui.form;
+            var $ = layui.$
+            var tab = table.render({
                 elem: '#table'
                 , url: '/Chatlist'
-                , cellMinWidth: 100
+                , cellMinWidth: 50
                 , cols: [[
-                    { field: 'Id', width: 50, title: 'ID', sort: true }
+                    { field: 'Id', width: 80, title: 'ID', sort: true }
                     , { field: 'ChatWay', width: 100, title: '联系方式' }
                     , { field: 'ConType', width: 100, title: '联系类型' }
                     , { field: 'Leavl', width: 100, title: '意向程度' }
                     , { field: 'Name', width: 100, title: '校区' }
-                    , { field: 'Id', width:200, toolbar: '#barDemo' }
+                    , { field: 'Id', width: 300, toolbar: '#barDemo', title: '操作' }
 
-                ]]
+                ]],
+                page: true
             });
+            table.on('tool(list)', obj => {
+                if (obj.event === 'del') {
+                    layer.confirm('确定删除吗?', index => {
+                        console.log(obj.data.Id)
+                        $.ajax({
+                            url: 'del',
+                            type: 'post',
+                            success(data) {
+                                if (data.success) {
+                                    obj.del();
+                                    layer.msg("删除数据成功！")
+                                } else {
+                                    layer.msg("删除数据失败！")
+                                }
+                            }, error() {
+                                layer.msg("网络错误！")
+                            }
+                        })
+                    })
+                }
+            })
+            $('#btnSearch').click(e => {
+                tab.reload({
+                    where: {
+                        way: $('#way').val(),
+                        type: $('#type').val(),
+                        school: $('#school').val(),
+                        description: $('#description').val()
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+            })
         });
-        table.
+
     </script>
 }
