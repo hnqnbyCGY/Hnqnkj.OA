@@ -11,7 +11,7 @@ namespace Hnqnkj.OA.Model
     /// <summary>
     /// 沟通记录
     /// </summary>
-    public class CommunicationRecord:EntityBase
+    public class CommunicationRecord : EntityBase
     {
         /// <summary>
         /// 沟通类型
@@ -66,6 +66,9 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int AdminUserId { get; set; }
         public virtual AdminUser AdminUser { get; set; }
-
+        public int StudentId { get; set; }
+        public virtual Student Student { get; set; }
+        [NotMapped]
+        public  string StudentName { get => Student.Name; }
     }
 }
