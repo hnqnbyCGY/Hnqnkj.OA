@@ -36,14 +36,14 @@ namespace UI.Controllers
                 AdminUser user = Work.Admin.Where(u => u.AccountName == name && u.AccountPwd == coPwd.Value && (u.Status)).FirstOrDefault();
                 if (user != null)
                 {
-                    user.LastLogingTime = DateTime.Now;
-                    user.LoginCount = user.LoginCount = user.LoginCount == null ? 1 : ++user.LoginCount;
-                    Work.Save();
                     string userdata = JsonConvert.SerializeObject(user);
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                         user.AccountName, DateTime.Now, DateTime.Now.AddDays(1), true, userdata, FormsAuthentication.CookieDomain);
                     HttpCookie co = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                     Response.Cookies.Add(co);
+                    user.LastLogingTime = DateTime.Now;
+                    user.LoginCount = user.LoginCount = user.LoginCount == null ? 1 : ++user.LoginCount;
+                    Work.Save();
                     return RedirectToAction("Index");
                 }
                 else
