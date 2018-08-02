@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Hnqnkj.OA.Model;
 using Hnqnkj.OA.DAL;
+using System.Linq.Expressions;
 
 namespace UI.Controllers
 {
@@ -12,16 +13,47 @@ namespace UI.Controllers
     {
         WorkUnit work = new WorkUnit();
         // GET: ChatList
-        public ActionResult Index(int page = 0, int offset=0 ,int limit = 10, string sort = "Id",OrderMode order= OrderMode.Asc)
+        public ActionResult Index(int page = 0,int limit = 10, string sort = "Id",OrderMode order= OrderMode.Asc,int school =0 ,int type =0, int way= 0,string description ="")
         {
             if (Request.IsAjaxRequest())
             {
-                var query = work.CommunicationRecord.GetPageEntitys(m=>1==1,limit,offset,sort,order);
+                var querylist = PredicateBuilder.True<CommunicationRecord>() ;
+                if (type!=0)
+                {
+                    querylist.And(m => m.ConsultingTypeId == type);
+                }
+                if (way!=0)
+                {
+                    querylist.And(m => m.ConsultingWayId == way);
+                    
+                }
+                if (!string.IsNullOrEmpty(description))
+                {
+                   // querylist.And(m=>m);
+                }
+                int offset = (page - 1) * limit;
+                var query = work.CommunicationRecord.GetPageEntitys(querylist,limit,offset,sort,order);
                 var list = from s in query
                            select new { s.ChatWay, s.CommunicationContent, s.IntentionDegree.Leavl,s.ConType,s.Shcool.Name,s.Id };
                 return Json(new { code=0,count=query.Count(),data=list},JsonRequestBehavior.AllowGet);
             }
+            ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList() ;
+            ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
+            ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
             return View();
+        }
+        public ActionResult Del(int id)
+        {
+            try
+            {
+                work.CommunicationRecord.Delete(id);
+                work.Save();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false,msg=ex.Message });
+            }
         }
     }
 }

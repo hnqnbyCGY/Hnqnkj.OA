@@ -48,8 +48,10 @@ namespace Hnqnkj.OA.Model
         /// <summary>
         /// 客户状态Id
         /// </summary>
-        public int CutomerStateId { get; set; }
+        public int CustomerStateId { get; set; }
         public virtual CustomerState CustomerState { get; set; }
+        public int IntentionDegreeId { get; set; }
+        public virtual IntentionDegree IntentionDegree { get; set; }
         /// <summary>
         /// 客户来源
         /// </summary>
@@ -68,10 +70,11 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int ShcoolId { get; set; }
         public virtual Shcool Shcool { get; set; }
+        public int OperatorAdminUserId { get; set; }
         /// <summary>
         /// 经办人
         /// </summary>
-        [InverseProperty("OperatorAdminUsers")]
+        //[InverseProperty("OperatorAdminUsers")]
         public virtual AdminUser OperatorAdminUser { get; set; }
         /// <summary>
         /// 咨询日期
@@ -82,11 +85,12 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public  int? TeamId { get; set; }
         public virtual Team Team { get; set; }
+        public int ListOperatorAdminUserId { get; set; }
         /// <summary>
         /// 最后操作人
         /// </summary>
-        [InverseProperty("LastOperatorAdminUsers")]
-        public virtual AdminUser ListOperatorAdminUser { get; set; }
+       // [InverseProperty("LastOperatorAdminUsers")]
+       //public virtual AdminUser ListOperatorAdminUser { get; set; }
         /// <summary>
         /// 最后操作日期
         /// </summary>

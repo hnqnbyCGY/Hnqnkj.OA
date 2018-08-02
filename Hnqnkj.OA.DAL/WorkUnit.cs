@@ -78,6 +78,30 @@ namespace Hnqnkj.OA.DAL
                 return _CommunicationRecord;
             }
         }
+        private CommonRepository<ConsultingType> _ConsultingType;
+        public CommonRepository<ConsultingType> ConsultingType
+        {
+            get
+            {
+                if (_ConsultingType == null)
+                {
+                    _ConsultingType = new CommonRepository<ConsultingType>(DB);
+                }
+                return _ConsultingType;
+            }
+        }
+        private CommonRepository<ConsultingWay> _ConsultingWay;
+        public CommonRepository<ConsultingWay> ConsultingWay
+        {
+            get
+            {
+                if (_ConsultingWay == null)
+                {
+                    _ConsultingWay = new CommonRepository<ConsultingWay>(DB);
+                }
+                return _ConsultingWay;
+            }
+        }
 
         public void Save()
         {

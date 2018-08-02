@@ -11,10 +11,17 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class CustomerState:EntityBase
     {
+        /// <summary>
+        /// 名字
+        /// </summary>
         public string  StatusStr { get; set; }
-
+        /// <summary>
+        /// 默认排序
+        /// </summary>
         public int DefaultSort { get; set; }
-
-        public string Status { get; set; }
+        /// <summary>
+        /// 是否可用
+        /// </summary>
+        public bool Status { get; set; }
     }
 }

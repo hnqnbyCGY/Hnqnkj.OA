@@ -18,6 +18,7 @@ namespace UI.Controllers
         WorkUnit Work = new WorkUnit();
         public ActionResult Index()
         {
+          
             return View();
         }
         public ActionResult welcome()
@@ -40,6 +41,9 @@ namespace UI.Controllers
                         user.AccountName, DateTime.Now, DateTime.Now.AddDays(1), true, userdata, FormsAuthentication.CookieDomain);
                     HttpCookie co = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                     Response.Cookies.Add(co);
+                    user.LastLogingTime = DateTime.Now;
+                    user.LoginCount = user.LoginCount = user.LoginCount == null ? 1 : ++user.LoginCount;
+                    Work.Save();
                     return RedirectToAction("Index");
                 }
                 else
@@ -64,7 +68,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
         {
-            
+             
             if (Session["code"] == null)
             {
                 return Json(new { success = false, message = "验证码过期" });
@@ -85,12 +89,15 @@ namespace UI.Controllers
                 if (model.IsRemember)
                 {
                     HttpCookie coLoginName = new HttpCookie("Key", DES.Encrypt(model.LoginName, "12345678", "87654321"));
-                    coLoginName.Expires = DateTime.Now.AddYears(1);
+                    coLoginName.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(coLoginName);
                     HttpCookie coLoginPwd = new HttpCookie("Value", model.LoginPwd);
-                    coLoginPwd.Expires = DateTime.Now.AddYears(1);
+                    coLoginPwd.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(coLoginPwd);
                 }
+                user.LastLogingTime = DateTime.Now;
+                user.LoginCount = user.LoginCount == null ? 1 : ++user.LoginCount;
+                Work.Save();
                 return Json(new { success = true });
             }
             else

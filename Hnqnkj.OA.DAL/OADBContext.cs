@@ -71,10 +71,10 @@ namespace Hnqnkj.OA.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().HasRequired(m => m.OperatorAdminUser).WithMany(n => n.OperatorAdminUsers).WillCascadeOnDelete(false);
-            modelBuilder.Entity<Student>().HasRequired(m => m.ListOperatorAdminUser).WithMany(n => n.LastOperatorAdminUsers).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Student>().HasRequired(m => m.OperatorAdminUser).WithMany(n => n.OperatorAdminUsers).WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Student>().HasRequired(m => m.ListOperatorAdminUser).WithMany(n => n.LastOperatorAdminUsers).WillCascadeOnDelete(false);
 
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);
         }
     }

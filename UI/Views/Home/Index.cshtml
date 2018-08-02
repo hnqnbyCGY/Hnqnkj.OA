@@ -88,7 +88,7 @@
                     navs: [//左侧导航列表
                         {
                             lis: [
-                                { nav: "学生管理", items: [{ name: "学生列表", src: "/StudentList", id: '123' }, { name: "沟通记录", src: "", id: '223' }] },//li
+                                { nav: "学生管理", items: [{ name: "学生列表", src: "/StudentList", id: '123' }, { name: "沟通记录", src: "/chatlist", id: '223' }] },//li
                                 { nav: "沟通管理", items: [{ name: "咨询方式" }, { name: "客户来源" }, { name: "意向程度" }] }//li
                             ], IsShow: true
                         }
@@ -153,7 +153,11 @@
                 AddLogic: function (item) {
                   
                     layui.element.tabAdd('demo', {
+<<<<<<< HEAD
                         title: '<i class="layui-icon">' + item.icon + '</i> ' + item.name,
+=======
+                        title: '<i class="layui-icon-list"></i>'+item.name,
+>>>>>>> 64d3af8fea238aa6fc86a6c8f7b0217f6d68ce82
                         content: '<iframe class="ifr" data-frameid="' + item.id + '" scrolling="auto" frameborder="0" src="' + item.src + ' " style="width:100%;height:100%;"></iframe>',
                         id: item.id
                     })
