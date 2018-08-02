@@ -50,7 +50,7 @@
                         <li class="layui-nav-item layui-nav-itemed" v-for="item in ul.lis">
                             <a class="" href="javascript:;">{{item.nav}}</a>
                             <dl class="layui-nav-child">
-                                <dd v-for="l in item.items" v-on:click="tabAdd(l)"><a href="javascript:;">{{l.name}}</a></dd>
+                                <dd v-for="l in item.items" v-on:click="tabAdd(l)"><a href="javascript:;"><i class="layui-icon" v-html="l.icon"> </i> {{l.name}}</a></dd>
                             </dl>
                         </li>
                     </ul>
@@ -101,7 +101,21 @@
                         },
                         {
                             lis: [
-                                { nav: "用户管理", items: [{ name: "添加用户",src:'/UserInfo',id:301 }, { name: "用户管理",src:'/UserInfo/AccountList',id:302 }] },//li
+                                {
+                                    nav: "用户管理", items: [
+                                        { name: "添加用户", icon: '&#xe654;', src: '/UserInfo', id: 301 },
+                                        { name: "用户管理", icon: '&#xe770;', src: '/UserInfo/AccountList', id: 302 }
+                                    ]
+                                },//li
+                                {
+                                    nav: "基础设置", items: [
+                                        { name: "咨询类型", src: '', id: 303 },
+                                        { name: "咨询方式", src: '', id: 304 },
+                                        { name: "客户状态", src: '', id: 305 },                     
+                                        { name: "客户来源", src: '', id: 306 },
+                                        { name: "意向程度", src: '', id: 307 },
+                                    ]
+                                },
                                 { nav: "校区设置", items: [{ name: "校区管理",id:303 }] }//li
                             ], IsShow: false
                         }
@@ -139,7 +153,7 @@
                 AddLogic: function (item) {
                   
                     layui.element.tabAdd('demo', {
-                        title: item.name,
+                        title: '<i class="layui-icon">' + item.icon + '</i> ' + item.name,
                         content: '<iframe class="ifr" data-frameid="' + item.id + '" scrolling="auto" frameborder="0" src="' + item.src + ' " style="width:100%;height:100%;"></iframe>',
                         id: item.id
                     })
