@@ -16,12 +16,24 @@ namespace UI.Controllers
         // GET: StudentList
         public ActionResult Index()
         {
+            if (Request.IsAjaxRequest())
+            {
+                var stus = work.Student.GetPageEntitys().ToList();
+                var list = from s in stus
+                           select new {
+                               s.Name,
+                               Birthday =(DateTime.Now.Year-s.Birthday.Year)+"岁",
+                               s.ParentsPhone,
+                               s.IntentionDegree.Leavl,
+                               s.CustomerSource.Sourece,
+                               s.CustomerState.StatusStr,
+                               s.OperatorAdminUser.RealName,
+                               ConsultationDate=s.ConsultationDate.ToString()
+                           };
+                return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
+              
+            }
             return View();
-        }
-        [HttpPost]
-        public ActionResult Index(int i)
-        {
-            return Json(new{ });
         }
         [HttpGet]
         public ActionResult Add()

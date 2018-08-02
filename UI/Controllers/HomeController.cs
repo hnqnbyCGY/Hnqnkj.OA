@@ -39,7 +39,8 @@ namespace UI.Controllers
                     user.LastLogingTime = DateTime.Now;
                     user.LoginCount = user.LoginCount = user.LoginCount == null ? 1 : ++user.LoginCount;
                     Work.Save();
-                    string userdata = JsonConvert.SerializeObject(user);
+                    
+                    string userdata = JsonConvert.SerializeObject(new {Id=user.Id });
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                         user.AccountName, DateTime.Now, DateTime.Now.AddDays(1), true, userdata, FormsAuthentication.CookieDomain);
                     HttpCookie co = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
