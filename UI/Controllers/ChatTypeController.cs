@@ -35,7 +35,7 @@ namespace UI.Controllers
             }
             catch (Exception ex)
             {
- 
+                return Json(new { success = false });
             }
         }
     }
