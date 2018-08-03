@@ -46,5 +46,7 @@ namespace Hnqnkj.OA.Model
         //public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
 
         public bool Status { get; set; }
+
+       // public bool? IsDel { get; set; }
     }
 }

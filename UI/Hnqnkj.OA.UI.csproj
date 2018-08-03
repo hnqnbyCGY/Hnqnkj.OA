@@ -316,6 +316,7 @@
     <Content Include="Views\UserInfo\AccountList.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\ChatType\Index.cshtml" />
+    <Content Include="Views\ChatList\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

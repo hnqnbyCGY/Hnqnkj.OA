@@ -7,35 +7,64 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>table模块快速使用</title>
+    <title>用户管理</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+
 </head>
 <body>
+    <div class="container" style="padding:0 20px">
+        <table id="demo" lay-filter="test" style="margin:0 20px;"></table>
 
-    <table id="demo" lay-filter="test"></table>
-
+        <div style="height:50px;"></div>
+    </div>
     <script src="/layui/layui.js"></script>
     <script>
         layui.use('table', function () {
             var table = layui.table;
-
             //第一个实例
             table.render({
                 elem: '#demo'
-                
                 , url: '/UserInfo/AccountList' //数据接口
-                , page: true //开启分页
+                , page: false //开启分页
                 , cols: [[ //表头
-                    { field: 'Id', title: '排序', width: 60, fixed: 'left' }
-                    , { field: 'AccountName', title: '用户名', width: 100 }
+                    { field: 'Id', title: '排序', width: 80, fixed: 'left' }
+                    , { field: 'AccountName', title: '用户名', width: 110 }
                     , { field: 'RealName', title: '姓名', width: 100 }
                     , { field: 'Sex', title: '性别', width: 100, templet: '#titleTpl' }
-                    , { field: 'MPhone', title: '电话号码', width: 177 }
-                    , { field: 'LoginCount', title: '登录次数', width: 100 }
-                    , { field: 'LastLogingTime', title: '最后登录', width: 170, templet:'#titleTpl3' }
-                    , { field: 'Status', title: '属性', width: 100, templet: '#titleTpl2' }
+                    , { field: 'MPhone', title: '电话号码', width: 190 }
+                    , { field: 'LoginCount', title: '登录次数', width: 120 }
+                    , { field: 'LastLogingTime', title: '最后登录', width: 190, templet: '#titleTpl3' }
+                    , { field: 'Status', title: '属性', width: 120, templet: '#titleTpl2' }
+                    , { fieId: 'Right', title: '操作', width: 260, align: 'center', toolbar: '#barDemo' }
                 ]]
             });
+
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                var layEvent = obj.event;
+                var tr = obj.tr;
+
+                if (layEvent == 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        //向服务端发送删除指令
+                        layui.$.post(
+                            '/UserInfo/Del',
+                            { id:data.Id },
+                            function (data, status) {
+                                if (data.msg == 'ok') {
+                                    layer.msg('删除成功!');
+                                } else {
+                                    layer.msg('出现未知错误!');
+                                }
+                            }
+                        )
+                    });
+                }
+
+
+            })
 
         });
         function fmtDate(obj) {
@@ -44,14 +73,13 @@
                 var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
                 var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
                 var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-
                 var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
                 var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
                 var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-
                 return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
             }
         }
+
     </script>
     <script type="text/html" id="titleTpl">
         {{#  if(d.Sex){ }}
@@ -69,6 +97,11 @@
     </script>
     <script type="text/html" id="titleTpl3">
         {{fmtDate(d.LastLogingTime)}}
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="detail">修改密码</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642</i></a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640</i></a>    
     </script>
 </body>
 </html>
