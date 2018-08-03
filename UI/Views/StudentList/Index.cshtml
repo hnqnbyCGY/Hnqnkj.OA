@@ -10,62 +10,71 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-    <div id="app">
-        <div class="layui-form-item">
+    
+    <div class="layui-form-item">
 
-        </div>
-        <div class="layui-row layui-bg-gray">
-            <div class="layui-row">
-                <label class="layui-form-label">单行输入框</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-row">
-
-                <button class="layui-btn" v-on:click="ShowAdd"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
+    </div>
+    <div class="layui-row layui-bg-gray">
+        <div class="layui-row">
+            <label class="layui-form-label">单行输入框</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
             </div>
         </div>
+        <div class="layui-row">
+            <button class="layui-btn" type="button" onclick="ShowAdd()"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <table class="layui-hide" id="test"></table>
     </div>
-    
     <script src="~/layui/layui.js"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的  -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script>
-        layui.use('element', function () {
+        layui.use(['element', 'layer','form','table'], function () {
             var element = layui.element;
+            var table = layui.table;
+            var layer = layui.layer
+            var form = layui.form;
             var $ = layui.$;
-        });
-        layui.use('layer', function () {
             var layer = layui.layer;
-            layer.msg('hello');
-        });   
-        new Vue({
-            el: "#app",
-            methods: {
-                ShowAdd() {
-                    layui.layer.open({
-                          type:2
-                        , title: '添加学生'
-                        , content: 'StudentList/Add' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-                        , area: ['850px', '580px']
-                        , offset: ['20px', '200px']
-                    }); 
-                }
-            }
+            table.render({
+                elem: '#test'
+                , url: '/StudentList'
+                , cellMinWidth: 80 
+                , cols: [[
+                      { title: '序号', templet: '#indexTpl',width:60 }
+                    , {field:'Name', width: 80, title: '姓名'}
+                    , { field: 'Birthday', width: 80, title: '年龄' }
+                    , { field: 'ParentsPhone', width: 120, title: '电话' }
+                    , { field: 'Leavl', width: 100, title: '意向程度' }
+                    , { field: 'Leavl', width: 100, title: '意向程度' }
+                    , { field: 'Sourece', width: 100, title: '客户来源' }   
+                    , { field: 'StatusStr', width: 100, title: '跟进状态' }
+                    , { field: 'RealName', width: 100, title: '录入者' }
+                    , { field: 'ConsultationDate', width: 140, title: '咨询时间' }
+                ]]
+            });
         });
-        
-
-  
-
-
+        function ShowAdd() {
+            alert('a');
+            layer.open({
+                type: 2
+                , title: '添加学生'
+                , content: '/StudentList/Add'
+                , area: ['850px', '580px']
+                , offset: ['20px', '200px']
+            }); 
+        }
     </script>
-
+    <script type="text/html" id="indexTpl">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    
 </body>
 </html>

@@ -40,11 +40,13 @@ namespace Hnqnkj.OA.Model
         /// 最后登录时间
         /// </summary>
         public DateTime? LastLogingTime { get; set; }
-        [InverseProperty("OperatorAdminUser")]
-        public virtual ICollection<Student> OperatorAdminUsers { get; set; }
-        [InverseProperty("ListOperatorAdminUser")]
-        public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
+        //[InverseProperty("OperatorAdminUser")]
+        //public virtual ICollection<Student> OperatorAdminUsers { get; set; }
+        //[InverseProperty("ListOperatorAdminUser")]
+        //public virtual ICollection<Student> LastOperatorAdminUsers { get; set; }
 
         public bool Status { get; set; }
+
+       // public bool? IsDel { get; set; }
     }
 }
