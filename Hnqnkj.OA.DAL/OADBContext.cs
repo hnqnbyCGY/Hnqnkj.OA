@@ -9,9 +9,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Hnqnkj.OA.DAL
 {
-    public class OADBContext:DbContext
+    public class OADBContext : DbContext
     {
-        public OADBContext():base("OADB")
+        public OADBContext() : base("OADB")
         {
 
         }
@@ -29,7 +29,7 @@ namespace Hnqnkj.OA.DAL
         /// 学生
         /// </summary>
         public DbSet<Student> Students { get; set; }
-   
+
         /// <summary>
         /// 专业
         /// </summary>

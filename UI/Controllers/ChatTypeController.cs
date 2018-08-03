@@ -25,18 +25,18 @@ namespace UI.Controllers
         {
             return View();
         }
-        public ActionResult Add(ConsultingType model)
-        {
-            try
-            {
-                work.ConsultingType.Insert(model);
-                work.Save();
-                return Json(new { success = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false });
-            }
-        }
+        //public ActionResult Add(ConsultingType model)
+        //{
+        //    try
+        //    {
+        //        work.ConsultingType.Insert(model);
+        //        work.Save();
+        //        return Json(new { success = true });
+        //    }
+        //    catch (Exception ex)
+        //    {
+ 
+        //    }
+        //}
     }
 }

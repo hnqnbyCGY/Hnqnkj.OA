@@ -1,4 +1,4 @@
-﻿
+﻿@using Hnqnkj.OA.Model
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,10 +24,12 @@
             margin: 10px auto;
             background: #eee;
             height: 45px;
-            line-height: 45px
+            line-height: 45px;
+            padding:5px;
+            
         }
 
-            .top-form * {
+            .top-form >div {
                 display: inline-block;
                 margin: 0 10px;
             }
@@ -40,11 +42,11 @@
 
 }
 <div class="my-container">
-    <div class="top-form">
+    <div class="top-form layui-form">
         <label class="">校区：</label>
         <select id="school" class="layui-input layui-select" style="width:150px">
             <option value="0">请选择</option>
-            @foreach (var item in ViewBag.Shcool)
+            @foreach (Shcool item in ViewBag.Shcool)
             {
                 <option value="@item.Id">@item.Name</option>
             }
@@ -57,22 +59,8 @@
                 <option value="@item.Id">@item.TypeName</option>
             }
         </select>
-        <label class="">沟通方式：</label>
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择框</label>
-            <div class="layui-input-block">
-                <select name="city" lay-verify="required">
-                    <option value=""></option>
-                    <option value="0">北京</option>
-                    <option value="1">上海</option>
-                    <option value="2">广州</option>
-                    <option value="3">深圳</option>
-                    <option value="4">杭州</option>
-                </select>
-            </div>
-        </div>
-        <label class="">关键字：</label>
-        <input id="description" style="width:150px" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            <label class="">关键字：</label>
+            <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         <button id="btnSearch" class="layui-btn layui-btn-primary layui-btn-mini">搜索</button>
     </div>
 
@@ -83,16 +71,13 @@
     </div>
 </div>
 <script type="text/html" id="barDemo">
-
     <div>
-        <button class="layui-btn layui-btn-primary  layui-btn-mini" lay-event="detail">查看</button>
         <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
-        <button class="layui-btn layui-btn-danger  layui-btn-mini" lay-event="del">删除</button>
     </div>
 </script>
 @section script{
     <script>
-        layui.use(['table', 'form'], function () {
+        layui.use(['table'], function () {
             var table = layui.table;
             var form = layui.form;
             var $ = layui.$
@@ -112,23 +97,13 @@
                 page: true
             });
             table.on('tool(list)', obj => {
-                if (obj.event === 'del') {
-                    layer.confirm('确定删除吗?', index => {
-                        console.log(obj.data.Id)
-                        $.ajax({
-                            url: 'del',
-                            type: 'post',
-                            success(data) {
-                                if (data.success) {
-                                    obj.del();
-                                    layer.msg("删除数据成功！")
-                                } else {
-                                    layer.msg("删除数据失败！")
-                                }
-                            }, error() {
-                                layer.msg("网络错误！")
-                            }
-                        })
+                if (obj.event === 'edit') {
+                    layer.open({
+                        content: '/chatlist/edit?id=' + obj.data.Id,
+                        title: '编辑',
+                        area: ["600px", "500px"],
+                        shade: 0.8,
+                        type:2
                     })
                 }
             })
