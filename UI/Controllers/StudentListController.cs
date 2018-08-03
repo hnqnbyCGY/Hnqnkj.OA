@@ -28,7 +28,8 @@ namespace UI.Controllers
                                s.CustomerSource.Sourece,
                                s.CustomerState.StatusStr,
                                s.OperatorAdminUser.RealName,
-                               ConsultationDate=s.ConsultationDate.ToString()
+                               ConsultationDate=s.ConsultationDate.ToString(),
+                               s.Id
                            };
                 return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
               
