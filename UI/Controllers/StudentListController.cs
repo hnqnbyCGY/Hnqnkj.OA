@@ -31,7 +31,7 @@ namespace UI.Controllers
                                s.OperatorAdminUser.RealName,
                                ConsultationDate = s.ConsultationDate.ToString(),
                                s.Id,
-                               Comnundate = work.CommunicationRecord.GetCount(c => c.StudentId == s.Id) == 0 ? "无" :work.CommunicationRecord.GetAll(c => c.StudentId == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().ToString()
+                               Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" :work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().ToString()
                                
                            };
                 return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
