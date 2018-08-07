@@ -14,12 +14,25 @@ namespace UI.Controllers
     {
         WorkUnit work = new WorkUnit();
         // GET: StudentList
-        public ActionResult Index()
+        public ActionResult Index(int page = 0, int limit = 10, string sort = "Id", OrderMode order = OrderMode.Asc, int school = 0, int state = 0, string description = "")
         {
+          
             if (Request.IsAjaxRequest())
             {
-                var stus = work.Student.GetPageEntitys().ToList();
-
+                var where = PredicateBuilder.True<Student>();
+                if (school!=0)
+                {
+                    where = where.And(s => s.ShcoolId == school);
+                }
+                if (state!=0)
+                {
+                    where = where.And(s => s.CustomerStateId == state);
+                }
+                if (description!="")
+                {
+                    where = where.And(s => s.Name.Contains(description));
+                }
+                var stus = work.Student.GetPageEntitys(where,limit,page,sort,order);
                 var list = from s in stus
                            select new {
                                s.Name,
@@ -32,11 +45,11 @@ namespace UI.Controllers
                                ConsultationDate = s.ConsultationDate.ToString(),
                                s.Id,
                                Comnundate = work.CommunicationRecord.GetCount(c => c.StudentId == s.Id) == 0 ? "无" :work.CommunicationRecord.GetAll(c => c.StudentId == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().ToString()
-                               
                            };
                 return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
-              
             }
+            ViewBag.Shcool = work.Shcool.GetAll();
+            ViewBag.CustomerState = work.CustomerState.GetAll(s => s.Status);
             return View();
         }
         public ActionResult Update(int id)

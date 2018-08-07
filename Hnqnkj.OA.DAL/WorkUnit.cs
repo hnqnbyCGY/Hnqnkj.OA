@@ -64,6 +64,17 @@ namespace Hnqnkj.OA.DAL
                 return _consultMajor;
             }
         }
+        private CommonRepository<CustomerState> _customerState;
+        public CommonRepository<CustomerState> CustomerState
+        {
+
+            get
+            {
+                if (_customerState == null)
+                    _customerState = new CommonRepository<Model.CustomerState>(DB);
+                return _customerState;
+            }
+        }
 
         private CommonRepository<Team> _team;
         public CommonRepository<Team> Team

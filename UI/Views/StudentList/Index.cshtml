@@ -12,21 +12,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        .layui-table-cell {
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .layui-btn-mini {
+            height: 28px;
+            line-height: 28px
+        }
+
+        .my-container {
+            padding: 0 10px
+        }
+
+        .top-form {
+            border-left: 5px solid #4cff00;
+            margin: 10px auto;
+            background: #eee;
+            height: 45px;
+            line-height: 45px;
+            padding: 5px;
+        }
+
+            .top-form > div {
+                display: inline-block;
+                margin: 0 10px;
+            }
+
+        select, input {
+            margin: 0 !important;
+            padding: 0
+        }
+    </style>
 </head>
 <body>
     <div class="my-container" style="padding:0 20px">
-        <div class="layui-form-item">
-
-        </div>
         <div class="layui-row layui-bg-gray">
             <div class="layui-row">
-                <label class="layui-form-label">单行输入框</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                <div class="top-form layui-form">
+                    <label class="">校区：</label>
+                    <select id="school" class="layui-input layui-select" style="width:150px">
+                        <option value="0">全部</option>
+                        @foreach (var item in ViewBag.Shcool)
+                        {
+                              <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <label class="">跟进状态：</label>
+                    <select id="state" class="layui-input layui-uselect" style="width:150px">
+                        <option value="0">全部</option>
+                        @foreach (var item in ViewBag.CustomerState)
+                         {
+                           <option value="@item.Id">@item.StatusStr</option>
+                         }
+                    </select>
+                    <label class="">关键字：</label>
+                    <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="姓名/电话" class="layui-input">
+                    <button id="btnSearch" class="layui-btn ">搜索</button>
+                    <button class="layui-btn" type="button" onclick="ShowAdd()"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
                 </div>
-            </div>
-            <div class="layui-row">
-                <button class="layui-btn" type="button" onclick="ShowAdd()"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
             </div>
         </div>
         <div class="layui-form-item">
@@ -61,7 +107,8 @@
                     , { field: 'RealName', width: 100, title: '录入者'}
                     , { field: 'ConsultationDate', width: 140, title: '咨询时间' }
                     , { field: 'Id',width:120, toolbar: '#barDemo',title:'操作'}
-                ]]
+                ]],
+                page: true
             });
             table.on('tool(list)', obj => {
                 if (obj.event === 'edit') {
@@ -74,6 +121,18 @@
                     })
                 }
             });
+            $('#btnSearch').click(e => {
+                table.reload("test",{
+                    where: {
+                        state: $('#state').val(),
+                        school: $('#school').val(),
+                        description: $('#description').val()
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+            })
         });
         function ShowAdd() {
             alert('a');
