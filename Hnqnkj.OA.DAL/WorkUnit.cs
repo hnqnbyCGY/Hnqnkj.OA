@@ -45,11 +45,23 @@ namespace Hnqnkj.OA.DAL
         private CommonRepository<Specialty> _specialty;
         public CommonRepository<Specialty> Specialty
         {
+            
             get
             {
                 if (_specialty == null)
                     _specialty = new CommonRepository<Model.Specialty>(DB);
                 return _specialty;
+            }
+        }
+        private CommonRepository<ConsultMajor> _consultMajor;
+        public CommonRepository<ConsultMajor> ConsultMajor
+        {
+            
+            get
+            {
+                if (_consultMajor == null)
+                    _consultMajor = new CommonRepository<Model.ConsultMajor>(DB);
+                return _consultMajor;
             }
         }
 
