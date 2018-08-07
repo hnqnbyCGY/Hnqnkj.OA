@@ -205,8 +205,19 @@
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {
-               
-                ///return false;
+                $.ajax({
+                    type: 'post',
+                    url: 'add',
+                    data: data.field,
+                    success(data) {
+                        if (data.success) {
+                            layer.msg("成功",{ time: 3000, icon: 1 });
+                            window.parent.layer.close(parent.layer.getFrameIndex(window.name));
+                            window.parent.location.reload(true);
+                        }
+                    }
+                })
+                return false;
             })
         });
     </script>

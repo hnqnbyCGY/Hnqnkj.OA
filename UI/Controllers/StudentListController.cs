@@ -64,8 +64,8 @@ namespace UI.Controllers
         {
             ViewBag.sps = work.Specialty.GetAll().ToList();//所有专业
             ViewBag.CustomerStates = work.CustomerState.Where(m => m.Status).ToList();//客户状态
-            //ViewBag.IntentionDegree = work.IntentionDegree.Where(m => m.Status).ToList();//意向程度
-            //ViewBag.CustomerSource = work.CustomerSource.Where(m => m.Status).ToList();//客户来源
+            ViewBag.IntentionDegree = work.IntentionDegree.Where(m => m.Status).ToList();//意向程度
+            ViewBag.CustomerSource = work.CustomerSource.Where(m => m.Status).ToList();//客户来源
             ViewBag.Shcool = work.Shcool.Where(m => true);
             return View();
         } 
