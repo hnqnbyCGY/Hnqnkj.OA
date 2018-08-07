@@ -14,7 +14,7 @@ namespace UI.Controllers
     {
         WorkUnit work = new WorkUnit();
         // GET: StudentList
-        public ActionResult Index(int page = 0, int limit = 10, string sort = "Id", OrderMode order = OrderMode.Asc, int school = 0, int state = 0, string description = "")
+        public ActionResult Index(int page = 0, int limit = 10, string sort = "Id", OrderMode order = OrderMode.Asc, int school = 0, int state = 1, string description = "")
         {
           
             if (Request.IsAjaxRequest())
@@ -32,6 +32,7 @@ namespace UI.Controllers
                 {
                     where = where.And(s => s.Name.Contains(description));
                 }
+                var a = work.Student.GetPageEntitys(m=>1== 1,limit,page);
                 var stus = work.Student.GetPageEntitys(where,limit,page,sort,order);
                 var list = from s in stus
                            select new {

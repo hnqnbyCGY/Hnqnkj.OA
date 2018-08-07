@@ -34,7 +34,7 @@ namespace Hnqnkj.OA.DAL
         {
             get
             {
-                if (_shcool==null)
+                if (_shcool == null)
                 {
                     _shcool = new CommonRepository<Shcool>(DB);
                 }
@@ -45,7 +45,7 @@ namespace Hnqnkj.OA.DAL
         private CommonRepository<Specialty> _specialty;
         public CommonRepository<Specialty> Specialty
         {
-            
+
             get
             {
                 if (_specialty == null)
@@ -56,7 +56,7 @@ namespace Hnqnkj.OA.DAL
         private CommonRepository<ConsultMajor> _consultMajor;
         public CommonRepository<ConsultMajor> ConsultMajor
         {
-            
+
             get
             {
                 if (_consultMajor == null)
@@ -135,7 +135,30 @@ namespace Hnqnkj.OA.DAL
                 return _ConsultingWay;
             }
         }
-
+        private CommonRepository<IntentionDegree> _IntentionDegree;
+        public CommonRepository<IntentionDegree> IntentionDegree
+        {
+            get
+            {
+                if (_IntentionDegree == null)
+                {
+                    _IntentionDegree = new CommonRepository<IntentionDegree>(DB);
+                }
+                return _IntentionDegree;
+            }
+        }
+        private CommonRepository<CustomerSource> _CustomerSource;
+        public CommonRepository<CustomerSource> CustomerSource
+        {
+            get
+            {
+                if (_CustomerSource == null)
+                {
+                    _CustomerSource = new CommonRepository<CustomerSource>(DB);
+                }
+                return _CustomerSource;
+            }
+        }
         public void Save()
         {
             DB.SaveChanges();

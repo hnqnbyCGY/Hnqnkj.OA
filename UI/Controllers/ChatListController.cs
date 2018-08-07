@@ -56,8 +56,7 @@ namespace UI.Controllers
         {
             try
             {
-                work.CommunicationRecord.Insert(model);
-                work.Save();
+                
                 return Json(new { success = true });
             }
             catch (Exception e)
