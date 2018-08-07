@@ -19,27 +19,35 @@ namespace UI.Controllers
             if (Request.IsAjaxRequest())
             {
                 var stus = work.Student.GetPageEntitys().ToList();
+
                 var list = from s in stus
                            select new {
                                s.Name,
-                               Birthday =(DateTime.Now.Year-s.Birthday.Year)+"岁",
+                               Birthday = (DateTime.Now.Year - s.Birthday.Year) + "岁",
                                s.ParentsPhone,
                                s.IntentionDegree.Leavl,
                                s.CustomerSource.Sourece,
                                s.CustomerState.StatusStr,
                                s.OperatorAdminUser.RealName,
-                               ConsultationDate=s.ConsultationDate.ToString(),
-                               s.Id
+                               ConsultationDate = s.ConsultationDate.ToString(),
+                               s.Id,
+                               Comnundate = work.CommunicationRecord.GetCount(c => c.StudentId == s.Id) == 0 ? "无" :work.CommunicationRecord.GetAll(c => c.StudentId == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().ToString()
+                               
                            };
                 return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
               
             }
             return View();
         }
+        public ActionResult Update(int id)
+        {
+            Student stu = work.Student.GetEntityById(id);
+            return View(stu);
+        }
         [HttpGet]
         public ActionResult Add()
         {
-            ViewBag.sps = work.Specialty.Where(m => true).ToList();//所有专业
+            ViewBag.sps = work.Specialty.GetAll().ToList();//所有专业
            // ViewBag.CustomerStates = work.CustomerState.Where(m => m.Status).ToList();//客户状态
            // ViewBag.IntentionDegree = work.IntentionDegree.Where(m => m.Status).ToList();//意向程度
             //ViewBag.CustomerSource = work.CustomerSource.Where(m => m.Status).ToList();//客户来源

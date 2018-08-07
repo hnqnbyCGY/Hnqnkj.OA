@@ -14,6 +14,7 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class CommunicationRecord : EntityBase
     {
+        public int StudentId { get; set; }
         /// <summary>
         /// 沟通类型
         /// </summary>

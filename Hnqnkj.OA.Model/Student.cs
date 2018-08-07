@@ -50,6 +50,9 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int CustomerStateId { get; set; }
         public virtual CustomerState CustomerState { get; set; }
+        /// <summary>
+        /// 意向程度
+        /// </summary>
         public int IntentionDegreeId { get; set; }
         public virtual IntentionDegree IntentionDegree { get; set; }
         /// <summary>
