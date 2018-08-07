@@ -58,6 +58,7 @@
                     , { field: 'StatusStr', width: 100, title: '跟进状态' }
                     , { field: 'RealName', width: 100, title: '录入者' }
                     , { field: 'ConsultationDate', width: 140, title: '咨询时间' }
+                    , { field: 'Id', toolbar: '#barDemo',title:'操作'}
                 ]]
             });
         });
@@ -71,6 +72,9 @@
                 , offset: ['20px', '200px']
             }); 
         }
+    </script>
+    <script type="text/html" id="barDemo">
+        <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
     </script>
     <script type="text/html" id="indexTpl">
         {{d.LAY_TABLE_INDEX+1}}
