@@ -152,7 +152,6 @@
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StusFollowUpController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
