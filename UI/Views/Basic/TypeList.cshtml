@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TypeList</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="padding:0 20px">
+        <div style="margin-top:20px;"><button class="layui-btn">添加信息</button></div>
+        <table id="demo" lay-filter="test"></table>
+    </div>
+    
+
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                , height: 315
+                , url: '/demo/table/user/' //数据接口                
+                , cols: [[ //表头
+                    { field: 'id', title: '序号', width: 80,  fixed: 'left' }
+                    , { field: 'username', title: '属性名称', width: 750 }
+                    , { field: 'sex', title: '排序', width: 100 }
+                    , { field: 'city', title: '状态', width: 100 }
+                    , { field: 'sign', title: '操作', width: 200 }                  
+                ]]
+            });
+
+        });
+    </script>
+</body>
+</html>

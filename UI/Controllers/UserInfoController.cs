@@ -20,7 +20,7 @@ namespace UI.Controllers
             return View();
         }
         
-        [HttpPost]
+        
         public ActionResult AddAccount(AdminUser admin)
         {
             try

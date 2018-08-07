@@ -7,10 +7,10 @@ using Hnqnkj.OA.DAL;
 
 namespace UI.Controllers
 {
-    public class TestController : Controller
+    public class BasicController : Controller
     {
         // GET: Test
-        public ActionResult Index()
+        public ActionResult TypeList()
         {
             return View();
         }
