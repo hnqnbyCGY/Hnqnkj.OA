@@ -63,7 +63,9 @@
             <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         <button id="btnSearch" class="layui-btn layui-btn-primary layui-btn-mini">搜索</button>
     </div>
-
+    <div>
+        <button id="add" class="layui-btn layui-btn-warm">添加记录</button>
+    </div>
     <div class="layui-row">
         <div class="layui-col-md12 layui-col-lg12">
             <table class="layui-hide" id="table" lay-filter="list"></table>
@@ -119,6 +121,14 @@
                         curr: 1
                     }
                 });
+            })
+            $("#add").click(function () {
+                layer.open({
+                    area: ["800px", "500px"],
+                    type: 2,
+                    content: "/chatlist/Add",
+                    title:"添加记录"
+                })
             })
         });
 

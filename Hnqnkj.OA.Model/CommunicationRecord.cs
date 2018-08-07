@@ -68,6 +68,7 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int AdminUserId { get; set; }
         public virtual AdminUser AdminUser { get; set; }
+
         public virtual Student Student { get; set; }
         [NotMapped]
         public string StudentName { get => Student.Name; }

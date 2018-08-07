@@ -20,16 +20,16 @@ namespace UI.Controllers
                 var querylist = PredicateBuilder.True<CommunicationRecord>() ;
                 if (type!=0)
                 {
-                    querylist.And(m => m.ConsultingTypeId == type);
+                  querylist = querylist.And(m => m.ConsultingTypeId == type);
                 }
                 if (way!=0)
                 {
-                    querylist.And(m => m.ConsultingWayId == way);
+                    querylist = querylist.And(m => m.ConsultingWayId == way);
                     
                 }
                 if (!string.IsNullOrEmpty(description))
                 {
-                    //querylist.And(m=>m.StudentName.Contains(description));
+                    querylist = querylist.And(m=>m.StudentName.Contains(description));
                 }
                 int offset = (page - 1) * limit;
                 var query = work.CommunicationRecord.GetPageEntitys(querylist,limit,offset,sort,order);
@@ -41,6 +41,30 @@ namespace UI.Controllers
             ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
             ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
             return View();
+        }
+        [HttpGet]
+        public ActionResult Add(int id=1)
+        {
+            ViewBag.Student = work.Student.GetEntityById(id);
+            ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList();
+            ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
+            ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Add(CommunicationRecord model)
+        {
+            try
+            {
+                work.CommunicationRecord.Insert(model);
+                work.Save();
+                return Json(new { success = true });
+            }
+            catch (Exception e)
+            {
+
+                return Json(new { success = false,msg =e.Message });
+            }
         }
         [HttpGet]
         public ActionResult Edit(int id)
