@@ -120,6 +120,15 @@
                         , offset: ['20px', '200px']
                     })
                 }
+                if (obj.event === 'cadd') {
+                    layer.open({
+                        type: 2
+                        , title: '添加沟' + obj.data.Name + '通记录'
+                        , content: '/ChatListController/Add?id=' + obj.data.Id
+                        , area: ['850px', '580px']
+                        , offset: ['20px', '200px']
+                    })
+                }
             });
             $('#btnSearch').click(e => {
                 table.reload("test",{
@@ -154,7 +163,7 @@
     </script>
     <script type="text/html" id="CDemo">
         <div class="layui-btn-group">
-            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="cadd">
                 <i class="layui-icon">&#xe654;</i>
             </button>
             <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">{{d.Comnundate}}</button>
