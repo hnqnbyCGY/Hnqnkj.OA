@@ -63,7 +63,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户状态</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" name="Status" lay-skin="switch" lay-text="正常|锁定"  checked>
+                    <input type="checkbox" name="Status" lay-skin="switch" lay-text="正常|锁定" checked>
                 </div>
             </div>
 
@@ -75,8 +75,9 @@
             </div>
         </form>
     </div>
-    <script src="~/layui/layui.all.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/layui/layui.all.js"></script>
+
     <script>
         layui.use('form', function () {
             var form = layui.form;
@@ -95,7 +96,7 @@
             form.on('submit(formDemo)', function (data) {
                 //layer.msg(JSON.stringify(data.field));
                 //return false;
-              
+
                 if (data.field.Status == "on") {
                     data.field.Status = true;
                 } else {
@@ -105,22 +106,22 @@
                     data.field.Sex = true;
                 } else {
                     data.field.Sex = false;
-                }              
+                }
                 $.ajax({
-                    console.log(11)
                     url: '/UserInfo/AddAccount',
                     data: data.field,
                     type: 'post',
                     success: function (data) {
-                        alert(1)
                         if (data.msg == 'ok') {
-                            layer.msg('添加成功',2000);
+                            layer.msg('添加成功', 2000);
                         }
                     },
                     error: function (data) {
-                        layer.msg('网络请求错误',2000);
+                        layer.msg('网络请求错误', 2000);
                     }
                 })
+                console.log(123);
+               
             });
         });
     </script>
