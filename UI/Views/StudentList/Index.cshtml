@@ -45,6 +45,13 @@
             margin: 0 !important;
             padding: 0
         }
+        .layui-table-cell {
+            height: auto;
+            white-space: normal;
+            -ms-word-wrap: break-word;
+            word-wrap: break-word;
+            word-break:break-all;
+        }
     </style>
 </head>
 <body>
@@ -56,17 +63,17 @@
                     <select id="school" class="layui-input layui-select" style="width:150px">
                         <option value="0">全部</option>
                         @foreach (var item in ViewBag.Shcool)
-                        {
-                              <option value="@item.Id">@item.Name</option>
-                        }
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                }
                     </select>
                     <label class="">跟进状态：</label>
                     <select id="state" class="layui-input layui-uselect" style="width:150px">
                         <option value="0">全部</option>
                         @foreach (var item in ViewBag.CustomerState)
-                         {
-                           <option value="@item.Id">@item.StatusStr</option>
-                         }
+                    {
+                        <option value="@item.Id">@item.StatusStr</option>
+                }
                     </select>
                     <label class="">关键字：</label>
                     <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="姓名/电话" class="layui-input">
@@ -77,6 +84,9 @@
         </div>
         <div class="layui-form-item">
             <table class="layui-hide" id="test" lay-filter="list"></table>
+        </div>
+        <div style="height:100px">
+
         </div>
     </div> 
     <script src="~/layui/layui.js"></script>
@@ -99,7 +109,7 @@
                     , {field:'Name', width: 80, title: '姓名'}
                     , { field: 'Birthday', width: 80, title: '年龄'}
                     , { field: 'ParentsPhone', width: 120, title: '电话'}
-                    , { field: 'Leavl', width: 100, title: '意向程度' }
+                    , { field: 'Leavl', width: 60, title: '意向程度' }
                     , {field:'Id',width:120,toolbar:'#CDemo',title:'沟通记录'}
                     , { field: 'Sourece', width: 100, title: '客户来源' }
                     , {field:'Id',width:80,toolbar:'#BDemo',title:'办报名'}
