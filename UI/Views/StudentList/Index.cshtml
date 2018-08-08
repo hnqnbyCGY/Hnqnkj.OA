@@ -100,9 +100,6 @@
             var form = layui.form;
             var $ = layui.$;
             var layer = layui.layer;
-            layer.open({
-                content:'/chatlist/add',type:2
-            })
             table.render({
                   elem: '#test'
                 , url: '/StudentList'
@@ -114,13 +111,13 @@
                     , { field: 'ParentsPhone', width: '10%', title: '电话'}
                     , { field: 'Leavl', width: '5.5%', title: '意向程度' }
                     , { field:'Specialty',width:'7.5%',title:'意向专业'}
-                    , {field:'Id',width:'10%',toolbar:'#CDemo',title:'沟通记录'}
+                    , { field:'cd',width:'12%',toolbar:'#CDemo',title:'沟通记录'}
                     , { field: 'Sourece', width: '7.5%', title: '客户来源' }
-                    , {field:'Id',width:'6%',toolbar:'#BDemo',title:'办报名'}
+                    , { field:'Id',width:'6%',toolbar:'#BDemo',title:'办报名'}
                     , { field: 'StatusStr', width: '7%', title: '跟进状态'}
                     , { field: 'RealName', width: '6%', title: '录入者'}
                     , { field: 'ConsultationDate', width: '11%', title: '咨询时间' }
-                    , { field: 'Id',width:'8%', toolbar: '#barDemo',title:'操作'}
+                    , { field: 'Id',width:'6%', toolbar: '#barDemo',title:'操作'}
                 ]],
                 page: true
             });
@@ -138,7 +135,7 @@
                     layer.open({
                         type: 2
                         , title: '添加与' + obj.data.Name + '的沟通记录'
-                        , content: '/ChatList/Add/id=' + obj.data.Id
+                        , content: '/ChatList/Add?id=' + obj.data.Id
                         , area: ['850px', '580px']
                         , offset: ['20px', '200px']
                     })
@@ -179,12 +176,12 @@
             <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="cadd">
                 <i class="layui-icon">&#xe654;</i>
             </button>
-            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">{{d.Comnundate}}</button>
+            <button class="layui-btn layui-btn-mini layui-btn-sm" title="共{{d.comCount}}条记录" lay-event="edit">{{d.Comnundate}}</button>
         </div>
     </script>
     <script type="text/html" id="BDemo">
         <div class="layui-btn-group">
-            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">办报名</button>
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">{{d.bm?"已报名":"办报名"}}</button>
         </div>
     </script>
     <script type="text/html" id="indexTpl">
