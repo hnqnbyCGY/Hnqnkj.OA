@@ -83,7 +83,7 @@
             var table = layui.table;
             var form = layui.form;
             var $ = layui.$
-            var tab = table.render({
+            window.tab = table.render({
                 elem: '#table'
                 , url: '/Chatlist'
                 , cellMinWidth: 50
@@ -100,7 +100,7 @@
             });
             table.on('tool(list)', obj => {
                 if (obj.event === 'edit') {
-                    layer.open({
+                    window.tabId= layer.open({
                         content: '/chatlist/edit?id=' + obj.data.Id,
                         title: '编辑',
                         area: ["600px", "500px"],
@@ -124,7 +124,7 @@
             })
             $("#add").click(function () {
                 layer.open({
-                    area: ["800px", "500px"],
+                    area: ["1000px", "500px"],
                     type: 2,
                     content: "/chatlist/Add",
                     title:"添加记录"

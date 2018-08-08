@@ -49,6 +49,9 @@ namespace UI.Controllers
             ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList();
             ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
             ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
+            ViewBag.Intention = work.IntentionDegree.GetAll(m=>m.Status).ToList();
+            ViewBag.Student = work.Student.GetEntityById(id);
+            ViewBag.Users = work.Admin.GetAll(m => m.Status);
             return View();
         }
         [HttpPost]
@@ -56,12 +59,13 @@ namespace UI.Controllers
         {
             try
             {
-                
+                model.Student =work.Student.GetEntityById(Convert.ToInt32(Request.Params["Student"]));
+                work.CommunicationRecord.Insert(model);
+                work.Save();
                 return Json(new { success = true });
             }
             catch (Exception e)
-            {
-
+            { 
                 return Json(new { success = false,msg =e.Message });
             }
         }
