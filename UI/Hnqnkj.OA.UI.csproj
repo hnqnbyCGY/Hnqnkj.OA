@@ -152,7 +152,6 @@
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StusFollowUpController.cs" />
-    <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -306,6 +305,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\StusFollowUp\Index.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\StudentList\Index.cshtml" />
     <Content Include="Views\Home\welcome.cshtml" />
     <Content Include="Views\StudentList\Add.cshtml" />
@@ -316,7 +316,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\ChatType\Index.cshtml" />
     <Content Include="Views\ChatList\Edit.cshtml" />
-    <Content Include="Views\Basic\TypeList.cshtml" />
+    <Content Include="Views\StudentList\Update.cshtml" />
+    <Content Include="Views\ChatList\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

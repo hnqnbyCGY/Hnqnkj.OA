@@ -14,6 +14,7 @@ namespace Hnqnkj.OA.Model
     /// </summary>
     public class CommunicationRecord : EntityBase
     {
+       // public int StudentId { get; set; }
         /// <summary>
         /// 沟通类型
         /// </summary>
@@ -56,7 +57,6 @@ namespace Hnqnkj.OA.Model
         /// <summary>
         /// 经办校区
         /// </summary>
-        [ForeignKey("Shcool")]
         public int ShcoolId { get; set; }
         public virtual Shcool Shcool { get; set; }
         /// <summary>
@@ -68,9 +68,9 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int AdminUserId { get; set; }
         public virtual AdminUser AdminUser { get; set; }
-        //public int StudentId { get; set; }
-        //public virtual Student Student { get; set; }
-        //[NotMapped]
-        //public  string StudentName { get => Student.Name; }
+
+        public virtual Student Student { get; set; }
+        [NotMapped]
+        public string StudentName { get => Student.Name; }
     }
 }

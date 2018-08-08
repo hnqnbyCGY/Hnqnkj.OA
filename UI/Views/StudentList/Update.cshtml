@@ -12,21 +12,21 @@
     <link rel="stylesheet" href="~/layui/css/layui.css" />
     <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
     <style>
-        .edit_block_c{
-            margin-top:10px;
+        .edit_block_c {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="ny_content">
-        <form class="layui-form" method="post" action="">
+        <form class="layui-form">
             <div class="edit_block_c">
                 <!--第一行-->
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">学员姓名</label>
                         <div class="layui-input-inline" style="width:120px;">
-                            <input type="text" name="Name"  lay-verify="required" class="layui-input" />
+                            <input type="text" name="Name" lay-verify="required" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -48,19 +48,19 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">家长电话</label>
                         <div class="layui-input-inline" style="width:120px;">
-                            <input type="text"   lay-verify="phone"  name="ParentsPhone" class="layui-input" />
+                            <input type="text" lay-verify="phone" name="ParentsPhone" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">其他电话</label>
                         <div class="layui-input-inline" style="width:120px;">
-                            <input type="text" name="OtherPhone" class="layui-input"  />
+                            <input type="text" name="OtherPhone" class="layui-input" />
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label" >微信号</label>
+                        <label class="layui-form-label">微信号</label>
                         <div class="layui-input-inline" style="width:120px;">
-                             <input type="text" name="WechatNumber" class="layui-input"/>
+                            <input type="text" name="WechatNumber" class="layui-input" />
                         </div>
                     </div>
                 </div>
@@ -92,28 +92,28 @@
                         <div class="layui-input-inline" style="width:202px;">
                             <select name="sps1" lay-verify="">
                                 <option value="">请选择</option>
-                                  @foreach (var item in ViewBag.sps)
-                                   {
-                                        <option value=@item.Id>@item.Name</option>
-                                   }
+                                @*@foreach (var item in ViewBag.sps)
+                                {
+                                    <option value=@item.Id>@item.Name</option>
+                                }*@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
                             <select name="sps2" lay-verify="">
                                 <option value="">请选择</option>
-                                @foreach (var item in ViewBag.sps)
+                                @*@foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
-                                }
+                                }*@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
                             <select name="sps3" lay-verify="">
                                 <option value="">请选择</option>
-                                @foreach (var item in ViewBag.sps)
+                                @*@foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
@@ -124,10 +124,10 @@
                         <label class="layui-form-label">客户状态</label>
                         <div class="layui-input-inline" style="width:120px;">
                             <select name="CustomerStateId" lay-verify="">
-                                @foreach (var item in ViewBag.CustomerStates)
+                                @*@foreach (var item in ViewBag.CustomerStates)
                                 {
                                     <option value=@item.Id>@item.StatusStr</option>
-                                }ViewBag.IntentionDegree
+                                }ViewBag.IntentionDegree*@
                             </select>
                         </div>
                     </div>
@@ -135,10 +135,10 @@
                         <label class="layui-form-label">意向程度</label>
                         <div class="layui-input-inline" style="width:120px;">
                             <select name="IntentionDegreeId" lay-verify="">
-                                @foreach (var item in ViewBag.IntentionDegree)
+                                @*@foreach (var item in ViewBag.IntentionDegree)
                                 {
                                     <option value=@item.Id>@item.Leavl</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
@@ -146,10 +146,10 @@
                         <label class="layui-form-label">客户来源</label>
                         <div class="layui-input-inline" style="width:120px;">
                             <select name="CustomerSourceId" lay-verify="">
-                                @foreach (var item in ViewBag.CustomerSource)
+                                @*@foreach (var item in ViewBag.CustomerSource)
                                 {
                                     <option value=@item.Id>@item.Sourece</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">沟通内容</label>
                         <div class="layui-input-inline" style="width:620px;">
-                            <textarea name="CommunicationContent"  lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+                            <textarea name="CommunicationContent" lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
                         </div>
                     </div>
                 </div>
@@ -169,10 +169,10 @@
                         <label class="layui-form-label">所属校区</label>
                         <div class="layui-input-inline" style="width:120px;">
                             <select name="ShcoolId" lay-verify="">
-                                @foreach (var item in ViewBag.Shcool)
+                                @*@foreach (var item in ViewBag.Shcool)
                                 {
                                     <option value=@item.Id>@item.Name</option>
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                 </div>
                 <!--最后一行-->
                 <div class="layui-form-item">
-                    <div class="layui-inline "  style="margin-left:300px">
+                    <div class="layui-inline " style="margin-left:300px">
                         <div class="layui-input-inline">
                             <button lay-submit lay-filter="w" class="layui-btn">立即提交</button>
                         </div>
@@ -205,18 +205,7 @@
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {
-                $.ajax({
-                    type: 'post',
-                    url: 'add',
-                    data: data.field,
-                    success(data) {
-                        if (data.success) {
-                            layer.msg("成功",{ time: 3000, icon: 1 });
-                            window.parent.layer.close(parent.layer.getFrameIndex(window.name));
-                            window.parent.location.reload(true);
-                        }
-                    }
-                })
+
                 return false;
             })
         });

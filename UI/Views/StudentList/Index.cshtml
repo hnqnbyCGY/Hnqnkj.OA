@@ -12,26 +12,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        .layui-table-cell {
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .layui-btn-mini {
+            height: 28px;
+            line-height: 28px
+        }
+
+        .my-container {
+            padding: 0 10px
+        }
+
+        .top-form {
+            border-left: 5px solid #4cff00;
+            margin: 10px auto;
+            background: #eee;
+            height: 45px;
+            line-height: 45px;
+            padding: 5px;
+        }
+
+            .top-form > div {
+                display: inline-block;
+                margin: 0 10px;
+            }
+
+        select, input {
+            margin: 0 !important;
+            padding: 0
+        }
+    </style>
 </head>
 <body>
-    
-    <div class="layui-form-item">
-
-    </div>
-    <div class="layui-row layui-bg-gray">
-        <div class="layui-row">
-            <label class="layui-form-label">单行输入框</label>
-            <div class="layui-input-block">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+    <div class="my-container" style="padding:0 20px">
+        <div class="layui-row layui-bg-gray">
+            <div class="layui-row">
+                <div class="top-form layui-form">
+                    <label class="">校区：</label>
+                    <select id="school" class="layui-input layui-select" style="width:150px">
+                        <option value="0">全部</option>
+                        @foreach (var item in ViewBag.Shcool)
+                        {
+                              <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <label class="">跟进状态：</label>
+                    <select id="state" class="layui-input layui-uselect" style="width:150px">
+                        <option value="0">全部</option>
+                        @foreach (var item in ViewBag.CustomerState)
+                         {
+                           <option value="@item.Id">@item.StatusStr</option>
+                         }
+                    </select>
+                    <label class="">关键字：</label>
+                    <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="姓名/电话" class="layui-input">
+                    <button id="btnSearch" class="layui-btn ">搜索</button>
+                    <button class="layui-btn" type="button" onclick="ShowAdd()"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
+                </div>
             </div>
         </div>
-        <div class="layui-row">
-            <button class="layui-btn" type="button" onclick="ShowAdd()"><i class="layui-icon layui-icon-add-1"></i>  添加</button>
+        <div class="layui-form-item">
+            <table class="layui-hide" id="test" lay-filter="list"></table>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <table class="layui-hide" id="test"></table>
-    </div>
+    </div> 
     <script src="~/layui/layui.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的  -->
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -44,26 +91,59 @@
             var $ = layui.$;
             var layer = layui.layer;
             table.render({
-                elem: '#test'
+                  elem: '#test'
                 , url: '/StudentList'
                 , cellMinWidth: 80 
                 , cols: [[
-                      { title: '序号', templet: '#indexTpl',width:60 }
+                      {title: '序号', templet: '#indexTpl', width: 60}
                     , {field:'Name', width: 80, title: '姓名'}
-                    , { field: 'Birthday', width: 80, title: '年龄' }
-                    , { field: 'ParentsPhone', width: 120, title: '电话' }
+                    , { field: 'Birthday', width: 80, title: '年龄'}
+                    , { field: 'ParentsPhone', width: 120, title: '电话'}
                     , { field: 'Leavl', width: 100, title: '意向程度' }
-                    , { field: 'Leavl', width: 100, title: '意向程度' }
-                    , { field: 'Sourece', width: 100, title: '客户来源' }   
-                    , { field: 'StatusStr', width: 100, title: '跟进状态' }
-                    , { field: 'RealName', width: 100, title: '录入者' }
+                    , {field:'Id',width:120,toolbar:'#CDemo',title:'沟通记录'}
+                    , { field: 'Sourece', width: 100, title: '客户来源' }
+                    , {field:'Id',width:80,toolbar:'#BDemo',title:'办报名'}
+                    , { field: 'StatusStr', width: 100, title: '跟进状态'}
+                    , { field: 'RealName', width: 100, title: '录入者'}
                     , { field: 'ConsultationDate', width: 140, title: '咨询时间' }
-                    , { field: 'Id', toolbar: '#barDemo',title:'操作'}
-                ]]
+                    , { field: 'Id',width:120, toolbar: '#barDemo',title:'操作'}
+                ]],
+                page: true
             });
+            table.on('tool(list)', obj => {
+                if (obj.event === 'edit') {
+                    layer.open({
+                          type: 2
+                        , title: '修改学生'
+                        , content: '/StudentList/Update?id='+obj.data.Id
+                        , area: ['850px', '580px']
+                        , offset: ['20px', '200px']
+                    })
+                }
+                if (obj.event === 'cadd') {
+                    layer.open({
+                        type: 2
+                        , title: '添加沟' + obj.data.Name + '通记录'
+                        , content: '/ChatListController/Add?id=' + obj.data.Id
+                        , area: ['850px', '580px']
+                        , offset: ['20px', '200px']
+                    })
+                }
+            });
+            $('#btnSearch').click(e => {
+                table.reload("test",{
+                    where: {
+                        state: $('#state').val(),
+                        school: $('#school').val(),
+                        description: $('#description').val()
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+            })
         });
         function ShowAdd() {
-            alert('a');
             layer.open({
                 type: 2
                 , title: '添加学生'
@@ -74,7 +154,24 @@
         }
     </script>
     <script type="text/html" id="barDemo">
-        <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
+        <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">
+            <i class="layui-icon">
+                &#xe642;
+            </i>
+        </button>
+    </script>
+    <script type="text/html" id="CDemo">
+        <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="cadd">
+                <i class="layui-icon">&#xe654;</i>
+            </button>
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">{{d.Comnundate}}</button>
+        </div>
+    </script>
+    <script type="text/html" id="BDemo">
+        <div class="layui-btn-group">
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">办报名</button>
+        </div>
     </script>
     <script type="text/html" id="indexTpl">
         {{d.LAY_TABLE_INDEX+1}}
