@@ -101,6 +101,7 @@
 </form>
 @section script{
     <script>
+        console.log(parent.window.tabId)
         layui.use(['form', 'laydate','element'], function () {
             var form = layui.form;
             var element = layui.element;
@@ -127,7 +128,7 @@
                         if (result.success) {
                             parent.layer.msg("添加成功", { time: 3000 })
                             parent.tab.reload()
-                            console.log(layer.getFrameIndex(window.name))
+                            console.log(parent.layer.close(parent.window.tabId))
                           // layer.close()
                         }
                     }

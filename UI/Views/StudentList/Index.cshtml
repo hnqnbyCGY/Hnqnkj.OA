@@ -100,6 +100,9 @@
             var form = layui.form;
             var $ = layui.$;
             var layer = layui.layer;
+            layer.open({
+                content:'/chatlist/add',type:2
+            })
             table.render({
                   elem: '#test'
                 , url: '/StudentList'
@@ -134,7 +137,7 @@
                     layer.open({
                         type: 2
                         , title: '添加沟' + obj.data.Name + '通记录'
-                        , content: '/ChatListController/Add?id=' + obj.data.Id
+                        , content: '/ChatList/Add?id=' + obj.data.Id
                         , area: ['850px', '580px']
                         , offset: ['20px', '200px']
                     })
