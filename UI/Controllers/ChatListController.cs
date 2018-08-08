@@ -13,7 +13,7 @@ namespace UI.Controllers
     {
         WorkUnit work = new WorkUnit();
         // GET: ChatList
-        public ActionResult Index(int page = 0,int limit = 10, string sort = "Id",OrderMode order= OrderMode.Asc,int school =0 ,int type =0, int way= 0,string description ="")
+        public ActionResult Index(int page = 0,int limit = 10, string sort = "Id",OrderMode order = OrderMode.Asc,int school =0 ,int type =0, int way = 0,string description ="")
         {
             if (Request.IsAjaxRequest())
             {

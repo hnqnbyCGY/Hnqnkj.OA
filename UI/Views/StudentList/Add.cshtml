@@ -90,8 +90,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">咨询专业</label>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps1" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps1" lay-verify="">
+                                <option value="0">请选择</option>
                                   @foreach (var item in ViewBag.sps)
                                    {
                                         <option value=@item.Id>@item.Name</option>
@@ -99,8 +99,8 @@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps2" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps2" lay-verify="">
+                                <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
@@ -108,8 +108,8 @@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps3" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps3" lay-verify="">
+                                <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
@@ -205,10 +205,17 @@
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {
+                var ids = [];
+                var $sps = $('.sps');
+                $sps.each(function () {
+                    if ($(this).val()!=0) {
+                        ids.push($(this).val());
+                    }
+                })
                 $.ajax({
                     type: 'post',
                     url: 'add',
-                    data: data.field,
+                    data: { student: data.field, ids:ids},
                     success(data) {
                         if (data.success) {
                             layer.msg("成功", { time: 3000, icon: 1 });
