@@ -211,9 +211,13 @@
                     data: data.field,
                     success(data) {
                         if (data.success) {
-                            layer.msg("成功",{ time: 3000, icon: 1 });
-                            window.parent.layer.close(parent.layer.getFrameIndex(window.name));
-                            window.parent.location.reload(true);
+                            layer.msg("成功", { time: 3000, icon: 1 });
+                            setTimeout(s => {
+                                window.parent.layer.close(parent.layer.getFrameIndex(window.name));
+                                window.parent.location.reload(true);
+                            },3000);
+
+                         
                         }
                     }
                 })
