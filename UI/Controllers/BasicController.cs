@@ -9,15 +9,21 @@ namespace UI.Controllers
 {
     public class BasicController : Controller
     {
+        WorkUnit unit = new WorkUnit();
         // GET: Test
         public ActionResult TypeList()
         {
             return View();
         }
-
-        //public ActionResult GetData()
-        //{
-      
-        //}
+        [HttpGet]
+        public ActionResult GetData()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var data = unit.ConsultingType.GetAll();
+                return Json(new { code = 0, msg = "", count = data.Count(), data }, JsonRequestBehavior.AllowGet);
+            }
+            return View();
+        }
     }
 }

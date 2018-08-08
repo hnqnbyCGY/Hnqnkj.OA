@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Hnqnkj.OA.DAL;
 using Hnqnkj.OA.Model;
 namespace UI.Controllers
@@ -15,23 +16,27 @@ namespace UI.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: UserInfo
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Add()
         {
             return View();
         }
         
-        
-        public ActionResult AddAccount(AdminUser admin)
+        [HttpPost]
+        public ActionResult Add(AdminUser admin)
         {
             try
             {
+                admin.AccountPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(admin.AccountPwd, "md5");
+                admin.LoginCount = 0;
+                admin.LastLogingTime = DateTime.Now;
                 unit.Admin.Insert(admin);
                 unit.Save();
-                return Json(new { msg = "ok" });
+                return Json(new { success=true });
             }
             catch (Exception)
             {
-                return Json(new { msg = "error" });
+                return Json(new { success = false });
             }      
         }
 
