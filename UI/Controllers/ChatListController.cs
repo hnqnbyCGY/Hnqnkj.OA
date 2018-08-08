@@ -43,7 +43,7 @@ namespace UI.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Add(int id=1)
+        public ActionResult Add(int id)
         {
             ViewBag.Student = work.Student.GetEntityById(id);
             ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList();
