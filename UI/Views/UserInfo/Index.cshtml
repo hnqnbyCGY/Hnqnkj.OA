@@ -75,12 +75,13 @@
             </div>
         </form>
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+  
     <script src="~/layui/layui.all.js"></script>
 
     <script>
         layui.use('form', function () {
             var form = layui.form;
+            var $ = layui.$;
             //自定义验证规则
             form.verify({
                 pass: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
@@ -95,7 +96,7 @@
             //监听提交
             form.on('submit(formDemo)', function (data) {
                 //layer.msg(JSON.stringify(data.field));
-                //return false;
+                
 
                 if (data.field.Status == "on") {
                     data.field.Status = true;
@@ -113,15 +114,15 @@
                     type: 'post',
                     success: function (data) {
                         if (data.msg == 'ok') {
-                            layer.msg('添加成功', 2000);
+                            layer.msg('添加成功');
                         }
                     },
                     error: function (data) {
-                        layer.msg('网络请求错误', 2000);
+                        layer.msg('网络请求错误');
                     }
                 })
                 console.log(123);
-               
+                return false;
             });
         });
     </script>
