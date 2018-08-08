@@ -44,8 +44,9 @@ namespace UI.Controllers
                                s.CustomerState.StatusStr,
                                s.OperatorAdminUser.RealName,
                                ConsultationDate = s.ConsultationDate.ToString(),
+                               Specialty = (work.ConsultMajor.GetCount(c => c.StudentId == s.Id) == 0 ? "无" : work.ConsultMajor.Where(c => c.StudentId == s.Id).ToList()[0].Specialty.Name),
                                s.Id,
-                               Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" :work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().ToString()
+                               Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" : GetDate(work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().CommunicationDate)
                                
                            };
                 return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
@@ -53,6 +54,40 @@ namespace UI.Controllers
             ViewBag.Shcool = work.Shcool.GetAll();
             ViewBag.CustomerState = work.CustomerState.GetAll(s => s.Status);
             return View();
+        }
+        private string GetDate(DateTime date)
+        {
+            DateTime newDate = DateTime.Now;
+            if (newDate.Year-date.Year>0)
+            {
+                return newDate.Year - date.Year + "年前";
+            }
+            if (newDate.Month-date.Month>0)
+            {
+                return newDate.Month - date.Month + "月前";
+            }
+            if (newDate.Day - date.Day > 15)
+            {
+                return "两周前";
+            }
+            if (newDate.Day - date.Day > 7)
+            {
+                return "一周前";
+            }
+            if (newDate.Day - date.Day>0)
+            {
+                return newDate.Day - date.Day + "天前";
+            }
+            if (newDate.Hour-date.Hour>0)
+            {
+                return newDate.Hour - date.Hour + "小时前";
+            }
+            if (newDate.Minute - date.Minute > 0)
+            {
+                return newDate.Minute - date.Minute + "分钟前";
+            }
+            return  "刚刚";
+            
         }
         public ActionResult Update(int id)
         {
@@ -70,16 +105,27 @@ namespace UI.Controllers
             return View();
         } 
         [HttpPost]
-        public ActionResult Add(Student student)
+        public ActionResult Add(Student student,List<int> ids)
         {
             try
             {
+                int count = work.Student.GetCount(s => s.ParentsPhone == student.ParentsPhone && s.Name == student.Name);
+                if (count>0)
+                {
+                    return Json(new { success = false });
+                }
                 FormsIdentity identity = User.Identity as FormsIdentity;
                 AdminUser admin = JsonConvert.DeserializeObject<AdminUser>(identity.Ticket.UserData);
                 student.OperatorAdminUserId = admin.Id;
                 student.ListOperatorAdminUserId = admin.Id;
                 student.ListOperatorDateTime = DateTime.Now;
                 work.Student.Insert(student);
+                work.Save();
+                student = work.Student.Where(s => s.Name == student.Name && s.ParentsPhone == student.ParentsPhone).ToList()[0];
+                foreach (var id in ids)
+                {
+                    work.ConsultMajor.Insert(new ConsultMajor { SpecialtyId = id, StudentId = student.Id });
+                }
                 work.Save();
                 return Json(new { success = true });
             }

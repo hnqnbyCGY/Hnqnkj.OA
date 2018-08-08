@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <table class="layui-hide" id="test" lay-filter="list"></table>
+            <table class="layui-hide" id="test" lay-filter="list" style="width:100%"></table>
         </div>
         <div style="height:100px">
 
@@ -108,18 +108,19 @@
                 , url: '/StudentList'
                 , cellMinWidth: 80 
                 , cols: [[
-                      {title: '序号', templet: '#indexTpl', width: 60}
-                    , {field:'Name', width: 80, title: '姓名'}
-                    , { field: 'Birthday', width: 80, title: '年龄'}
-                    , { field: 'ParentsPhone', width: 120, title: '电话'}
-                    , { field: 'Leavl', width: 60, title: '意向程度' }
-                    , {field:'Id',width:120,toolbar:'#CDemo',title:'沟通记录'}
-                    , { field: 'Sourece', width: 100, title: '客户来源' }
-                    , {field:'Id',width:80,toolbar:'#BDemo',title:'办报名'}
-                    , { field: 'StatusStr', width: 100, title: '跟进状态'}
-                    , { field: 'RealName', width: 100, title: '录入者'}
-                    , { field: 'ConsultationDate', width: 140, title: '咨询时间' }
-                    , { field: 'Id',width:120, toolbar: '#barDemo',title:'操作'}
+                      {title: '序号', templet: '#indexTpl', width:'5%' }
+                    , {field:'Name', width: '7%', title: '姓名'}
+                    , { field: 'Birthday', width: '6%', title: '年龄'}
+                    , { field: 'ParentsPhone', width: '10%', title: '电话'}
+                    , { field: 'Leavl', width: '5.5%', title: '意向程度' }
+                    , { field:'Specialty',width:'7.5%',title:'意向专业'}
+                    , {field:'Id',width:'10%',toolbar:'#CDemo',title:'沟通记录'}
+                    , { field: 'Sourece', width: '7.5%', title: '客户来源' }
+                    , {field:'Id',width:'6%',toolbar:'#BDemo',title:'办报名'}
+                    , { field: 'StatusStr', width: '7%', title: '跟进状态'}
+                    , { field: 'RealName', width: '6%', title: '录入者'}
+                    , { field: 'ConsultationDate', width: '11%', title: '咨询时间' }
+                    , { field: 'Id',width:'8%', toolbar: '#barDemo',title:'操作'}
                 ]],
                 page: true
             });
@@ -136,8 +137,8 @@
                 if (obj.event === 'cadd') {
                     layer.open({
                         type: 2
-                        , title: '添加沟' + obj.data.Name + '通记录'
-                        , content: '/ChatList/Add?id=' + obj.data.Id
+                        , title: '添加与' + obj.data.Name + '的沟通记录'
+                        , content: '/ChatList/Add/id=' + obj.data.Id
                         , area: ['850px', '580px']
                         , offset: ['20px', '200px']
                     })
