@@ -18,7 +18,7 @@
 </head>
 <body>
     <div>
-        <form class="layui-form" method="post" action="">
+        <form class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
@@ -75,7 +75,7 @@
             </div>
         </form>
     </div>
-  
+   
     <script src="~/layui/layui.all.js"></script>
 
     <script>
@@ -96,8 +96,8 @@
             //监听提交
             form.on('submit(formDemo)', function (data) {
                 //layer.msg(JSON.stringify(data.field));
-                
-
+                //return false;
+                console.log(111)
                 if (data.field.Status == "on") {
                     data.field.Status = true;
                 } else {
@@ -108,20 +108,22 @@
                 } else {
                     data.field.Sex = false;
                 }
+
                 $.ajax({
-                    url: '/UserInfo/AddAccount',
+                    url: '/UserInfo/Add',
                     data: data.field,
                     type: 'post',
-                    success: function (data) {
-                        if (data.msg == 'ok') {
-                            layer.msg('添加成功');
-                        }
+                    success(data) {
+                        if (data.success) {
+                            layer.msg('添加成功', { time: 2000 });
+                        } else {
+                            layer.msg('添加失败', { time: 2000 });
+                        }     
                     },
-                    error: function (data) {
-                        layer.msg('网络请求错误');
+                    error(data) {
+                        layer.msg('网络请求错误', { time: 2000 });
                     }
                 })
-                console.log(123);
                 return false;
             });
         });
