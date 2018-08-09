@@ -72,6 +72,7 @@
         </div>
     </div>
 </div>
+<div style="height:50px"></div>
 <script type="text/html" id="barDemo">
     <div>
         <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
@@ -88,12 +89,13 @@
                 , url: '/Chatlist'
                 , cellMinWidth: 50
                 , cols: [[
-                    { field: 'Id', width: 80, title: 'ID', sort: true }
-                    , { field: 'ChatWay', width: 100, title: '联系方式' }
-                    , { field: 'ConType', width: 100, title: '联系类型' }
-                    , { field: 'Leavl', width: 100, title: '意向程度' }
-                    , { field: 'Name', width: 100, title: '校区' }
-                    , { field: 'Id', width: 300, toolbar: '#barDemo', title: '操作' }
+                    { field: 'stuName',  title: '学生姓名' }
+                    , { field: 'ChatWay',  title: '联系类型' }
+                    , { field: 'ConType',  title: '联系方式' }
+                    , { field: 'Leavl',  title: '意向程度' }
+                    , { field: 'Name',  title: '校区' }
+                    , { field: 'CommunicationDate', title: '沟通时间',templet:'#time' }
+                    , { field: 'Id', toolbar: '#barDemo', title: '操作' }
 
                 ]],
                 page: true
@@ -102,7 +104,7 @@
                 if (obj.event === 'edit') {
                     window.tabId= layer.open({
                         content: '/chatlist/edit?id=' + obj.data.Id,
-                        title: '编辑',
+                        title: `编辑对${obj.data.stuName}的沟通记录`,
                         area: ["600px", "500px"],
                         shade: 0.8,
                         type:2
@@ -131,6 +133,21 @@
                 })
             })
         });
+        function changeDateFormat(cellval) {
+            var dateVal = cellval + "";
+            if (cellval != null) {
+                var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
 
+                return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        }
+    </script>
+    <script type="text/html" id="time">
+        {{changeDateFormat(d.CommunicationDate)}}
     </script>
 }
