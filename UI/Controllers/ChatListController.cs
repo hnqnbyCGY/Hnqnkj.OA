@@ -81,10 +81,10 @@ namespace UI.Controllers
             ViewBag.Users = work.Admin.GetAll(m => m.Status);
             return View(work.CommunicationRecord.GetEntityById(id));
         }
-        //[HttpPost]
-        //public ActionResult Edit(CommunicationRecord model)
-        //{
+        [HttpPost]
+        public ActionResult Edit(CommunicationRecord model)
+        {
 
-        //}
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace UI.Controllers
                                Specialty = (work.ConsultMajor.GetCount(c => c.StudentId == s.Id) == 0 ? "无" : work.ConsultMajor.Where(c => c.StudentId == s.Id).ToList()[0].Specialty.Name),
                                s.Id,
                                comCount = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id),
-                               bm=work.SignUp.GetCount(c=>c.StudentId==s.Id)>0,
+                               bm=work.SignUp.GetCount(c=>c.Student.Id==s.Id)>0,
                                Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" : GetDate(work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().CommunicationDate)
                                
                            };
