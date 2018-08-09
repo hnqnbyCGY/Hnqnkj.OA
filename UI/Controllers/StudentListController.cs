@@ -46,45 +46,49 @@ namespace UI.Controllers
                                ConsultationDate = s.ConsultationDate.ToString(),
                                Specialty = (work.ConsultMajor.GetCount(c => c.StudentId == s.Id) == 0 ? "无" : work.ConsultMajor.Where(c => c.StudentId == s.Id).ToList()[0].Specialty.Name),
                                s.Id,
+                               comCount = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id),
+                               bm=work.SignUp.GetCount(c=>c.StudentId==s.Id)>0,
                                Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" : GetDate(work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().CommunicationDate)
                                
                            };
-                return Json(new { code = 0, count = stus.Count(), data = list }, JsonRequestBehavior.AllowGet);
+                return Json(new { code = 0, count = work.Student.GetCount(), data = list }, JsonRequestBehavior.AllowGet);
             }
             ViewBag.Shcool = work.Shcool.GetAll();
             ViewBag.CustomerState = work.CustomerState.GetAll(s => s.Status);
             return View();
         }
+        
         private string GetDate(DateTime date)
         {
             DateTime newDate = DateTime.Now;
-            if (newDate.Year-date.Year>0)
+            TimeSpan d = newDate - date;
+            if (d.TotalDays>365)
             {
-                return newDate.Year - date.Year + "年前";
+                return (int)d.TotalDays/365 + "年前";
             }
-            if (newDate.Month-date.Month>0)
+            if ((int)d.TotalDays > 30)
             {
-                return newDate.Month - date.Month + "月前";
+                return (int)d.TotalDays/30 + "月前";
             }
-            if (newDate.Day - date.Day > 15)
+            if ((int)d.TotalDays > 15)
             {
                 return "两周前";
             }
-            if (newDate.Day - date.Day > 7)
+            if ((int)d.TotalDays > 7)
             {
                 return "一周前";
             }
-            if (newDate.Day - date.Day>0)
+            if ((int)d.TotalDays>0)
             {
-                return newDate.Day - date.Day + "天前";
+                return (int)d.TotalDays + "天前";
             }
-            if (newDate.Hour-date.Hour>0)
+            if ((int)d.TotalHours>0)
             {
-                return newDate.Hour - date.Hour + "小时前";
+                return (int)d.TotalHours + "小时前";
             }
-            if (newDate.Minute - date.Minute > 0)
+            if (d.Minutes > 0)
             {
-                return newDate.Minute - date.Minute + "分钟前";
+                return d.Minutes + "分钟前";
             }
             return  "刚刚";
             

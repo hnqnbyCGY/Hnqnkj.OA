@@ -67,6 +67,7 @@ namespace Hnqnkj.OA.DAL
         /// 沟通记录
         /// </summary>
         public DbSet<CommunicationRecord> CommunicationRecords { get; set; }
+        public DbSet<SignUp> SignUps { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
