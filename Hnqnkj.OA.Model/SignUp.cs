@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,21 @@ namespace Hnqnkj.OA.Model
     /// <summary>
     /// 报名表
     /// </summary>
-    public class SignUp:EntityBase
+    public class SignUp : EntityBase
     {
         /// <summary>
         /// 学生Id
         /// </summary>
-        public int StudentId { get; set; }
-       
+        public virtual Student Student { get; set; }
+        [NotMapped]
+        public string StuName
+        {
+            get
+            {
+                return Student.Name;
+            }
+        }
+
         /// <summary>
         /// 班级
         /// </summary>
