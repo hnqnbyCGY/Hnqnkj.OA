@@ -4,7 +4,138 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    @Model.ConType
-</div>
+<form class="layui-form" style="padding:10px">
+    <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <input name="Id" value="@(Model.Id)" type="hidden">
+        <div class="layui-inline">
+            <label class="layui-form-label">校区</label>
+            <div class="layui-input-inline" style="width:150px">
+                <select name="ShcoolId" lay-verify="NotZero|required">
+                    <option value="0">请选择</option>
+                    @foreach (var item in ViewBag.Shcool)
+                    {
+                        <option value="@item.Id" @(item.Id == Model.ShcoolId ? "selected" : "")>@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">沟通类型</label>
+            <div class="layui-input-inline" style="width:150px">
+                <select name="ConsultingTypeId" lay-verify="NotZero|required">
+                    <option value="0">请选择</option>
+                    @foreach (var item in ViewBag.Type)
+                    {
+                        <option value="@item.Id" @(item.Id == Model.ConsultingTypeId ? "selected" : "")>@item.TypeName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">沟通方式</label>
+            <div class="layui-input-inline" style="width:150px">
+                <select name="ConsultingWayId" lay-verify="NotZero|required">
+                    <option value="0">请选择</option>
+                    @foreach (var item in ViewBag.Way)
+                    {
+                        <option value="@item.Id" @(item.Id == Model.ConsultingWayId ? "selected" : "")>@item.WayName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
 
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">意向程度</label>
+            <div class="layui-input-inline" style="width:150px">
+                <select name="IntentionDegreeId" lay-verify="NotZero|required">
+                    <option value="0">请选择</option>
+                    @foreach (var item in ViewBag.Intention)
+                    {
+                        <option value="@item.Id" @(item.Id == Model.IntentionDegreeId ? "selected" : "")>@item.Leavl</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">沟通日期</label>
+            <div class="layui-input-inline">
+                <input type="text" name="CommunicationDate" value="@Model.CommunicationDate.ToString("yyyy-MM-dd HH:mm:ss")" class="layui-input" id="test1" style="width:150px">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">经办人</label>
+            <div class="layui-input-inline" style="width:150px">
+                <select name="AdminUserId" lay-search lay-verify="NotZero|required">
+                    <option value="0">请选择</option>
+                    @foreach (var item in ViewBag.Users)
+                    {
+                        <option value="@item.Id" @(item.Id == Model.AdminUserId ? "selected" : "")>@item.RealName</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">沟通内容：</label>
+        <div class="layui-input-block">
+            <textarea name="CommunicationContent" placeholder="请填写沟通内容" class="layui-textarea">@(new HtmlString(Model.CommunicationContent))</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">沟通结果：</label>
+        <div class="layui-input-block">
+            <textarea name="CommunicationResults" placeholder="请填写沟通结果" class="layui-textarea">@(new HtmlString(Model.CommunicationResults))</textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <input type="hidden" name="StudentId" value="@Model.Student.Id" />
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+        </div>
+    </div>
+
+</form>
+@section script{
+    <script>
+        layui.use(['form', 'laydate','element'], function () {
+            var form = layui.form;
+            var element = layui.element;
+            var $ = layui.$
+            var ldate = layui.laydate;
+            console.log(new Date().toLocaleString())
+            ldate.render({
+                elem: '#test1',
+                type: 'datetime',
+                max: new Date().toLocaleString()
+               
+            });
+            form.render()
+            form.verify({
+                NotZero: function (value, item) { //value：表单的值、item：表单的DOM对象
+                    if (value == 0) {
+                        return "还未选择";
+                    }
+                }
+            })
+            form.on('submit(*)', function (data) {
+                $.ajax({
+                    type: 'post',
+                    url: 'edit',
+                    data: data.field,
+                    success(result) {
+                        if (result.success) {
+                            parent.layer.msg("添加成功", { time: 3000 })
+                            parent.tab.reload()
+                            setTimeout(parent.layer.close(parent.window.tabId),1000)
+                        }
+                    }
+                })
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+        });
+    </script>
+}

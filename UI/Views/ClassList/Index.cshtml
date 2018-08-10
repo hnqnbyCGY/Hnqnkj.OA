@@ -1,4 +1,5 @@
-﻿@using Hnqnkj.OA.Model
+﻿
+@using Hnqnkj.OA.Model
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,11 +26,10 @@
             background: #eee;
             height: 45px;
             line-height: 45px;
-            padding:5px;
-            
+            padding: 5px;
         }
 
-            .top-form >div {
+            .top-form > div {
                 display: inline-block;
                 margin: 0 10px;
             }
@@ -51,16 +51,8 @@
                 <option value="@item.Id">@item.Name</option>
             }
         </select>
-        <label class="">沟通类型：</label>
-        <select id="type" class="layui-input layui-uselect" style="width:150px">
-            <option>请选择</option>
-            @foreach (var item in ViewBag.Type)
-            {
-                <option value="@item.Id">@item.TypeName</option>
-            }
-        </select>
-            <label class="">关键字：</label>
-            <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        <label class="">关键字：</label>
+        <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
         <button id="btnSearch" class="layui-btn layui-btn-primary layui-btn-mini">搜索</button>
     </div>
     <div>
@@ -86,10 +78,10 @@
             var $ = layui.$
             window.tab = table.render({
                 elem: '#table'
-                , url: '/Chatlist'
+                , url: '/Classlist'
                 , cellMinWidth: 50
                 , cols: [[
-                    { field: 'stuName',  title: '学生姓名' }
+                    { field: 'TName',  title: '班级名称' }
                     , { field: 'ChatWay',  title: '联系类型' }
                     , { field: 'ConType',  title: '联系方式' }
                     , { field: 'Leavl',  title: '意向程度' }
@@ -151,3 +143,5 @@
         {{changeDateFormat(d.CommunicationDate)}}
     </script>
 }
+
+

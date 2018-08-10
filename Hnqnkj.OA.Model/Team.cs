@@ -14,5 +14,13 @@ namespace Hnqnkj.OA.Model
         public string TName { get; set; } 
         public int Specialty_Id { get; set; }
         public virtual Specialty Specialty { get; set; }
+        /// <summary>
+        /// 开班日期
+        /// </summary>
+        public DateTime CreateDate { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remarks { get; set; }
     }
 }

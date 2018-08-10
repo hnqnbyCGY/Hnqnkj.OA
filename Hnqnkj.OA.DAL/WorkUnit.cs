@@ -28,6 +28,18 @@ namespace Hnqnkj.OA.DAL
                 return _admin;
             }
         }
+        private CommonRepository<SignUp> _signUp;
+        public CommonRepository<SignUp> SignUp
+        {
+            get
+            {
+                if (_signUp == null)
+                {
+                    _signUp = new CommonRepository<SignUp>(DB);
+                }
+                return _signUp;
+            }
+        }
 
         private CommonRepository<School> _school;
         public CommonRepository<School> School

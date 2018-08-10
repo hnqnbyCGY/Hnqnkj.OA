@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Add</title>
     <link rel="stylesheet" href="~/layui/css/layui.css" />
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    
     <style>
         .edit_block_c{
             margin-top:10px;
@@ -90,8 +90,8 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">咨询专业</label>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps1" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps1" lay-verify="">
+                                <option value="0">请选择</option>
                                   @foreach (var item in ViewBag.sps)
                                    {
                                         <option value=@item.Id>@item.Name</option>
@@ -99,8 +99,8 @@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps2" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps2" lay-verify="">
+                                <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
@@ -108,8 +108,8 @@
                             </select>
                         </div>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select name="sps3" lay-verify="">
-                                <option value="">请选择</option>
+                            <select class="sps" name="sps3" lay-verify="">
+                                <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.sps)
                                 {
                                     <option value=@item.Id>@item.Name</option>
@@ -179,7 +179,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">咨询日期</label>
                         <div class="layui-input-inline" style="width:120px;">
-                            <input type="text" name="ConsultationDate" class="layui-input date_sel" value="2001-01-01" />
+                            <input type="text" name="ConsultationDate" class="layui-input date_sel1"  />
                         </div>
                     </div>
                 </div>
@@ -202,18 +202,35 @@
             var laydate = layui.laydate;
             laydate.render({
                 elem: '.date_sel' //指定元素
+                , max: new Date().toString()
+            });
+            laydate.render({
+                elem: '.date_sel1'
+                , value: new Date()
+                , max: new Date().toString()
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {
+                var ids = [];
+                var $sps = $('.sps');
+                $sps.each(function () {
+                    if ($(this).val()!=0) {
+                        ids.push($(this).val());
+                    }
+                })
                 $.ajax({
                     type: 'post',
                     url: 'add',
-                    data: data.field,
+                    data: { student: data.field, ids:ids},
                     success(data) {
                         if (data.success) {
-                            layer.msg("成功",{ time: 3000, icon: 1 });
-                            window.parent.layer.close(parent.layer.getFrameIndex(window.name));
-                            window.parent.location.reload(true);
+                            layer.msg("成功", { time: 3000, icon: 1 });
+                            setTimeout(s => {
+                                window.parent.layer.close(parent.layer.getFrameIndex(window.name));
+                                window.parent.location.reload(true);
+                            },3000);
+
+                         
                         }
                     }
                 })
