@@ -84,7 +84,16 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Edit(CommunicationRecord model)
         {
-
+            try
+            {
+                work.CommunicationRecord.Update(model);
+                work.Save();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false,msg =ex.Message });
+            }
         }
     }
 }

@@ -1,0 +1,147 @@
+﻿
+@using Hnqnkj.OA.Model
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+    <style>
+        .layui-table-cell {
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .layui-btn-mini {
+            height: 28px;
+            line-height: 28px
+        }
+
+        .my-container {
+            padding: 0 10px
+        }
+
+        .top-form {
+            border-left: 5px solid #4cff00;
+            margin: 10px auto;
+            background: #eee;
+            height: 45px;
+            line-height: 45px;
+            padding: 5px;
+        }
+
+            .top-form > div {
+                display: inline-block;
+                margin: 0 10px;
+            }
+
+        select, input {
+            margin: 0 !important;
+            padding: 0
+        }
+    </style>
+
+}
+<div class="my-container">
+    <div class="top-form layui-form">
+        <label class="">校区：</label>
+        <select id="school" class="layui-input layui-select" style="width:150px">
+            <option value="0">请选择</option>
+            @foreach (Shcool item in ViewBag.Shcool)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        <label class="">关键字：</label>
+        <input id="description" style="width:150px;display:inline-block" type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        <button id="btnSearch" class="layui-btn layui-btn-primary layui-btn-mini">搜索</button>
+    </div>
+    <div>
+        <button id="add" class="layui-btn layui-btn-warm">添加记录</button>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-lg12">
+            <table class="layui-hide" id="table" lay-filter="list"></table>
+        </div>
+    </div>
+</div>
+<div style="height:50px"></div>
+<script type="text/html" id="barDemo">
+    <div>
+        <button class="layui-btn layui-btn-mini" lay-event="edit">编辑</button>
+    </div>
+</script>
+@section script{
+    <script>
+        layui.use(['table'], function () {
+            var table = layui.table;
+            var form = layui.form;
+            var $ = layui.$
+            window.tab = table.render({
+                elem: '#table'
+                , url: '/Classlist'
+                , cellMinWidth: 50
+                , cols: [[
+                    { field: 'TName',  title: '班级名称' }
+                    , { field: 'ChatWay',  title: '联系类型' }
+                    , { field: 'ConType',  title: '联系方式' }
+                    , { field: 'Leavl',  title: '意向程度' }
+                    , { field: 'Name',  title: '校区' }
+                    , { field: 'CommunicationDate', title: '沟通时间',templet:'#time' }
+                    , { field: 'Id', toolbar: '#barDemo', title: '操作' }
+
+                ]],
+                page: true
+            });
+            table.on('tool(list)', obj => {
+                if (obj.event === 'edit') {
+                    window.tabId= layer.open({
+                        content: '/chatlist/edit?id=' + obj.data.Id,
+                        title: `编辑对${obj.data.stuName}的沟通记录`,
+                        area: ["600px", "500px"],
+                        shade: 0.8,
+                        type:2
+                    })
+                }
+            })
+            $('#btnSearch').click(e => {
+                tab.reload({
+                    where: {
+                        way: $('#way').val(),
+                        type: $('#type').val(),
+                        school: $('#school').val(),
+                        description: $('#description').val()
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+            })
+            $("#add").click(function () {
+                window.tabId=  layer.open({
+                    area: ["1000px", "500px"],
+                    type: 2,
+                    content: "/chatlist/Add",
+                    title:"添加记录"
+                })
+            })
+        });
+        function changeDateFormat(cellval) {
+            var dateVal = cellval + "";
+            if (cellval != null) {
+                var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        }
+    </script>
+    <script type="text/html" id="time">
+        {{changeDateFormat(d.CommunicationDate)}}
+    </script>
+}
+
+

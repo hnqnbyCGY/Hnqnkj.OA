@@ -7,7 +7,7 @@
 <form class="layui-form" style="padding:10px">
     <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     <div class="layui-form-item">
-        <input name="Student" value="@(ViewBag.Student.Id)" type="hidden">
+        <input name="Id" value="@(Model.Id)" type="hidden">
         <div class="layui-inline">
             <label class="layui-form-label">校区</label>
             <div class="layui-input-inline" style="width:150px">
@@ -92,7 +92,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-
+        <input type="hidden" name="StudentId" value="@Model.Student.Id" />
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
         </div>
@@ -106,9 +106,12 @@
             var element = layui.element;
             var $ = layui.$
             var ldate = layui.laydate;
+            console.log(new Date().toLocaleString())
             ldate.render({
                 elem: '#test1',
-                type: 'datetime'
+                type: 'datetime',
+                max: new Date().toLocaleString()
+               
             });
             form.render()
             form.verify({
@@ -121,14 +124,13 @@
             form.on('submit(*)', function (data) {
                 $.ajax({
                     type: 'post',
-                    url: 'add',
+                    url: 'edit',
                     data: data.field,
                     success(result) {
                         if (result.success) {
                             parent.layer.msg("添加成功", { time: 3000 })
                             parent.tab.reload()
-                            console.log(parent.layer.close(parent.window.tabId))
-                          // layer.close()
+                            setTimeout(parent.layer.close(parent.window.tabId),1000)
                         }
                     }
                 })
