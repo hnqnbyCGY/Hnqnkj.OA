@@ -84,7 +84,7 @@ namespace UI.Controllers
         [HttpPost]
         public ActionResult Edit(CommunicationRecord model)
         {
-
+            return Json(new { });
         }
     }
 }

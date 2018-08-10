@@ -1,0 +1,116 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+    <link rel="stylesheet" href="~/layui/css/layui.css" />
+    <style>
+        .ny_content{
+            margin:40px 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ny_content">
+        <form class="layui-form" method="post" action="">
+            <div class="edit_block_c">
+                <!--第一行-->
+                <div class="layui-form-item">
+                    <input type="text" style="display:none" Id="studentId"  value="@ViewBag.student.Id"/>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">学员姓名</label>
+                        <div class="layui-input-inline" style="width:200px;">
+                            <input type="text" name="Name" lay-verify="required" readonly="readonly" value="@ViewBag.student.Name" class="layui-input" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">家长电话</label>
+                        <div class="layui-input-inline" style="width:200px;">
+                            <input type="text" name="ParentsPhone" readonly="readonly" class="layui-input" value="@ViewBag.student.ParentsPhone" />
+                        </div>
+                    </div>
+                </div>
+                <!--第二行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选择专业</label>
+                        <div class="layui-input-inline" style="width:202px;">
+                            <select  name="Specialty" lay-verify="">
+                                <option value="0">请选择</option>
+                                @foreach (var item in ViewBag.Specialty)
+                                 {
+                                    <option value=@item.Id>@item.Name</option>
+                                 }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">选择班级</label>
+                        <div class="layui-input-inline" style="width:202px;">
+                            <select name="Team" lay-verify="">
+                                <option value="0">请选择</option>
+                                @foreach (var item in ViewBag.Team)
+                                {
+                                    <option value=@item.Id>@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--第三行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-inline" style="width:540px;">
+                            <textarea name="Remarks" placeholder="请输入" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--最后一行-->
+                <div class="layui-form-item">
+                    <div class="layui-inline " style="margin-left:300px">
+                        <div class="layui-input-inline">
+                            <button lay-submit lay-filter="w" class="layui-btn">立即报名</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/layui/layui.all.js"></script>
+    <script>
+        layui.use(['laydate', 'form'], function () {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '.date_sel' //指定元素
+            });
+            var form = layui.form;
+            form.on('submit(w)', function (data) {
+                $.ajax({
+                    type: 'post',
+                    url: 'SignUp',
+                    data: { signUp: data.field, id: $('#studentId').val()},
+                    success(data) {
+                        if (data.success) {
+                            layer.msg("成功", { time: 3000, icon: 1 });
+                            setTimeout(s => {
+                                window.parent.layer.close(parent.layer.getFrameIndex(window.name));
+                                window.parent.location.reload(true);
+                            }, 3000);
+                        }
+                    }
+                })
+                return false;
+            })
+        });
+    </script>
+</body>
+</html>

@@ -318,6 +318,8 @@
     <Content Include="Views\ChatList\Edit.cshtml" />
     <Content Include="Views\StudentList\Update.cshtml" />
     <Content Include="Views\ChatList\Add.cshtml" />
+    <Content Include="Views\StudentList\SignUp.cshtml" />
+    <Content Include="Views\StudentList\UpDateSignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,7 +369,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57285</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

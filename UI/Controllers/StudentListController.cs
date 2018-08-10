@@ -47,7 +47,7 @@ namespace UI.Controllers
                                Specialty = (work.ConsultMajor.GetCount(c => c.StudentId == s.Id) == 0 ? "无" : work.ConsultMajor.Where(c => c.StudentId == s.Id).ToList()[0].Specialty.Name),
                                s.Id,
                                comCount = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id),
-                               bm=work.SignUp.GetCount(c=>c.Student.Id==s.Id)>0,
+                               bm = (work.SignUp.Where(c => c.Student.Id == s.Id).Count()==0?"": work.SignUp.Where(c => c.Student.Id == s.Id).ToArray()[0].Team.TName),
                                Comnundate = work.CommunicationRecord.GetCount(c => c.Student.Id == s.Id) == 0 ? "无" : GetDate(work.CommunicationRecord.GetAll(c => c.Student.Id == s.Id).OrderByDescending(z => z.CommunicationDate).FirstOrDefault().CommunicationDate)
                                
                            };
@@ -57,7 +57,33 @@ namespace UI.Controllers
             ViewBag.CustomerState = work.CustomerState.GetAll(s => s.Status);
             return View();
         }
-        
+        [HttpGet]
+        public ActionResult SignUp(int id)
+        {
+            ViewBag.Student = work.Student.GetEntityById(id);
+            ViewBag.Specialty = work.Specialty.GetAll();//专业
+            ViewBag.Team = work.Team.GetAll();//班级
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SignUp(SignUp signUp,int id)
+        {
+            return Json(new { });
+        }
+        public ActionResult DeleteSignUp(int id)
+        {//取消报名
+            return Json(new { });
+        } 
+        [HttpGet]
+        public ActionResult UpDateSignUp(int id)
+        {//修改报名
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpDateSignUp(SignUp signUp)
+        {
+            return Json(new { });
+        }
         private string GetDate(DateTime date)
         {
             DateTime newDate = DateTime.Now;

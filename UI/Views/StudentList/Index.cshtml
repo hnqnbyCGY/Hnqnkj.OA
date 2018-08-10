@@ -124,22 +124,23 @@
             });
             table.on('tool(list)', obj => {
                 if (obj.event === 'edit') {
-                    layer.open({
-                          type: 2
-                        , title: '修改学生'
-                        , content: '/StudentList/Update?id='+obj.data.Id
-                        , area: ['850px', '580px']
-                        , offset: ['20px', '200px']
-                    })
+                    Open('修改学生', '/StudentList/Update?id=' + obj.data.Id);
                 }
                 if (obj.event === 'cadd') {
-                    layer.open({
-                        type: 2
-                        , title: '添加与' + obj.data.Name + '的沟通记录'
-                        , content: '/ChatList/Add?id=' + obj.data.Id
-                        , area: ['850px', '580px']
-                        , offset: ['20px', '200px']
-                    })
+                    Open('添加与' + obj.data.Name + '的沟通记录', '/ChatList/Add?id=' + obj.data.Id,null,560);
+                }
+                if (obj.event === 'SignUp') {
+                    if (obj.data.bm) {
+                        layer.confirm(obj.data.Name+'已经报名:' + obj.data.bm, { btn: ['修改报名', '取消报名', '取消操作'] },
+                            function (index, layero) {
+                                Open('报名表', '/StudentList/UpDateSignUp?id=' + obj.data.Id);
+                            }, function (index) {
+                                alert('2');//取消报名
+                            }
+                        );    
+                    } else {
+                        Open('报名表', '/StudentList/SignUp?id=' + obj.data.Id,850,420);
+                    }
                 }
             });
             $('#btnSearch').click(e => {
@@ -155,14 +156,17 @@
                 });
             })
         });
-        function ShowAdd() {
+        function Open(title, url, w, h) {
             layer.open({
                 type: 2
-                , title: '添加学生'
-                , content: '/StudentList/Add'
-                , area: ['850px', '580px']
+                , title: title
+                , content: url
+                , area: [(w || 850) + 'px',(h || 580) +'px']
                 , offset: ['20px', '200px']
-            }); 
+            })
+        }
+        function ShowAdd() {
+            Open('添加学生', '/StudentList/Add');
         }
     </script>
     <script type="text/html" id="barDemo">
@@ -182,7 +186,7 @@
     </script>
     <script type="text/html" id="BDemo">
         <div class="layui-btn-group">
-            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="edit">{{d.bm?"已报名":"办报名"}}</button>
+            <button class="layui-btn layui-btn-mini layui-btn-sm" lay-event="SignUp">{{d.bm?"已报名":"办报名"}}</button>
         </div>
     </script>
     <script type="text/html" id="indexTpl">
