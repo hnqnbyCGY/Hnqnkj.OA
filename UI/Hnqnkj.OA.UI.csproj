@@ -151,6 +151,7 @@
     <Compile Include="Controllers\ChatListController.cs" />
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SpecialtyListController.cs" />
     <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -320,6 +321,7 @@
     <Content Include="Views\ChatList\Add.cshtml" />
     <Content Include="Views\StudentList\SignUp.cshtml" />
     <Content Include="Views\StudentList\UpDateSignUp.cshtml" />
+    <Content Include="Views\SpecialtyList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,7 @@
             <div class="edit_block_c">
                 <!--第一行-->
                 <div class="layui-form-item">
-                    <input type="text" style="display:none" Id="studentId"  value="@ViewBag.student.Id"/>
+                    <input type="text" style="display:none" Id="studentId" value="@ViewBag.student.Id" />
                     <div class="layui-inline">
                         <label class="layui-form-label">学员姓名</label>
                         <div class="layui-input-inline" style="width:200px;">
@@ -41,12 +41,12 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">选择专业</label>
                         <div class="layui-input-inline" style="width:202px;">
-                            <select  name="Specialty" lay-verify="">
+                            <select name="Specialty" lay-verify="">
                                 <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.Specialty)
-                                 {
-                                    <option value=@item.Id>@item.Name</option>
-                                 }
+                    {
+                        <option value=@item.Id>@item.Name</option>
+        }
                             </select>
                         </div>
                     </div>
@@ -56,14 +56,35 @@
                             <select name="Team" lay-verify="">
                                 <option value="0">请选择</option>
                                 @foreach (var item in ViewBag.Team)
-                                {
-                                    <option value=@item.Id>@item.Name</option>
-                                }
+                    {
+                        <option value=@item.Id>@item.Name</option>
+        }
                             </select>
                         </div>
                     </div>
                 </div>
-                <!--第三行-->
+               <!--三-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">报名时间</label>
+                        <div class="layui-input-inline" style="width:200px;">
+                            <input type="text" name="Birthday" class="layui-input date_sel" />
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">操作人</label>
+                        <div class="layui-input-inline" style="width:200px;">
+                            <select name="AdminUserId" lay-verify="">
+                                <option value="0">请选择</option>
+                                @foreach (var item in ViewBag.Admins)
+                                 {
+                                     <option value=@item.Id @(item.Id == ViewBag.admin.Id ? "selected" : "")>@item.RealName</option>
+                                 }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--第四行-->
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">备注</label>
@@ -90,7 +111,9 @@
         layui.use(['laydate', 'form'], function () {
             var laydate = layui.laydate;
             laydate.render({
-                elem: '.date_sel' //指定元素
+                elem: '.date_sel'
+                , value: new Date()
+                , max: new Date().toString()
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {

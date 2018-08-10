@@ -63,6 +63,9 @@ namespace UI.Controllers
             ViewBag.Student = work.Student.GetEntityById(id);
             ViewBag.Specialty = work.Specialty.GetAll();//专业
             ViewBag.Team = work.Team.GetAll();//班级
+            FormsIdentity identity = User.Identity as FormsIdentity;
+            ViewBag.admin = JsonConvert.DeserializeObject<AdminUser>(identity.Ticket.UserData);
+            ViewBag.Admins = work.Admin.GetAll();
             return View();
         }
         [HttpPost]
