@@ -53,7 +53,29 @@ namespace UI.Controllers
                 return Json(new { code = 0, msg = "", count = data.Count(), data }, JsonRequestBehavior.AllowGet);
             }
             return View();        
-        }   
+        }  
+        
+        public ActionResult Edit(int id)
+        {
+              ViewBag.model= unit.Admin.Where(m => m.Id == id).First();
+              return View();
+        }
+        [HttpPost]
+        public ActionResult Updata(AdminUser admin)
+        {
+            try
+            {
+                string[] str = { "AccountName","AccountPwd","LoginCount", "LastLogingTime" };
+                unit.Admin.Update(admin, str);
+                unit.Save();
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
         [HttpPost]
         public ActionResult Del(int id)
         {

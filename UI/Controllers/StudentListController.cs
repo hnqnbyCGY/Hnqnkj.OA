@@ -53,7 +53,7 @@ namespace UI.Controllers
                            };
                 return Json(new { code = 0, count = work.Student.GetCount(), data = list }, JsonRequestBehavior.AllowGet);
             }
-            ViewBag.Shcool = work.Shcool.GetAll();
+            ViewBag.Shcool = work.School.GetAll();
             ViewBag.CustomerState = work.CustomerState.GetAll(s => s.Status);
             return View();
         }
@@ -134,7 +134,7 @@ namespace UI.Controllers
             ViewBag.CustomerStates = work.CustomerState.Where(m => m.Status).ToList();//客户状态
             ViewBag.IntentionDegree = work.IntentionDegree.Where(m => m.Status).ToList();//意向程度
             ViewBag.CustomerSource = work.CustomerSource.Where(m => m.Status).ToList();//客户来源
-            ViewBag.Shcool = work.Shcool.Where(m => true);
+            ViewBag.Shcool = work.School.Where(m => true);
             return View();
         } 
         [HttpPost]

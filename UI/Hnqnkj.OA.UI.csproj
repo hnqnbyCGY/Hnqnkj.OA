@@ -148,11 +148,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\ChatListController.cs" />
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\SchoolInfoController.cs" />
+=======
     <Compile Include="Controllers\SpecialtyListController.cs" />
+>>>>>>> 78b0dff290916e51c3de257af8b73176eeb5cb1c
     <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -320,6 +325,12 @@
     <Content Include="Views\ChatList\Edit.cshtml" />
     <Content Include="Views\StudentList\Update.cshtml" />
     <Content Include="Views\ChatList\Add.cshtml" />
+    <Content Include="Views\Basic\TypeList.cshtml" />
+    <Content Include="Views\Basic\WayList.cshtml" />
+    <Content Include="Views\SchoolInfo\SchoolList.cshtml" />
+    <Content Include="Views\SchoolInfo\Add.cshtml" />
+    <Content Include="Views\SchoolInfo\Edit.cshtml" />
+    <Content Include="Views\UserInfo\Edit.cshtml" />
     <Content Include="Views\ClassList\Index.cshtml" />
     <Content Include="Views\StudentList\SignUp.cshtml" />
     <Content Include="Views\StudentList\UpDateSignUp.cshtml" />

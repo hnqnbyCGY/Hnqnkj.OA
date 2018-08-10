@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <style>
+        .layui-input-block {
+            width: 280px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin:15px auto;">
+        <form class="layui-form">
+            <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+            <input type="hidden" name="Id" value="@ViewBag.model.Id" />
+            <div class="layui-form-item">
+                <label class="layui-form-label">学校名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Name" placeholder="请输入学校名称" required autocomplete="off" class="layui-input" value="@ViewBag.model.Name">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">负责人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Principal" placeholder="请输入负责人" required  autocomplete="off" class="layui-input" value="@ViewBag.model.Principal">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机号码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="MPhone" placeholder="请输入手机号码" required autocomplete="off" class="layui-input" value="@ViewBag.model.MPhone">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">固定电话</label>
+                <div class="layui-input-block">
+                    <input type="text" name="TPhone" placeholder="请输入固定电话" required autocomplete="off" class="layui-input" value="@ViewBag.model.TPhone">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">学校地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="Address" placeholder="请输入学校地址" required autocomplete="off" class="layui-input" value="@ViewBag.model.Address">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">学校状态</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="Status" lay-skin="switch" lay-text="正常|锁定" checked>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="test">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+            <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+        </form>
+    </div>
+
+    <script src="~/layui/layui.all.js"></script>
+    <script>
+        layui.use('form', function () {
+            var form = layui.form;
+            var $ = layui.$;
+            form.render();
+            form.on('submit(test)', function (data) {
+                data.field.Status = data.field.Status == "on" ? true : false;
+                $.ajax({
+                    url: '/SchoolInfo/Updata',
+                    data: data.field,
+                    type: 'post',
+                    success(data) {
+                        if (data.success) {                        
+                            parent.layer.msg('修改成功', { time: 2000 });
+                        } else {
+                            layer.msg('修改失败', { time: 2000 });
+                        }
+                    },
+                    error(data) {
+                        layer.msg('网络请求错误', { time: 2000 });
+                    }
+                })
+                return false;
+            });
+        })
+    </script>
+
+
+</body>
+</html>

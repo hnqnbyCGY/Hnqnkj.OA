@@ -72,7 +72,7 @@ namespace Hnqnkj.OA.Model
         ///所属校区
         /// </summary>
         public int ShcoolId { get; set; }
-        public virtual Shcool Shcool { get; set; }
+        public virtual School Shcool { get; set; }
         public int OperatorAdminUserId { get; set; }
         /// <summary>
         /// 经办人

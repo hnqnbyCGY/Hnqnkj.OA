@@ -23,7 +23,7 @@ namespace Hnqnkj.OA.DAL
         /// <summary>
         /// 学校
         /// </summary>
-        public DbSet<Shcool> Shcools { get; set; }
+        public DbSet<School> Shcools { get; set; }
 
         /// <summary>
         /// 学生

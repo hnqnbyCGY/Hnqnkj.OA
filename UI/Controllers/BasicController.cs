@@ -16,7 +16,7 @@ namespace UI.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult GetData()
+        public ActionResult GetTypeList()
         {
             if (Request.IsAjaxRequest())
             {
@@ -25,5 +25,23 @@ namespace UI.Controllers
             }
             return View();
         }
+
+        public ActionResult WayList()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult GetWayList()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var data = unit.ConsultingWay.GetAll();
+                return Json(new { code = 0, msg = "", count = data.Count(), data }, JsonRequestBehavior.AllowGet);
+            }
+            return View();
+        }
+
+
+        
     }
 }

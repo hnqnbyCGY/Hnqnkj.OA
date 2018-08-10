@@ -58,7 +58,7 @@ namespace Hnqnkj.OA.Model
         /// 经办校区
         /// </summary>
         public int ShcoolId { get; set; }
-        public virtual Shcool Shcool { get; set; }
+        public virtual School Shcool { get; set; }
         /// <summary>
         /// 沟通日期
         /// </summary>

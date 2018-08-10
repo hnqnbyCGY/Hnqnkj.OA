@@ -37,7 +37,7 @@ namespace UI.Controllers
                            select new { s.ChatWay, s.CommunicationContent, s.IntentionDegree.Leavl,s.ConType,s.Shcool.Name,s.Id,stuName=s.Student.Name,s.CommunicationDate };
                 return Json(new { code=0,count=work.CommunicationRecord.GetCount(),data=list},JsonRequestBehavior.AllowGet);
             }
-            ViewBag.Shcool =  work.Shcool.Where(m => 1 == 1).ToList();
+            ViewBag.Shcool =  work.School.Where(m => 1 == 1).ToList();
             ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
             ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
             return View();
@@ -46,7 +46,7 @@ namespace UI.Controllers
         public ActionResult Add(int id=1)
         {
             ViewBag.Student = work.Student.GetEntityById(id);
-            ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList();
+            ViewBag.Shcool = work.School.Where(m => 1 == 1).ToList();
             ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
             ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
             ViewBag.Intention = work.IntentionDegree.GetAll(m=>m.Status).ToList();
