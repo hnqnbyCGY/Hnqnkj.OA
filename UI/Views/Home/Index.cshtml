@@ -109,13 +109,18 @@
                                 {
                                     nav: "基础设置", items: [
                                         { name: "咨询类型", icon: '&#xe608;', src: '/Basic/TypeList', id: 303 },
-                                        { name: "咨询方式", icon: '&#xe608;', src: '', id: 304 },
+                                        { name: "咨询方式", icon: '&#xe608;', src: '/Basic/WayList', id: 304 },
                                         { name: "客户状态", icon: '&#xe608;',src: '', id: 305 },                     
                                         { name: "客户来源", icon: '&#xe608;', src: '', id: 306 },
                                         { name: "意向程度", icon: '&#xe608;',src: '', id: 307 },
                                     ]
                                 },
-                                { nav: "校区设置", items: [{ name: "校区管理", icon:'&#xe63c;',id:308 }] }//li
+                                {
+                                    nav: "校区设置", items: [
+                                        { name: "添加校区", icon: '&#xe654;', src: '/SchoolInfo/Add', id: 308 },
+                                        { name: "校区管理", icon: '&#xe63c;', src: '/SchoolInfo/SchoolList', id: 309 }
+                                    ]
+                                }//li
                             ], IsShow: false
                         }
                     ]

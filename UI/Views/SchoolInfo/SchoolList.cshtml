@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>校区管理</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="padding:0 20px">
+      
+        <table id="demo" lay-filter="test"></table>
+    </div>
+   <script src="~/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            var $ = layui.$;
+            //第一个实例
+            window.tab=table.render({
+                elem: '#demo'
+                , url: '/SchoolInfo/SchoolList' //数据接口
+                , page: false
+                , cols: [[ //表头
+                    { field: 'Id', title: '序号', width: 60 }
+                    , { field: 'Name', title: '学校名称', width: 280 }
+                    , { field: 'Principal', title: '负责人', width: 100 }
+                    , { field: 'MPhone', title: '联系电话1', width: 120 }
+                    , { field: 'TPhone', title: '联系电话2', width: 130 }
+                    , { field: 'Address', title: '学校地址', width: 220 }
+                    , { field: 'CreateTime', title: '添加时间', width: 200, templet: '#titleTpl3' }
+                    , { field: '', title: '操作', width: 168, align: 'center', toolbar: '#barDemo' }
+                ]]
+            });
+            $('.layui-btn').click(function () {
+                console.log($('.container').height() + ' ' + $('.container').width());
+                //layer.open({
+                //    type: 2,
+                //    title: '添加',
+                //    content: '/SchoolInfo/Add',
+                //    area: ['450px', '450px']
+                   
+                //});
+            })
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                var layEvent = obj.event;
+                var tr = obj.tr;
+
+                if (layEvent == 'edit') {
+                    //layer.open({
+                    //    type: 2,
+                    //    title: '修改校区信息',
+                    //    content: '/SchoolInfo/Edit/' + data.Id,
+                    //    area: ['450px', '450px'],                       
+                    //});
+                   layer.open({
+                        type: 2,
+                        title: '修改校区信息',
+                        content: '/SchoolInfo/Edit/' + data.Id,
+                        area: ['450px', '450px'],
+                       
+                    })
+                   
+                }
+                if (layEvent == 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        layer.close(index);
+                        //向服务端发送删除指令
+                        layui.$.post(
+                            '/SchoolInfo/Del',
+                            { id: data.Id },
+                            function (data) {
+                                if (data.success) {
+                                    layer.msg('删除成功!');
+                                } else {
+                                    layer.msg('出现未知错误!');
+                                }
+                            }
+                        )
+                    });
+                }
+            })
+        });
+        function fmtDate(obj) {
+            var dateVal = obj + "";
+            if (obj != null) {
+                var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        }
+    </script>
+    <script type="text/html" id="titleTpl3">
+        {{fmtDate(d.CreateTime)}}
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn  layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe642</i></a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640</i></a>
+    </script>
+</body>
+</html>

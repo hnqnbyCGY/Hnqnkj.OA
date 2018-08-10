@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hnqnkj.OA.Model
 {
-    public class Shcool:EntityBase
+    public class School:EntityBase
     {
 
         public string Name { get; set; }
@@ -30,6 +30,10 @@ namespace Hnqnkj.OA.Model
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 学校状态
+        /// </summary>
+        public bool Status { get; set; }
 
     }
 }

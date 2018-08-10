@@ -29,16 +29,16 @@ namespace Hnqnkj.OA.DAL
             }
         }
 
-        private CommonRepository<Shcool> _shcool;
-        public CommonRepository<Shcool> Shcool
+        private CommonRepository<School> _school;
+        public CommonRepository<School> School
         {
             get
             {
-                if (_shcool == null)
+                if (_school == null)
                 {
-                    _shcool = new CommonRepository<Shcool>(DB);
+                    _school = new CommonRepository<School>(DB);
                 }
-                return _shcool;
+                return _school;
             }
         }
 

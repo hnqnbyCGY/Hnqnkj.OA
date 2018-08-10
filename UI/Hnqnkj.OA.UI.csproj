@@ -148,9 +148,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\ChatListController.cs" />
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SchoolInfoController.cs" />
     <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -318,6 +320,12 @@
     <Content Include="Views\ChatList\Edit.cshtml" />
     <Content Include="Views\StudentList\Update.cshtml" />
     <Content Include="Views\ChatList\Add.cshtml" />
+    <Content Include="Views\Basic\TypeList.cshtml" />
+    <Content Include="Views\Basic\WayList.cshtml" />
+    <Content Include="Views\SchoolInfo\SchoolList.cshtml" />
+    <Content Include="Views\SchoolInfo\Add.cshtml" />
+    <Content Include="Views\SchoolInfo\Edit.cshtml" />
+    <Content Include="Views\UserInfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

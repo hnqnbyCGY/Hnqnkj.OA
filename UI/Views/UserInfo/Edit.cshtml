@@ -8,41 +8,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>添加用户</title>
+    <title>修改用户</title>
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <style>
-        body{
-            padding:15px 0 0 0;
+        body {
+            padding: 15px 0 0 0;
         }
     </style>
 </head>
 <body>
     <div>
         <form class="layui-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="AccountName" required lay-verify="required" placeholder="请输入用户名" autocomplete="on" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
-                <div class="layui-input-inline">
-                    <input type="password" name="AccountPwd" required lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux"></div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">重复密码</label>
-                <div class="layui-input-inline">
-                    <input type="password" name="AccountPwd" required lay-verify="required|pass|repetition" placeholder="请确认密码" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux"></div>
-            </div>
+            <input type="hidden" name="Id" value="@ViewBag.model.Id" />           
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="RealName" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                    <input type="text" name="RealName" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input" value="@ViewBag.model.RealName">
                 </div>
                 <div class="layui-form-mid layui-word-aux"></div>
             </div>
@@ -56,7 +37,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">手机号码</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="MPhone" required lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                    <input type="text" name="MPhone" required lay-verify="required|phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input" value="@ViewBag.model.MPhone">
                 </div>
                 <div class="layui-form-mid layui-word-aux"></div>
             </div>
@@ -75,7 +56,7 @@
             </div>
         </form>
     </div>
-   
+
     <script src="~/layui/layui.all.js"></script>
 
     <script>
@@ -97,12 +78,10 @@
             form.on('submit(formDemo)', function (data) {
                 //layer.msg(JSON.stringify(data.field));
                 //return false;
-               
                 data.field.Status = data.field.Status == "on" ? true : false;
                 data.field.Sex = data.field.Sex == '男' ? true : false;
-
                 $.ajax({
-                    url: '/UserInfo/Add',
+                    url: '/UserInfo/Updata',
                     data: data.field,
                     type: 'post',
                     success(data) {
@@ -110,7 +89,7 @@
                             layer.msg('添加成功', { time: 2000 });
                         } else {
                             layer.msg('添加失败', { time: 2000 });
-                        }     
+                        }
                     },
                     error(data) {
                         layer.msg('网络请求错误', { time: 2000 });

@@ -21,8 +21,9 @@
     <script>
         layui.use('table', function () {
             var table = layui.table;
+            var $ = layui.$;
             //第一个实例
-            table.render({
+            window.tab=table.render({
                 elem: '#demo'
                 , url: '/UserInfo/AccountList' //数据接口
                 , page: false //开启分页
@@ -44,6 +45,16 @@
                 var layEvent = obj.event;
                 var tr = obj.tr;
 
+                if (layEvent == 'edit') {
+                    console.log($('.container').height() + ' ' + $('.container').width());
+                    layer.open({
+                        type: 2,
+                        title: '修改用户',
+                        content: '/UserInfo/Edit/' + data.Id,
+                        area:['500px','330px']
+                    })
+                }
+
                 if (layEvent == 'del') {
                     layer.confirm('真的删除行么', function (index) {
                         obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
@@ -62,10 +73,7 @@
                         )
                     });
                 }
-
-
             })
-
         });
         function fmtDate(obj) {
             var dateVal = obj + "";

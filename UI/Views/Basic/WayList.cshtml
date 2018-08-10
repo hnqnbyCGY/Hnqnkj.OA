@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -26,15 +25,15 @@
             //第一个实例
             table.render({
                 elem: '#demo'
-                , url: '/Basic/GetTypeList' //数据接口
+                , url: '/Basic/GetWayList' //数据接口
                 , cols: [[ //表头
                     { field: 'Id', title: '序号', width: 80 }
-                    , { field: 'TypeName', title: '属性名称', width: 750 }
+                    , { field: 'WayName', title: '属性名称', width: 750 }
                     , { field: 'DefaultSort', title: '排序', width: 100 }
                     , { field: 'Status', title: '状态', width: 100 }
                     , { field: '', title: '操作', width: 240, align: 'center' }
                 ]]
-            });  
+            });
         });
     </script>
     <script type="text/html" id="barDemo">
