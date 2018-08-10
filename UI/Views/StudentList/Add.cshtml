@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Add</title>
     <link rel="stylesheet" href="~/layui/css/layui.css" />
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    
     <style>
         .edit_block_c{
             margin-top:10px;
@@ -179,7 +179,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">咨询日期</label>
                         <div class="layui-input-inline" style="width:120px;">
-                            <input type="text" name="ConsultationDate" class="layui-input date_sel" value="2001-01-01" />
+                            <input type="text" name="ConsultationDate" class="layui-input date_sel1"  />
                         </div>
                     </div>
                 </div>
@@ -202,6 +202,12 @@
             var laydate = layui.laydate;
             laydate.render({
                 elem: '.date_sel' //指定元素
+                , max: new Date().toString()
+            });
+            laydate.render({
+                elem: '.date_sel1'
+                , value: new Date()
+                , max: new Date().toString()
             });
             var form = layui.form;
             form.on('submit(w)', function (data) {

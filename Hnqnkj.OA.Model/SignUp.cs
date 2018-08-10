@@ -39,6 +39,11 @@ namespace Hnqnkj.OA.Model
         /// </summary>
         public int AdminUserId { get; set; }
         public virtual AdminUser AdminUser { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remarks { get; set; }
+             
 
     }
 }
