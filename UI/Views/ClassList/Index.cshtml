@@ -79,13 +79,11 @@
             window.tab = table.render({
                 elem: '#table'
                 , url: '/Classlist'
-                , cellMinWidth: 50
                 , cols: [[
                     { field: 'TName',  title: '班级名称' }
-                    , { field: 'ChatWay',  title: '联系类型' }
-                    , { field: 'ConType',  title: '联系方式' }
-                    , { field: 'Leavl',  title: '意向程度' }
-                    , { field: 'Name',  title: '校区' }
+                    , { field: 'CreateDate',  title: '创建时间' }
+                    , { field: 's',  title: '专业' }
+                    , { field: 'School',  title: '校区' }
                     , { field: 'CommunicationDate', title: '沟通时间',templet:'#time' }
                     , { field: 'Id', toolbar: '#barDemo', title: '操作' }
 
@@ -98,7 +96,7 @@
                         content: '/chatlist/edit?id=' + obj.data.Id,
                         title: `编辑对${obj.data.stuName}的沟通记录`,
                         area: ["600px", "500px"],
-                        shade: 0.8,
+                        shade: 0.5,
                         type:2
                     })
                 }

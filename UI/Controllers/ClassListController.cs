@@ -17,9 +17,21 @@ namespace UI.Controllers
             if (Request.IsAjaxRequest())
             {
                 var query = PredicateBuilder.True<Team>();
-                return Json(new { count =work.Team.GetCount()});
+                var list = from s in work.Team.GetPageEntitys()
+                           select new {s.CreateDate,s.TName,a=s.Specialty.Name,s.Remarks,s.Id };
+                return Json(new { count =work.Team.GetCount(),code=0,msg="",});
             }
             return View();
+        }
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Add(Team model)
+        {
+
         }
         
     }
