@@ -46,7 +46,7 @@
         <label class="">校区：</label>
         <select id="school" class="layui-input layui-select" style="width:150px">
             <option value="0">请选择</option>
-            @foreach (Shcool item in ViewBag.Shcool)
+            @foreach (School item in ViewBag.Shcool)
             {
                 <option value="@item.Id">@item.Name</option>
             }

@@ -28,11 +28,11 @@ namespace UI.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Add(Team model)
+        //[HttpPost]
+       /* public ActionResult Add(Team model)
         {
 
-        }
+        }*/
         
     }
 }

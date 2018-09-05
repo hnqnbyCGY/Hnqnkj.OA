@@ -153,11 +153,8 @@
     <Compile Include="Controllers\ChatTypeController.cs" />
     <Compile Include="Controllers\ClassListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\SchoolInfoController.cs" />
-=======
     <Compile Include="Controllers\SpecialtyListController.cs" />
->>>>>>> 78b0dff290916e51c3de257af8b73176eeb5cb1c
     <Compile Include="Controllers\StusFollowUpController.cs" />
     <Compile Include="Controllers\StudentListController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />

@@ -70,10 +70,10 @@ namespace UI.Controllers
             }
         }
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id)  
         {
             ViewBag.Student = work.Student.GetEntityById(id);
-            ViewBag.Shcool = work.Shcool.Where(m => 1 == 1).ToList();
+            ViewBag.Shcool = work.School.Where(m => 1 == 1).ToList();
             ViewBag.Type = work.ConsultingType.Where(PredicateBuilder.True<ConsultingType>());
             ViewBag.Way = work.ConsultingWay.Where(m => 1 == 1);
             ViewBag.Intention = work.IntentionDegree.GetAll(m => m.Status).ToList();
